@@ -1,0 +1,61 @@
+# TEACHERS MODULE: DIGITAL RESOURCES STUDIO (PAGE SPECIFICATION)
+================================================================================
+Route: /teacher/dashboard/resources
+Component: TeacherResourcesPage.jsx
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Resource Details Page.png | Purchase Resource Details page.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. SCREEN PURPOSE:
+   This module allows teachers to monetize standalone teaching assets—such as lesson plan guides, science experiment lab sheets, printable history timelines, and unit studies—outside of full multi-week courses.
+
+2. THREE TRIAGED WORKFLOW VIEWS:
+   A. Landing Catalog View (`MyResourcesLanding.jsx`):
+      - Top Bar: Total Resources Published, Total Download Count, Aggregate Resource Sales.
+      - Primary Action: "Upload New Resource" button.
+      - Resource Card Roster:
+        * Cover Thumbnail.
+        * Title, Subject Badge, Grade/Age Level.
+        * File Type Badge (PDF, DOCX, ZIP).
+        * Sales Metric: Downloads count and Gross Earned ($ or Tokens).
+        * Status Pill: `Published`, `Draft`, `Pending Approval`.
+        * Actions Menu: Edit Resource, Configure Watermarked Preview, Delete.
+
+   B. Resource Creation Form (`UploadResourceForm.jsx`):
+      - Form Inputs:
+        1. Title: e.g., "Exploring Light & Creation: Complete 4th-6th Grade Lab Packet".
+        2. Description: Detailed summary of curriculum alignment and learning objectives.
+        3. Subject Category: Dropdown selection (Science, Mathematics, Biblical Studies, etc.).
+        4. Target Grade / Age Range.
+        5. Master File Upload: Supports PDF, DOCX, EPUB, or ZIP bundles via 2MB chunked upload.
+        6. Cover Image Upload: Promotional thumbnail.
+        7. Pricing: Set Fiat Price ($ USD/AUD) and Token Price (e.g., 1 Token ≈ $5 USD) or check "Offer as Free Resource".
+      - Navigation: "Next: Watermark & Preview Setup" button.
+
+   C. Watermark & Sample Preview Console (`PreviewWatermarkSetup.jsx`):
+      - Intellectual Property Protection:
+        * Teachers select which sample pages (e.g., Pages 1 and 2) parents can preview for free before purchasing.
+        * System automatically renders high-resolution previews with diagonal semi-transparent "KTA+ SAMPLE PREVIEW" watermarks across unpurchased pages.
+      - Final Action: "Publish to Marketplace" button.
+
+3. PREVIOUS BACKEND WORK VS PENDING IMPLEMENTATION:
+   - ALREADY DONE:
+     * Table `resources` and `resource_files` exist in `database.sql`.
+     * `TeacherResourceApiController` base CRUD implemented.
+   - PENDING IMPLEMENTATION:
+     * PDF Watermarking Service (using PHP imagick or PDF library) to automatically stamp preview pages upon file upload.
+     * Token-based instant unlock API for parents browsing the resource store.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. ডিজিটাল রিসোর্স ও স্টাডি ম্যাটেরিয়াল স্টুডিও:
+   - শিক্ষকরা তাদের তৈরি করা একক হ্যান্ডআউট, ল্যাব গাইড, প্রজেক্ট ফাইল বা ওয়ার্কশিট এখানে স্বাধীনভাবে বিক্রি করতে পারেন।
+   - ৩টি কাজের ধাপ:
+     ১. ল্যান্ডিং ভিউ: আপলোড করা সব রিসোর্সের তালিকা, কতবার ডাউনলোড হয়েছে এবং কত টাকা আয় হয়েছে তার রিয়েল-টাইম হিসাব।
+     ২. আপলোড ফর্ম: রিসোর্সের নাম, বিবরণ, বিষয়, বয়সসীমা, মূল ফাইল আপলোড এবং ফিয়াট বা টোকেন মূল্য নির্ধারণ।
+     ৩. ওয়াটারমার্ক প্রিভিউ সেটআপ: অভিভাবকরা কেনার আগে যেন প্রথম ১-২ পৃষ্ঠা প্রিভিউ দেখতে পারে কিন্তু পুরো ফাইল চুরি করতে না পারে, সেজন্য স্বয়ংক্রিয় "KTA+ SAMPLE" ওয়াটারমার্ক যুক্ত করা।
+

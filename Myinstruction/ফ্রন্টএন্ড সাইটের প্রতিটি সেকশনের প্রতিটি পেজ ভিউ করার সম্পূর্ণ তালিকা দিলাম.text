@@ -1,0 +1,98 @@
+ফ্রন্টএন্ড সাইটের প্রতিটি সেকশনের প্রতিটি পেজ ভিউ করার সম্পূর্ণ তালিকা দিলাম:
+
+🌐 ১. অথেনটিকেশন ও সাইটম্যাপ গেটওয়ে (৩টি স্ক্রিন)
+/auth/register (মাস্টার রেজিস্ট্রেশন গেটওয়ে): ৪টি কার্ড (Parents & Families, Teachers, Co-ops, Micro-Schools)।
+/auth/login (লগইন পেজ): ইমেইল, পাসওয়ার্ড, রিমেম্বার মি, ফরগট পাসওয়ার্ড ও সোশ্যাল লগইন।
+/all-pages (সম্পূর্ণ ফ্রন্টএন্ড সাইটম্যাপ): ওয়েবসাইটের সকল স্ক্রিনের সমন্বিত ডিরেক্টরি।
+
+
+👨‍👩‍👧‍👦 ২. প্যারেন্ট ও ফ্যামিলি পোর্টাল (৩১টি স্ক্রিন)
+/parent/join-now: প্যারেন্ট ওয়েলকাম পেজ।
+/parent/on-board: মাল্টি-স্টেপ অনবোর্ডিং ফর্ম (AUS ৫-স্টেপ এবং US ৬-স্টেপ; ড্রাফট সেভিং সুবিধাসহ)।
+/parent/success: অনবোর্ডিং কনফার্মেশন স্ক্রিন।
+/parent/dashboard: প্যারেন্ট কমান্ড ড্যাশবোর্ড (চাইল্ড সুইচার ড্রপডাউন, ৪টি স্ট্যাটাস কার্ড, লাইভ ক্লাস শিডিউল ও 'Join Class' বোতাম)।
+/parent/settings: অভিভাবকের প্রোফাইল, ঠিকানা ও ইমার্জেন্সি কন্টাক্ট এডিট।
+/parent/edit-learner: একাধিক সন্তানের প্রোফাইল, গ্রেড ও ইন্টারেস্ট এডিট এবং নতুন সন্তান যোগ করার মডাল।
+/parent/kingdom-thinkers-academy-details: KTA কারিকুলাম ও ৩টি প্যাকেজ (Explorer $৬০, Adventure $১৩৯, Journey $১৯৫) এবং স্ট্রাইপ চেকআউট।
+/parent/iproject-program-details: iProject ওভারভিউ।
+/parent/iproject-details-create-project: ৩-ধাপের কাস্টম প্রজেক্ট প্রস্তাবনা বিল্ডার।
+/parent/booking-schedule: মেন্টরের সাথে ১-অন-১ উইকলি সেশন বুকিং ক্যালেন্ডার।
+/parent/thinkers-academy-program-details: প্রাইভেট টিউটরিং ওভারভিউ ও সাবজেক্ট সিলেকশন।
+/parent/marketplace: মার্কেটপ্লেস কোর্স ক্যাটালগ (বিষয়, বয়স ও দেশভিত্তিক ফিল্টার)।
+/parent/marketplace-qourse-details: মার্কেটপ্লেস কোর্স সিলেবাস, টিচার প্রোফাইল ও রিভিউ।
+/parent/marketplace-one-to-one-tutoring: ১-অন-১ প্রাইভেট টিউটরিং ডিরেক্টরি।
+/parent/marketplace-self-paced: সেলফ-পেসড কোর্স সিলেবাস ও আউটলাইন।
+/parent/confirm-enrollment-process: সন্তান সিলেক্ট করে ক্রেডিট কার্ড বা টোকেন ওয়ালেট দিয়ে ফাইনাল এনরোলমেন্ট মডাল।
+/parent/use-esa-funds-enrollment: আমেরিকার সরকারি ESA ফান্ডস সিলেকশন, স্টুডেন্ট আইডি ইনপুট ও অডিট ইনভয়েস রিসিট জেনারেশন।
+/parent/subscription: অভিভাবকের সক্রিয় সাবস্ক্রিপশন প্ল্যান ও রিনিউয়াল স্ট্যাটাস।
+/parent/token-wallet: টোকেন ব্যালেন্স, প্যাকেজ কেনা (৫০, ১২০, ৩০০), লেজার হিস্ট্রি ও মেয়াদোত্তীর্ণ টোকেন রিকভারি বোতাম।
+/parent/payment-success & /parent/payment-failure: পেমেন্ট রেজাল্ট স্ক্রিনস।
+/parent/enrolled: সন্তানের চলমান কোর্স ও প্রগ্রেস বার।
+/parent/my-child-learning-progress: সন্তানের সাপ্তাহিক ক্লাসের উপস্থিতি ও কুইজ নম্বর অ্যানালিটিক্স।
+/parent/view-my-child-student-lesson: সন্তান কোন লেসনে কি উত্তর দিয়েছে এবং শিক্ষকের মন্তব্য পরিদর্শন।
+/parent/learning-progress-blocks: উইকলি মাইলস্টোন চেকলিস্ট।
+/parent/media: পূর্বের ক্লাসের ভিডিও রেকর্ডিং প্লেয়ার হাব।
+/parent/resources ও /parent/resources-details: ওয়াটারমার্কযুক্ত ওয়ার্কশিট ও বই ডাউনলোড লাইব্রেরি।
+/parent/consent: সেফগার্ডিং পলিসি ও ডেটা প্রাইভেসিতে ডিজিটাল সাইনেচার।
+/parent/community: অভিভাবকদের সোশ্যাল ডিসকাশন বোর্ড ও পোস্ট ফিড।
+/parent/parents-all-connections ও /parent/parent-all-connection-requests: ফ্রেন্ড রিকোয়েস্ট ও কানেকশন তালিকা।
+/parent/ai-outcome-starts ও /parent/ai-outcome-generator: শিশুর আগ্রহ দিয়ে এআই আউটকাম তৈরির ফর্ম।
+/parent/ai-outcome-details: এআই জেনারেটেড লার্নিং আউটকাম দেখা ও পোর্টফোলিও পিডিএফ ডাউনলোড।
+/parent/help-and-support ও /parent/support-message-details: সাপোর্ট টিকিট ওপেন ও লাইভ চ্যাট থ্রেড।
+/parent/policies: একাডেমি রুলস ও গাইডলাইন।
+
+🎒 ৩. স্টুডেন্ট পোর্টাল (১৩টি স্ক্রিন)
+/student/enrolled: স্টুডেন্ট ড্যাশবোর্ড ও উইকলি টু-ডু চেকলিস্ট।
+/student/schedule: লাইভ ক্লাসের ইন্টারেক্টিভ রুটিন ক্যালেন্ডার (গুগল মিট / জুম লিংক)।
+/student/hive: নিরাপদ সহপাঠী নেটওয়ার্ক (The Hive) ও প্রজেক্ট শেয়ারিং ফিড।
+/student/connection-details ও /student/all-requests: সহপাঠীদের ফ্রেন্ড রিকোয়েস্ট ও মেসেজ।
+/student/profile: শিক্ষার্থীর প্রোফাইল ও অর্জিত ডিজিটাল ব্যাজ লকার।
+/student/notes: ব্যক্তিগত স্টাডি জার্নাল ও শিক্ষকের ফিডব্যাক।
+/student/kta-enroll-progress: ১২ সপ্তাহের ভিজ্যুয়াল ইনকোয়ারি রোডম্যাপ।
+/student/view-kta-lesson: ৪-টায়ার স্লাইড রিডার, ভিডিও প্লেয়ার ও সেলফ-স্কোরিং কুইজ।
+/student/lesson-submit-blocks: টেক্সট উত্তর লিখে ও ছবি/ফাইল আপলোড করে হোমওয়ার্ক জমা দেওয়ার বক্স।
+/student/thinkers-enroll-details: থিংকার্স একাডেমি ক্লাসের অগ্রগতি।
+/student/course-enroll-details ও /student/iproject-enroll-details: মার্কেটপ্লেস ও আইপ্রজেক্ট লার্নিং ভিউ।
+/student/resource-enroll-details: কোর্সের সাথে থাকা রিড-অনলি ওয়ার্কশিট ডাউনলোডার।
+/student/ai-outcome-generator: শিশুর বয়সোপযোগী প্রজেক্ট আইডিয়া ব্রেনস্টর্মিং কনসোল।
+
+👨‍🏫 ৪. টিচার পোর্টাল (ইন্ডিপেন্ডেন্ট ও কন্ট্রাক্টেড — ১৭টি স্ক্রিন)
+/teacher/create-account ও /teacher/onboard-details: ইন্ডিপেন্ডেন্ট শিক্ষকের ৮-ধাপের অনবোর্ডিং।
+/contracted-teacher/create-account ও /contracted-teacher/contracted-teacher-onboard: কন্ট্রাক্টেড শিক্ষকের ৫-ধাপের অনবোর্ডিং।
+/teacher/dashboard: শিক্ষকের মূল ড্যাশবোর্ড (মোট ছাত্র, আয় ও ক্লাস পরিসংখ্যান)।
+/teacher/dashboard/compliance ও /contracted-teacher/compliance: বাধ্যতামূলক সেফগার্ডিং গেট (WWCC ও ব্যাকগ্রাউন্ড চেক ভেরিফিকেশন ট্র্যাকার)।
+/teacher/dashboard/course-builder: ৫-মোডের ৪-টায়ার কোর্স বিল্ডার (লাইভ, সেলফ-পেসড, টিউটরিং, কো-অপ, মাইক্রো-স্কুল)।
+/teacher/dashboard/my-courses: প্রকাশিত কোর্সের তালিকা ও ছাত্র সংখ্যা।
+/teacher/dashboard/my-course-group: লাইভ গ্রুপ ক্লাসরুম ও এনাউন্সমেন্ট বোর্ড।
+/teacher/dashboard/review-student-submission ও /contracted-teacher/kta-block-submit: খাতা মূল্যায়ন কনসোল (ছাত্রের টেক্সট/ফাইল দেখে Approve বা Revision দেওয়া)।
+/teacher/dashboard/one-on-one-tutoring: প্রাইভেট টিউটরিং ক্যালেন্ডার স্লট ম্যানেজার।
+/contracted-teacher/dashboard: কন্ট্রাক্টেড শিক্ষকের ক্লাসরুম কনসোল।
+/contracted-teacher/kta-week-details: KTA সাপ্তাহিক কারিকুলাম পড়ানো ও হাজিরা নেওয়া।
+/teacher/dashboard/payouts: Stripe Connect Express বোতাম, ৭০% শিক্ষক আয় / ৩০% প্ল্যাটফর্ম কমিশন স্বয়ংক্রিয় লেজার।
+/contracted-teacher/payouts: কন্ট্রাক্টেড শিক্ষকের পড়ানোর ঘণ্টার টাইমশিট লগার।
+/teacher/dashboard/resources: শিক্ষকের তৈরি ডিজিটাল রিসোর্স লাইব্রেরি।
+/teacher/dashboard/message: ছাত্র ও অভিভাবকদের সাথে অভ্যন্তরীণ চ্যাট।
+/teacher/dashboard/premium-program ও /teacher/dashboard/subscription-plans: এডমিন টিচারের মাস্টার কারিকুলাম ও সাবস্ক্রিপশন রেট নির্ধারণ।
+
+🤝 ৫. হোমস্বর কো-অপ পোর্টাল (৯টি স্ক্রিন)
+/co-op/onboarding ও /co-op/onboarding/plan: ৩টি B2B প্ল্যান নির্বাচন (১৫, ৪০, আনলিমিটেড সিট)।
+/co-op/onboarding/form: ৫-ধাপের ফর্ম (Basic Details, Visibility, Age Range, Agreements, Review)।
+/co-op/dashboard: পড ওভারভিউ (মোট পরিবার, ছাত্রছাত্রী, সিট ক্যাপাসিটি)।
+/co-op/dashboard/families ও .../pending-requests: মেম্বার পরিবার তালিকা ও নতুন আবেদন এপ্রুভাল।
+/co-op/dashboard/children ও .../pending-requests: ছাত্রছাত্রী তালিকা ও নতুন সিট অনুমোদন।
+/co-op/dashboard/programs ও /co-op/dashboard/program-details: ৫টি প্রধান ট্যাবসহ প্রোগ্রাম কনসোল (Weeks Module, Assigned Students, Attendance, Live Class & Recordings, Announcements)।
+/co-op/dashboard/marketplace: বাল্ক সিট গ্রুপ লাইসেন্সিং মার্কেটপ্লেস (১০-প্যাক, ২৫-প্যাক ছাড়)।
+/co-op/dashboard/messages ও /co-op/dashboard/announcements: অভ্যন্তরীণ চ্যাট ও নোটিশ বোর্ড।
+/co-op/dashboard/settings: ভেন্যুর ঠিকানা, লোগো এবং সিট কোটা সেটিংস।
+
+🏫 ৬. মাইক্রো-স্কুল প্রাতিষ্ঠানিক পোর্টাল (১২টি স্ক্রিন — US Only)
+/micro-school/onboarding ও /micro-school/onboarding/subscription: B2B প্ল্যান (২০, ৫০, ১২০ সিট)।
+/micro-school/onboarding/create-account ও /micro-school/onboarding/step-form: কাস্টম সাবডোমেন ([school].ktaplus.io) ও প্রাতিষ্ঠানিক ফর্ম।
+/micro-school/dashboard: ক্যাম্পাস কমান্ড ড্যাশবোর্ড ও আজকের ক্লাসের রুটিন।
+/micro-school/dashboard/class-instances: Create Class Instance ইঞ্জিন (কারিকুলাম সিলেক্ট, শিক্ষক নিয়োগ, রুটিন ও ছাত্র যুক্ত করা)।
+/micro-school/dashboard/global-program-library: KTA মাস্টার কারিকুলামকে এক ক্লিকে Enable / Disable টগল করা (১০০% রিড-অনলি কারিকুলাম)।
+/micro-school/dashboard/families ও .../pending-families: স্কুলের পরিবার তালিকা ও এডমিশন এপ্রুভ করা।
+/micro-school/dashboard/children ও .../pending-child: স্কুলের ছাত্রছাত্রীদের রোস্টার, হাজিরা ও গ্রেড খাতা।
+/micro-school/dashboard/teachers ও .../pending-teachers: নিয়োজিত শিক্ষক তালিকা ও নতুন শিক্ষক নিয়োগ।
+/micro-school/dashboard/messages ও /micro-school/dashboard/announcements: স্কুল চ্যাট ও জরুরি নোটিশ।
+/micro-school/dashboard/settings: ক্যাম্পাস ব্রান্ডিং ও সাবডোমেন সেটিংস।

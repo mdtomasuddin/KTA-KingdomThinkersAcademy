@@ -1,0 +1,45 @@
+# PARENTS & FAMILIES MODULE: PROGRAMS & MARKETPLACE CHECKOUT
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /parent/kingdom-thinkers-academy-details (KTA Program)
+  - /parent/iproject-program-details (iProject Overview)
+  - /parent/iproject-details-create-project (Custom Project Builder)
+  - /parent/booking-schedule (Mentor Booking Calendar)
+  - /parent/thinkers-academy-program-details (Thinkers Tutoring)
+  - /parent/marketplace (Marketplace Catalog)
+  - /parent/marketplace-qourse-details (Course Details)
+  - /parent/confirm-enrollment-process (Checkout Confirmation)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Kingdom Thinkers Academy Program details.png
+  * Thinkers Academy Program details.jpg
+  * Build your Iproject.png
+  * Booking Scedule.png
+  * Confirm Enrollment process.png
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. PROGRAM ENROLLMENT:
+- Kingdom Thinkers Academy: Explorer ($60/wk), Adventure ($139/wk), Journey ($195/wk). Stripe checkout subscription.
+- iProject International: Custom passion project ideation form (3 steps) and interactive weekly calendar to book 1-on-1 mentor sessions.
+- Thinkers Academy: Private academic tutoring subject catalog.
+
+2. MARKETPLACE CATALOG & CONFIRM ENROLLMENT:
+- Search and filters: Subject, grade, country (AU/US/Global), delivery format (Group Live, Self-Paced, 1-on-1), price format (Fiat $ or Tokens).
+- Confirm Enrollment Modal:
+  * Select target child from dropdown.
+  * Payment method: Credit Card (Stripe) OR Token Wallet deduction.
+  * Instant confirmation & seat assignment.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. প্রিমিয়াম প্রোগ্রাম এনরোলমেন্ট:
+- KTA প্যাকেজসমূহ: Explorer ($৬০/সপ্তাহ), Adventure ($১৩৯/সপ্তাহ), Journey ($১৯৫/সপ্তাহ)।
+- iProject কাস্টম প্রজেক্ট তৈরি ও মেন্টর বুকিং ক্যালেন্ডার।
+
+২. মার্কেটপ্লেস ও চেকআউট:
+- বিষয়ভিত্তিক কোর্স খোঁজা, সিলেবাস দেখা।
+- চেকআউট মডাল: কোন সন্তান পড়বে তা নির্বাচন করে ক্রেডিট কার্ড অথবা টোকেন ওয়ালেট দিয়ে কনফার্ম করা।
+

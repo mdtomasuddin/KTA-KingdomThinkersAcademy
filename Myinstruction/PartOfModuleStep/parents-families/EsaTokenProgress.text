@@ -1,0 +1,45 @@
+# PARENTS & FAMILIES MODULE: ESA FUNDS, TOKEN WALLET & PROGRESS
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /parent/use-esa-funds-enrollment (US ESA Funds)
+  - /parent/token-wallet (Token Wallet)
+  - /parent/my-child-learning-progress (Learning Analytics)
+  - /parent/view-my-child-student-lesson (Lesson Block Inspector)
+  - /parent/media (Media Hub)
+  - /parent/resources (Resource Library)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Use ESA Funds for Enrollment.svg
+  * Token Wallet.png
+  * View My Child Student Lesson.png
+  * Learning Progress Blocks.png
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. US ESA FUNDS ENROLLMENT (/parent/use-esa-funds-enrollment):
+- Select state program: Arizona ESA, Florida Step Up, Utah Fits All, Iowa Students First.
+- Input student state voucher ID, upload award letter document.
+- Action: Generates audit-compliant tax invoice for ClassWallet / state reimbursement.
+
+2. TOKEN WALLET (/parent/token-wallet):
+- Balance card, buy token packages (Starter 50 tokens @ $50, Scholar 120 tokens @ $100, Master 300 tokens @ $220).
+- Detailed transaction ledger, 12-month expiry warning, 30-day reactivation grace period button.
+
+3. CHILD LEARNING PROGRESS & LESSON INSPECTION:
+- Inspect child's exact lesson blocks, view submitted answers and files, read teacher feedback.
+- Stream live classroom recordings in Media Hub. Download worksheets dynamically watermarked with parent identity.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. US ESA ফান্ডস এনরোলমেন্ট:
+- আমেরিকান সরকারি ভাউচার সিলেক্ট করে এওয়ার্ড লেটার আপলোড ও অডিট ইনভয়েস ডাউনলোড।
+
+২. টোকেন ওয়ালেট:
+- ব্যালেন্স পর্যবেক্ষণ, টোকেন প্যাকেজ ক্রয়, প্রতি খরচের স্টেটমেন্ট এবং মেয়াদোত্তীর্ণ টোকেন ফেরত নেওয়ার বোতাম।
+
+৩. প্রগ্রেস ও লেসন পরিদর্শন:
+- সন্তানের উইকলি প্রগ্রেস, কুইজের নম্বর, জমা দেওয়া অ্যাসাইনমেন্ট ও শিক্ষকের মন্তব্য পরিদর্শন।
+- ক্লাস রেকর্ডিং দেখা এবং প্যারেন্টের নামযুক্ত ওয়াটারমার্ক করা ওয়ার্কশিট ডাউনলোড।
+

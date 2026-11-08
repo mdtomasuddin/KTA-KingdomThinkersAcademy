@@ -1,0 +1,79 @@
+# TEACHERS MODULE: 1-ON-1 TUTORING HUB & AVAILABILITY (PAGE SPECIFICATION)
+================================================================================
+Routes:
+  - /teacher/dashboard/one-on-one-tutoring (Tutoring Roster & Slots Manager)
+  - /teacher/dashboard/one-on-one-lesson-details (Private Tutee Session Console)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * 1-on-1 Tutoring Details Page.png | 1-on-1 Tutoring Details.png
+  * Ongoing 1-on- 1 Tutoring.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. /teacher/dashboard/one-on-one-tutoring (TUTORING ROSTER & SLOTS):
+   A. Top Banner & Metric Cards (`TeacherOneOnOneStatCard.jsx`):
+      - Card 1: Active Tutees / Sessions (e.g., 8 Active Students).
+      - Card 2: Completed Sessions (e.g., 24 Sessions Conducted).
+      - Card 3: Total Tutoring Hours Logged (e.g., 36.5 Hours).
+   B. Booked Sessions Table:
+      - Filter by status: All, Upcoming, Completed, Rescheduled.
+      - Student Row Details: Avatar, Student Name (e.g., Jacob Jones, Leslie Alexander, Dianne Russell), Date, Time Slot (e.g., 2:00 PM - 3:30 PM), Status Pill.
+      - Action: "View Lesson Details" button -> Routes to `/teacher/dashboard/one-on-one-lesson-details`.
+   C. Weekly Availability Scheduler:
+      - Slot list displaying Open vs Booked slots.
+      - Action Button: "Manage Available Time Slots" -> Opens `CtTeacherManageAvailableTimeSlotModal.jsx` allowing the educator to set recurring weekly hours (e.g., Tuesdays & Thursdays 14:00 - 18:00).
+
+2. /teacher/dashboard/one-on-one-lesson-details (PRIVATE SESSION CONSOLE):
+   A. Student Header & Quick Connect:
+      - Large student avatar, learner grade level, and parent emergency contact info.
+      - Primary Actions:
+        * "Join Video Call" button (Launches integrated live video room).
+        * "Send Message" button (Opens direct message modal).
+   B. Student Emotional & Academic Readiness Survey:
+      - Pre-session survey completed by student/parent before joining:
+        [x] Feeling overwhelmed by schoolwork (Alerts tutor to provide encouragement)
+        [ ] Mostly okay, just need some help
+        [ ] Feeling confident and ready to stretch
+   C. Student Homework & Submissions Inspector:
+      - Roster of student uploaded files (e.g., `Week-5-Homework.pdf`, `Math-Problems.jpg`).
+      - Visual Actions: Preview in modal (`Eye` icon) or Download original file (`Download` icon).
+   D. Assignments Due Tracker:
+      - Lists upcoming tests and essays: Title, Due Date, Subject Topic, Priority Badge (`High`, `Medium`).
+   E. 4-Phase Structured Session Plan:
+      - Phase 1: Connect (5 Min) — Personal check-in, relational connection, prayer.
+      - Phase 2: Clarify (10 Min) — Pinpointing areas where the student is stuck.
+      - Phase 3: Deep Work (30-40 Min) — Guided instruction and problem solving.
+      - Phase 4: Wrap-Up (5 Min) — Summary of key breakthroughs and assigning next steps.
+   F. Past Session History:
+      - Complete log of all previous meetings with date, duration, and archived tutor notes.
+
+3. PREVIOUS BACKEND WORK VS PENDING IMPLEMENTATION:
+   - ALREADY DONE:
+     * Tables `tutoring_slots` and `tutoring_bookings` exist in `database.sql`.
+   - PENDING IMPLEMENTATION:
+     * `TutoringApiController` endpoints:
+       1. `GET /api/teacher/tutoring/slots` — Fetch open and booked slots.
+       2. `POST /api/teacher/tutoring/slots` — Add recurring availability slots.
+       3. `DELETE /api/teacher/tutoring/slots/{id}` — Remove slot.
+       4. `GET /api/teacher/tutoring/bookings/{id}` — Get student readiness survey and files.
+       5. `POST /api/teacher/tutoring/bookings/{id}/notes` — Save post-session study notes.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. ১-অন-১ টিউটরিং হাব (/teacher/dashboard/one-on-one-tutoring):
+   - টপ স্ট্যাটাস কার্ড: মোট সক্রিয় ছাত্র, সম্পন্ন হওয়া ক্লাসের সংখ্যা এবং মোট পড়ানোর ঘণ্টার হিসেব।
+   - বুকিং তালিকা: শিক্ষার্থীর নাম, ছবি, তারিখ, সময় এবং সেশনের অবস্থা।
+   - ক্যালেন্ডার সময়সূচি: শিক্ষক কোন কোন দিন কোন সময়ে পড়াতে পারবেন তা নির্ধারণের জন্য "Manage Available Time Slots" বাটন ও মডাল।
+
+২. প্রাইভেট লেসন বিস্তারিত পেজ (/teacher/dashboard/one-on-one-lesson-details):
+   - স্টুডেন্ট প্রোফাইল ও অ্যাকশন: লাইভ ভিডিও ক্লাসে ঢোকার জন্য "Join Video Call" বাটন এবং মেসেজ পাঠানোর সুবিধা।
+   - স্টুডেন্টের মানসিক অবস্থা ট্র্যাকার: ক্লাস শুরুর আগে শিক্ষার্থী কতটা নার্ভাস বা কনফিডেন্ট তা পর্যবেক্ষণ করা।
+   - হোমওয়ার্ক ফাইল ইন্সপেক্টর: শিক্ষার্থীর পাঠানো পিডিএফ বা ছবি সরাসরি স্ক্রিনে দেখা ও ডাউনলোড করা।
+   - ৪-ধাপের গোছানো সেশন প্ল্যান:
+     * ধাপ ১: কানেক্ট (৫ মিনিট) — খোঁজখবর নেওয়া।
+     * ধাপ ২: সমস্যা চিহ্নিতকরণ (১০ মিনিট)।
+     * ধাপ ৩: গভীর পাঠ ও সমাধান (৩০-৪০ মিনিট)।
+     * ধাপ ৪: সমাপ্তি ও পরবর্তী পড়া বুঝিয়ে দেওয়া (৫ মিনিট)।
+

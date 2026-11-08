@@ -1,0 +1,69 @@
+# TEACHERS MODULE: PAYOUTS & STRIPE CONNECT (PAGE SPECIFICATION)
+================================================================================
+Route: /teacher/dashboard/payouts
+Component: TeacherPayoutsPage.jsx
+Visual Reference: E:\kaleknealeImages\kalekneale\Payouts.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. SCREEN PURPOSE & FINANCIAL LEDGER:
+   This screen manages the financial settlements, revenue sharing, and banking integrations for independent marketplace educators.
+
+2. COMPONENT ARCHITECTURE:
+   A. Top Statistics Cards (`TeacherPayoutsTopStats.jsx`):
+      - Card 1: Total Earnings (e.g., "$47,320.00" — Lifetime revenue).
+      - Card 2: Available to Withdraw (e.g., "$12,453.00" — Cleared funds ready for bank transfer) with quick action button "Request Payout".
+      - Card 3: Pending Earnings (e.g., "$12,453.00" — Funds in standard 7-day course completion hold).
+      - Card 4: Next Automated Payout Date (e.g., "16 Dec 2025" — Bi-weekly scheduled transfer).
+      - Header Action: "View Full Statements & Tax" button -> Opens monthly and annual tax statements.
+
+   B. 70/30 Revenue Share Protocol (`TeacherPayoutsRevenueShare.jsx`):
+      - Clear visual breakdown of the marketplace financial split:
+        * 70% Net Educator Share: Directly transferred to educator's verified bank account.
+        * 30% Platform Cut: Covers payment gateway fees, child safeguarding audits, live video streaming infrastructure, and platform maintenance.
+      - Stripe Connect Express Onboarding:
+        * If unlinked: Primary call-to-action button "Connect with Stripe" triggering Stripe Express OAuth onboarding.
+        * If linked: Displays linked bank status ("Stripe Connected") with direct link to manage bank account or debit card.
+
+   C. Recent Transactions Ledger (`TeacherPayoutsRecentTransaction.jsx`):
+      - Table Columns:
+        1. Date & Time.
+        2. Customer / Student Name.
+        3. Course / Resource Title.
+        4. Gross Amount ($ USD/AUD or Tokens).
+        5. Net Educator Share (70%).
+        6. Transfer Status (`Paid`, `Processing`, `Transferred`).
+
+   D. Statements & Tax Console (`TeacherViewStatatements.jsx`):
+      - Downloadable PDF earnings statements for monthly reconciliation.
+      - End-of-Financial-Year (EOFY for AU) and Form 1099-K (for US) compliant tax reporting documents.
+
+3. PREVIOUS BACKEND WORK VS PENDING IMPLEMENTATION:
+   - ALREADY DONE:
+     * Table `educator_payout_ledgers` exists in `database.sql` with columns `gross_amount`, `platform_fee`, `net_amount`, `stripe_transfer_id`.
+   - PENDING IMPLEMENTATION:
+     * Stripe Connect Express webhook integration (`/api/teacher/payouts/stripe-connect/callback`).
+     * `TeacherPayoutApiController` endpoints:
+       1. `GET /api/teacher/payouts/summary` — Aggregates balance, available, pending.
+       2. `GET /api/teacher/payouts/transactions` — Paginated sales ledger.
+       3. `POST /api/teacher/payouts/request-transfer` — Triggers instant Stripe payout.
+       4. `GET /api/teacher/payouts/statements/{month}` — Generates PDF invoice breakdown.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. পে-আউটস ও আয়ের হিসাব পেজ:
+   - ৪টি মূল স্ট্যাটাস কার্ড:
+     ১. মোট আয় (Total Earning)
+     ২. উত্তোলনের যোগ্য অর্থ (Available to Withdraw) ও "Request Payout" বাটন
+     ৩. পেন্ডিং আয় (Pending Earnings)
+     ৪. পরবর্তী পেমেন্টের তারিখ (Next Payout Date)
+   - ৭০% শিক্ষক বনাম ৩০% প্ল্যাটফর্ম কমিশন মডেল:
+     * শিক্ষক তার কোর্সের প্রতি বিক্রির নিট ৭০% আয় সরাসরি তার ব্যাংক একাউন্টে পাবেন।
+     * প্ল্যাটফর্ম ৩০% ফি রাখবে সার্ভার, ভিডিও স্ট্রিমিং ও সিকিউরিটি খরচের জন্য।
+     * "Connect with Stripe" বাটনে ক্লিক করে শিক্ষক তার ব্যাংক একাউন্ট যুক্ত করতে পারবেন।
+   - লেনদেনের হিসাব তালিকা (Recent Transactions): প্রতিটি কোর্সের বিক্রয়মূল্য, শিক্ষকের ৭০% শেয়ার এবং পেমেন্ট স্ট্যাটাস দেখা যাবে।
+   - স্টেটমেন্ট ও ট্যাক্স ডকুমেন্ট ডাউনলোড: প্রতি মাসের আয়ের পিডিএফ ইনভয়েস ও বাৎসরিক ট্যাক্স স্টেটমেন্ট ডাউনলোডের সুবিধা।
+

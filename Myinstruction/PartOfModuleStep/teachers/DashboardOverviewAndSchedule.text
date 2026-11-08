@@ -1,0 +1,73 @@
+# TEACHERS MODULE: DASHBOARD OVERVIEW & LIVE SCHEDULE (PAGE SPECIFICATION)
+================================================================================
+Route: /teacher/dashboard
+Component: TeacherDashboardPage.jsx
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Teacher Dashboard.png | Teacher Dashboard-1.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. SCREEN LAYOUT & COMPONENT HIERARCHY:
+   The Teacher Dashboard follows a responsive 12-column layout (Left 8-9 cols: Main Operative Feed; Right 3-4 cols: Quick Actions & Alerts).
+
+2. LEFT OPERATIVE COLUMN:
+   A. IndependentTeacherOverview.jsx:
+      - Live Classes Section:
+        * Displays all scheduled classes occurring within the active 24-hour window.
+        * Card Details: Course Title (e.g., "React Advanced Patterns"), Session Time (e.g., "2:00 PM - 3:30 PM"), Status Badge ("Starting Soon" with alert icon).
+        * Primary Action: "Join Now" button (`TvMinimalPlay` icon) — Launches the integrated Zoom or Google Meet room link stored in `course_live_schedules.meeting_url`.
+      - Submissions Pending Review Section:
+        * Dynamic counter card: Large metric number (e.g., "12") with label "Assignments waiting for review".
+        * Primary Action: "View Submissions" button (`ClipboardList` icon) — Direct route to `/teacher/dashboard/review-student-submission`.
+   B. TeacherCourseAllCourses.jsx (Dashboard Embedded View):
+      - Renders top 4 active courses with direct navigation links.
+      - Displays dynamic badges based on program type:
+        * Group Live (`bg-green-100 text-green-600`)
+        * Self-Paced (`bg-pink-100 text-pink-600`)
+        * 1-on-1 Tutoring (`bg-blue-50 text-blue-600`)
+        * Co-ops Course (`bg-teal-50 text-teal-600`)
+        * Micro-Schools (`bg-orange-50 text-orange-600`)
+      - Interactive "Open Course" button that inspects the type and routes to the appropriate cohort hub (`/teacher/dashboard/my-course-group` or `/teacher/dashboard/one-on-one-tutoring`).
+
+3. RIGHT SIDEBAR COLUMN:
+   A. IndependentTeacherDashQuickActions.jsx:
+      - 4 High-Frequency Action Tiles (2x2 grid):
+        1. "Create Course" (Plus icon) -> Routes to `/teacher/dashboard/course-builder`.
+        2. "Upload Resource" (Upload icon) -> Routes to `/teacher/dashboard/resources`.
+        3. "Manage Schedule" (CalendarDays icon) -> Routes to `/teacher/dashboard/one-on-one-tutoring`.
+        4. "View Payouts" (Wallet icon) -> Routes to `/teacher/dashboard/payouts`.
+   B. IndependentTeacherDashNotifications.jsx:
+      - Real-time event log:
+        * Enrollment alerts: "New enrollment in React Masterclass" (Time: "2 hours ago").
+        * Rating alerts: "Your course 'Python for Beginners' received a 5-star rating" (Star icon).
+        * Assignment submission alerts: "Student Emma Johnson submitted Week 1 reflection".
+
+4. BACKEND IMPLEMENTATION STATUS (BUILT VS PENDING):
+   - ALREADY DONE:
+     * `CourseDashboardApiController` returning basic course lists.
+     * Table `course_live_schedules` in `database.sql`.
+   - PENDING IMPLEMENTATION:
+     * Real-time Overview Aggregation API: `GET /api/teacher/dashboard/overview` — Returning:
+       1. Today's live classes with meeting launch tokens.
+       2. Real-time count of unreviewed submissions (`student_block_responses` where `teacher_feedback IS NULL`).
+       3. Filtered notification stream for teacher-specific events.
+     * Zoom/Google Meet API integration to generate live call URLs dynamically upon cohort creation.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. ড্যাশবোর্ড ওভারভিউ পেজ গঠন:
+   - বাম পাশের মূল অংশ:
+     * লাইভ ক্লাস কার্ড: আজকের লাইভ ক্লাসের তালিকা, শুরুর সময় ও "Join Now" বাটন (যা ক্লিক করলে সরাসরি জুম বা গুগল মিট ক্লাসে নিয়ে যায়)।
+     * পেন্ডিং সাবমিশন কাউন্টার: কতজন শিক্ষার্থী হোমওয়ার্ক বা অ্যাসাইনমেন্ট জমা দিয়ে অনুমোদনের অপেক্ষায় আছে (যেমন: ১২টি খাতা জমা আছে) এবং "View Submissions" বাটন।
+     * অ্যাক্টিভ কোর্স লিস্ট: শিক্ষকের চলমান কোর্সগুলোর সংক্ষিপ্ত রূপ ও প্রগ্রেস বার।
+   - ডান পাশের সাইডবার:
+     * কুইক অ্যাকশন বাটন: এক ক্লিকে কোর্স তৈরি (`Create Course`), রিসোর্স আপলোড (`Upload Resource`), শিডিউল ম্যানেজ (`Manage Schedule`) এবং পে-আউট দেখা (`View Payouts`)।
+     * সাম্প্রতিক নোটিফিকেশন: নতুন শিক্ষার্থী ভর্তি, ৫-স্টার রেটিং পাওয়া এবং অ্যাসাইনমেন্ট জমার তাৎক্ষণিক এলার্ট।
+
+২. ব্যাকএন্ডের পূর্ববর্তী কাজ ও করণীয়:
+   - পূর্ববর্তী কাজ: কোর্স তালিকা পাওয়ার বেসিক এপিআই তৈরি আছে।
+   - নতুন করণীয়: `GET /api/teacher/dashboard/overview` এপিআই তৈরি করে আজকের লাইভ ক্লাস, পেন্ডিং খাতার সংখ্যা এবং নোটিফিকেশন একসাথে পাঠানো।
+

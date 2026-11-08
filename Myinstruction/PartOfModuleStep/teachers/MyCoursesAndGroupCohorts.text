@@ -1,0 +1,81 @@
+# TEACHERS MODULE: MY COURSES & GROUP COHORTS (PAGE SPECIFICATION)
+================================================================================
+Routes:
+  - /teacher/dashboard/my-courses (Course Catalog Roster)
+  - /teacher/dashboard/my-course-group (Group Cohort Management Hub)
+  - /teacher/dashboard/course-module-details (Module Lessons List)
+  - /teacher/dashboard/all-blocks (Block Content Inspector)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Menu Bar.png | Enrolled.png | Co-op Course Details.png
+  * Lesson 1 _ Big Picture Statement.png to Lesson 9 _ Key Vocabulary.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. /teacher/dashboard/my-courses (CATALOG & FILTER ROSTER):
+   - Top Banner: Total Courses authored, Active Student enrollments, Quick button "Create Course".
+   - 6 Dynamic Filter Tabs:
+     1. "All Courses"
+     2. "Group" (Live cohort courses)
+     3. "1-on-1 Tutoring"
+     4. "Self-Paced" (Pre-recorded courses)
+     5. "Co-ops Course" (Co-op packages)
+     6. "Micro-Schools" (Institutional units)
+   - Search Bar: Live instant search filtering courses by title and subject.
+   - Dynamic Course Card Metrics:
+     * Micro-Schools Card: Shows Total Purchased count, Subject badge, Total Modules, Age Range, and Program Duration.
+     * Co-Op Card: Shows Total Students, Next Session date, Current Module name, and Module Completion progress bar.
+     * Group Live Card: Shows Enrollments count, Next Session countdown, Current Module, and Progress bar.
+     * 1-on-1 Tutoring Card: Shows Subject, Current Module, Completed Sessions counter, Next Session time, and Active Sessions.
+     * Self-Paced Card: Shows Enrollments, Current Module, Total Modules, and Total Pre-Recorded Classes count.
+   - Primary Action: "Open Course" button -> Routes to `/teacher/dashboard/my-course-group` (passing `courseId` and `type`).
+
+2. /teacher/dashboard/my-course-group (COHORT MANAGEMENT HUB):
+   - Cohort Header Banner: Course Title, Delivery Mode Badge, Schedule (e.g. "Mon & Wed 2:00 PM EST"), Enrolled count, and Next Session countdown.
+   - 7 Comprehensive Cohort Tabs:
+     1. Course Module Tab (`CourseModuleGroupCourse.jsx`):
+        - Displays numbered module cards (M1, M2, M3...).
+        - Each module card shows: Title, Subtitle, Weeks span, Duration in days, Lessons count, and Pending Submissions badge.
+        - Action: "Edit Curriculum" button -> Routes directly into `/teacher/dashboard/course-builder` in edit mode.
+        - Clicking a module row opens `/teacher/dashboard/course-module-details`.
+     2. Program Summary Tab (`CourseProgramSummaryTab.jsx`):
+        - Academic syllabus, overarching biblical worldview theme, course objectives, and textbook/equipment requirements.
+     3. Live Class & Recordings Tab (`ClassRecordsGroupCourse.jsx`):
+        - Live meeting launcher ("Start Class" button linked to Zoom/Google Meet room).
+        - Archive list of previous session video recordings with date, duration, and download link.
+     4. Resources Tab (`CourseResourcesTab.jsx`):
+        - Downloadable classroom worksheets, reading PDFs, and supplementary teacher notes.
+     5. Student List Tab (`StudentListProgramsGroupCourse.jsx`):
+        - Table of all enrolled students: Student Name, Avatar, Parent Contact Name & Email, Enrollment Date, and Academic Progress %.
+        - Action: "Message Family" button -> Opens direct chat thread with parent.
+     6. Attendance Tab (`AttendanceGroupCourse.jsx` - Live classes only):
+        - Attendance register by session date.
+        - Status buttons per student: Present (Green), Absent (Red), Excused (Yellow).
+     7. Announcements Tab (`CourseModuleAnnouncement.jsx`):
+        - Broadcast updates specifically to the students and parents of this cohort.
+        - Form: Announcement Title, Body, File Attachment, and Send Push Notification checkbox.
+
+3. /teacher/dashboard/course-module-details & all-blocks:
+   - Module Details: Shows all lessons in sequence (e.g. Lesson 1: Big Picture Statement, Lesson 2: Driving Question & Entry Point, Lesson 3: Research & Exploration).
+   - All Blocks: Direct inspection console to test interactive blocks (quizzes, audio players, video streams) as a student would see them.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. মাই কোর্সেস পেজ (/teacher/dashboard/my-courses):
+   - ৬টি ফিল্টার ট্যাব: All Courses, Group, 1-on-1 Tutoring, Self-Paced, Co-ops Course, Micro-Schools।
+   - সার্চ বার: নাম ও বিষয় দিয়ে দ্রুত কোর্স খোঁজা।
+   - কোর্সের ধরন অনুযায়ী কার্ডে আলাদা তথ্য দেখানো: যেমন লাইভ ক্লাসে নেক্সট সেশনের সময়, সেলফ-পেসড কোর্সে মোট রেকর্ডেড ক্লাসের সংখ্যা এবং কো-অপ কোর্সে মোট স্টুডেন্ট সংখ্যা।
+   - "Open Course" বাটন ক্লিক করলে সরাসরি সংশ্লিষ্ট কোর্সের মূল ড্যাশবোর্ডে নিয়ে যায়।
+
+২. গ্রুপ কোর্স ও ব্যাচ ম্যানেজমেন্ট হাব (/teacher/dashboard/my-course-group):
+   - এখানে ৭টি প্রয়োজনীয় ট্যাব রয়েছে:
+     ১. Course Module: মডিউল ও লেসনের তালিকা, পেন্ডিং হোমওয়ার্ক সংখ্যা এবং "Edit Curriculum" বাটন।
+     ২. Program Summary: কোর্সের সিলেবাস, উদ্দেশ্য ও মূল বিষয়বস্তুর সারসংক্ষেপ।
+     ৩. Live Class & Recordings: লাইভ ক্লাস শুরু করার বাটন ও বিগত সব রেকর্ডেড ক্লাসের ভিডিও তালিকা।
+     ৪. Resources: কোর্সের সাথে দেওয়া সব পিডিএফ ও ওয়ার্কশিট ফাইল।
+     ৫. Student List: ভর্তি হওয়া শিক্ষার্থীদের তালিকা, প্রগ্রেস ও তাদের বাবা-মাকে মেসেজ দেওয়ার সুবিধা।
+     ৬. Attendance: লাইভ ক্লাসের হাজিরা খাতা (Present / Absent / Excused)।
+     ৭. Announcements: এই ব্যাচের শিক্ষার্থীদের জন্য বিশেষ নোটিশ বা নোটিফিকেশন পাঠানোর ব্যবস্থা।
+

@@ -1,0 +1,41 @@
+# MICRO-SCHOOLS MODULE: GLOBAL PROGRAM LIBRARY (GlobalProgramLibrary.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /micro-school/dashboard/global-program-library (Library Feed)
+  - /micro-school/dashboard/program-details-page (Read-Only Inspection)
+Visual Reference: E:\kaleknealeImages\Micro-School Dashboard\
+  * Global Program Library.jpg
+  * Enabled Programs.jpg
+  * Global Program Details Page.jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. CURRICULUM FEED (/micro-school/dashboard/global-program-library):
+- Displays all available KTA+ Premium Programs (automatically included under the school B2B plan) and licensed marketplace courses.
+- Filter by Subject, Grade Band, and Enablement Status (`All`, `Enabled`, `Disabled`).
+
+2. ONE-CLICK ENABLE / DISABLE TOGGLE:
+- School administrator switches the toggle to "Enabled" to expose the course in the `Create Class Instance` dropdown.
+- Disabling a program preserves past class archives while preventing new class scheduling.
+
+3. STRICT READ-ONLY CURRICULUM SAFEGUARD:
+- When viewing `/micro-school/dashboard/program-details-page`, a prominent yellow banner displays:
+  "Central Curriculum — Read-Only Mode. Curriculum content is centrally managed by KTA+ to ensure accreditation and academic standards."
+- Local staff cannot alter lesson text, remove blocks, or edit quiz criteria.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. গ্লোবাল প্রোগ্রাম লাইব্রেরি:
+- KTA-এর সকল মাস্টার প্রিমিয়াম কারিকুলাম এবং স্কুলের জন্য কেনা কোর্সের ক্যাটালগ।
+- বিষয় ও গ্রেড দিয়ে ফিল্টার করা যায়।
+
+২. ওয়ান-ক্লিক Enable / Disable টগল:
+- এডমিন কোনো কোর্সকে "Enabled" করলেই তা ক্লাস তৈরির তালিকায় প্রদর্শিত হয়।
+
+৩. ১০০% রিড-অনলি কারিকুলাম গার্ড:
+- কারিকুলাম ডিটেইলসে স্পষ্ট সতর্কবার্তা থাকে: "Central Curriculum — Read-Only Mode"।
+- স্থানীয় কোনো শিক্ষক বা এডমিন মূল সিলেবাস, লেসন বা কুইজ এডিট করতে পারবেন না।
+

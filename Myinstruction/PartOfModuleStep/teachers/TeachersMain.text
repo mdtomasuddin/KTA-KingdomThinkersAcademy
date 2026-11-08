@@ -1,0 +1,54 @@
+# TEACHERS & EDUCATORS MODULE: MASTER ARCHITECTURE & DEVELOPMENT LEDGER
+================================================================================
+Module: Teachers & Educators Portal
+Frontend Prefixes: /teacher/* & /contracted-teacher/*
+Source Authority: KTA+ Development Handover Rev 3.2 & Full SaaS Scope (AU & US)
+Language: English & Bengali (দ্বিভাষিক মাস্টার ডকুমেন্টেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. THREE EDUCATOR PERSONAS & DOMAINS:
+1. Independent Marketplace Teacher: Authors & sells Group Live, Self-Paced, and 1-on-1 Tutoring courses. Receives 70% net revenue via Stripe Connect; platform keeps 30%.
+2. Contracted Teacher (CT): Hired by TTN LLC / KTA Group to teach assigned KTA Explorer/Adventure/Journey cohorts and Thinkers tutoring blocks. Receives contracted compensation based on submitted timesheets.
+3. Admin Teacher: Special curriculum author appointed by Super Admin. Authors master KTA inquiry programs and configures subscription pricing plans.
+
+2. PREVIOUS BACKEND DEVELOPMENT STATUS (WHAT IS BUILT VS WHAT IS PENDING):
+- ALREADY COMPLETED IN BACKEND (API & Migrations):
+  * Teacher Registration: `TeacherOnboardingApiController` (`/register`, `/submit-contracted`, `/submit-marketplace`).
+  * 4-Tier Course Builder APIs: `CourseApiController`, `CourseModuleApiController`, `CourseLessonApiController`, `LessonBlockApiController` (`/teacher/courses/*`).
+  * Self-Paced Cloning API: `POST /api/teacher/courses/{course_id}/clone-self-paced`.
+  * Chunked Video/File Uploads: `UploadApiController` (`POST /api/upload-chunk`).
+  * Master Premium Programs & Subscription Plans: `PremiumProgramApiController` (`/teacher/premium-programs/*`).
+  * Course Announcements: `CourseDashboardApiController` (`/announcements/*`).
+  * Standalone Educator Resources: `TeacherResourceApiController` (`/teacher/resources/*`).
+  * Teacher iProject Requests Review: `TeacherIprojectApiController`.
+- PENDING / TO BE IMPLEMENTED FOR THIS MODULE:
+  * Teacher Safeguarding Compliance Hub API: `TeacherComplianceApiController` (`POST /api/teacher/compliance/submit`, `GET /api/teacher/compliance/status`) — storing WWCC (AU) or Background Check (US), status `pending`, `verified`, `rejected`, expiry alert, and enforcement gate (locking publishing if not verified).
+  * Automated 70/30 Stripe Connect Payouts: `TeacherPayoutApiController` (`/api/teacher/payouts/stripe-connect`, `/api/teacher/payouts/ledger`) — Stripe Connect Express onboarding, sales ledger, payout batching.
+  * Student Submission Grading API: `TeacherGradingApiController` (`GET /api/teacher/submissions`, `POST /api/teacher/submissions/{id}/grade` — Approve / Request Revision with written feedback).
+  * 1-on-1 Tutoring Booking Management: `TutoringApiController` (`/api/teacher/tutoring/slots`, `/api/teacher/tutoring/bookings`, `/session-notes`).
+  * Contracted Teacher Timesheet Logger: `ContractedTimesheetApiController` (`POST /api/contracted-teacher/timesheets/log`, `GET /api/contracted-teacher/timesheets/history`).
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. ৩ প্রকার শিক্ষক ও তাদের ভূমিকা:
+১. ইন্ডিপেন্ডেন্ট শিক্ষক: মার্কেটপ্লেসে কোর্স ও রিসোর্স বিক্রি করে স্ট্রাইপ কানেক্টে ৭০% নিট আয় পায়।
+২. কন্ট্রাক্টেড শিক্ষক (CT): KTA-এর মাস্টার ক্লাসের ব্যাচ পড়ায় এবং সাপ্তাহিক টাইমশিট জমা দিয়ে পারিশ্রমিক নেয়।
+৩. এডমিন শিক্ষক: KTA-এর মূল কারিকুলাম ও সাবস্ক্রিপশন প্ল্যান তৈরি করে।
+
+২. ব্যাকএন্ডের পূর্ববর্তী কাজের অবস্থা (কি কি তৈরি আছে বনাম কি কি বাকি আছে):
+- যা যা অলরেডি তৈরি আছে (Already Done):
+  * টিচার রেজিস্ট্রেশন ও কন্ট্রাক্ট অনবোর্ডিং সাবমিশন এপিআই।
+  * ৪-টায়ার কোর্স বিল্ডার এপিআই (কোর্স, মডিউল, লেসন, ব্লকস সিআরইউডি)।
+  * সম্পন্ন লাইভ ক্লাসকে এক ক্লিকে সেলফ-পেসড বানানোর ক্লোন এপিআই।
+  * চাংকড ভিডিও আপলোড (২ মেগাবাইট স্লাইস করে আপলোড ও মার্জ)।
+  * মাস্টার প্রিমিয়াম কারিকুলাম ও সাবস্ক্রিপশন প্ল্যান সেটআপ এপিআই।
+  * কোর্স অ্যানাউন্সমেন্ট ও রিসোর্স ম্যানেজমেন্ট এপিআই।
+- যা যা নতুনভাবে তৈরি করতে হবে (Pending Tasks):
+  * টিচার সেফগার্ডিং কমপ্লায়েন্স হাব এপিআই (WWCC ও ব্যাকগ্রাউন্ড চেক ভেরিফিকেশন এবং ভেরিফাইড না হলে কোর্স পাবলিশ লক করার সিকিউরিটি গেট)।
+  * স্ট্রাইপ কানেক্ট এক্সপ্রেস ইন্টিগ্রেশন ও স্বয়ংক্রিয় ৭০% শিক্ষক পে-আউট / ৩০% প্ল্যাটফর্ম কমিশন লেজার এপিআই।
+  * শিক্ষার্থীর জমা দেওয়া অ্যাসাইনমেন্টের খাতা মূল্যায়ন ও গ্রেডিং এপিআই (Approve / Request Revision)।
+  * ১-অন-১ টিউটরিং স্লট তৈরি, ক্যালেন্ডার বুকিং ও সেশন নোটস এপিআই।
+  * কন্ট্রাক্টেড শিক্ষকের সাপ্তাহিক পড়ানোর টাইমশিট লগার এপিআই।

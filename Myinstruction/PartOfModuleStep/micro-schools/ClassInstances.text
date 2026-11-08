@@ -1,0 +1,53 @@
+# MICRO-SCHOOLS MODULE: CLASS INSTANCES DELIVERY ENGINE (ClassInstances.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /micro-school/dashboard/class-instances (Classes Directory & Schedule)
+  - /micro-school/dashboard/class-instance-details (Detailed Class Workspace)
+Visual Reference: E:\kaleknealeImages\Micro-School Dashboard\
+  * Class Instances.jpg
+  * Program Details Page (Weeks Module).jpg
+  * Program Details Page (Assigned Children’s).jpg
+  * Program Details Page (Attendance).jpg
+  * Program Details Page (Live Class & Recordings).jpg
+  * Program Details Page (Announcements).jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. CLASS INSTANCES OVERVIEW (/micro-school/dashboard/class-instances):
+A "Class Instance" is a specific operational delivery of a curriculum program within the micro-school, binding together:
+(1) An enabled curriculum course (Read-Only),
+(2) An approved lead teacher,
+(3) Meeting days and times (Physical room or Google Meet/Zoom link),
+(4) A roster of enrolled school students.
+
+2. CREATE CLASS INSTANCE MODAL (CreateClassInstanceModal.jsx):
+- Step 1: Select Program from school's enabled curriculum library (e.g. "KTA Explorer Grade 3-4").
+- Step 2: Assign Lead Teacher from school faculty list.
+- Step 3: Class Schedule: Meeting days (e.g., Mon, Wed, Fri), Start Time, End Time, Classroom Location / Virtual Link.
+- Step 4: Roster Allocation: Checkboxes to enroll specific students from school directory.
+
+3. DETAILED CLASS WORKSPACE (5 OPERATIONAL TABS):
+- Tab 1: Weeks Module — Read-only curriculum weeks, lesson instructions, and downloadable worksheets.
+- Tab 2: Assigned Children's — Student roster, completion progress bars.
+- Tab 3: Attendance — Daily classroom attendance log (Present, Absent, Excused).
+- Tab 4: Live Class & Recordings — Virtual classroom link generator & video recordings archive.
+- Tab 5: Announcements — Class-specific updates and homework reminders.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. ক্লাস ইনস্ট্যান্স ধারণা:
+মাইক্রো-স্কুলের ক্লাস ইনস্ট্যান্স হলো নির্দিষ্ট একটি কোর্স পড়ানোর ক্লাসরুম, যা ৪টি জিনিসকে একসাথে যুক্ত করে:
+(১) অনুমোদিত কারিকুলাম (১০০% রিড-অনলি),
+(২) ক্লাসের দায়িত্বপ্রাপ্ত শিক্ষক,
+(৩) ক্লাসের সময়সূচি ও রুম নম্বর বা জুম লিংক,
+(৪) ক্লাসে ভর্তি থাকা ছাত্রছাত্রীদের তালিকা।
+
+২. নতুন ক্লাস তৈরির মডাল (Create Class Instance):
+- লাইব্রেরি থেকে কোর্স নির্বাচন করা ➔ শিক্ষক নির্বাচন করা ➔ ক্লাসের রুটিন ও রুম নির্ধারণ ➔ ছাত্রছাত্রীদের ক্লাসে যুক্ত করা।
+
+৩. ক্লাসরুমের ৫টি ট্যাব:
+- Weeks Module (সাপ্তাহিক রিড-অনলি লেসন), Assigned Children (ছাত্রদের তালিকা), Attendance (হাজিরা খাতা), Live Class & Recordings (ভিডিও ও লিংক), Announcements (ক্লাসের নোটিশ)।
+

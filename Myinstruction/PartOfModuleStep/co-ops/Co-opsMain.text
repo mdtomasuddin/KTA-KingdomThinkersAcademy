@@ -1,0 +1,52 @@
+# CO-OPS MODULE: MASTER ARCHITECTURE & DEVELOPMENT LEDGER (Co-opsMain)
+================================================================================
+Module: Homeschool Co-Ops Organization Portal
+Frontend Prefix: /co-op/*
+Target Geographies: Australia (AU) & United States (US)
+Source Authority: KTA+ Development Handover Rev 3.2 & Full SaaS Scope (AU & US)
+Language: English & Bengali (দ্বিভাষিক মাস্টার ডকুমেন্টেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. ROLE IDENTITY & ACCESS BOUNDARIES:
+- The Co-Op Coordinator is the group administrator managing parent-led collaborative learning pods.
+- Manages member family admissions, student seat allocations, program delivery, and bulk group licensing.
+- Strict Invariant: Coordinator cannot see private parent payment credentials or external family token wallets, and cannot override parental consent.
+
+2. PREVIOUS BACKEND DEVELOPMENT STATUS (WHAT IS BUILT VS WHAT IS PENDING):
+- PREVIOUS STATUS:
+  * Currently, the frontend Co-Op dashboard is ~85% UI built but runs on static mock data.
+  * No dedicated `/api/co-op/*` routes or tables existed in the legacy Laravel backend.
+- REQUIRED IMPLEMENTATION (NEW CONTROLLER & MIGRATIONS):
+  * Dedicated Controller: `App\Http\Controllers\API\CoOpApiController`.
+  * Dedicated Migrations & Models:
+    - `co_ops` (name, coordinator_user_id, jurisdiction AU/US, visibility, student_capacity, subscription_status).
+    - `co_op_members` (co_op_id, user_id, member_role, status: pending/approved).
+    - `co_op_children` (co_op_id, child_id, parent_id, status: pending/approved).
+    - `co_op_program_bundles` (co_op_id, course_id, licensed_seats, expires_at).
+    - `co_op_announcements` (co_op_id, author_id, title, content, published_at).
+    - `co_op_messages` (co_op_id, sender_id, channel_name, message, attachment_url).
+  * API Endpoints Needed:
+    - `POST /api/co-op/register-pod`: Create new co-op pod during onboarding.
+    - `GET /api/co-op/dashboard/overview`: Fetch real metrics cards, active programs, and task queue.
+    - `GET /api/co-op/families`: List member families; `POST /api/co-op/families/{id}/approve` | `decline`.
+    - `GET /api/co-op/children`: List students; `POST /api/co-op/children/{id}/approve` | `reject`.
+    - `GET /api/co-op/programs`: List active program bundles; `GET /api/co-op/programs/{id}/details` (5 tabs).
+    - `POST /api/co-op/marketplace/checkout-group-license`: Bulk seat license checkout.
+    - `GET /api/co-op/messages` | `POST /api/co-op/messages/send`.
+    - `GET /api/co-op/announcements` | `POST /api/co-op/announcements/create`.
+    - `POST /api/co-op/settings/update`: Update pod profile, venue address, logo, and assistant coordinator roles.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. কো-অপ পোর্টের ভূমিকা:
+অভিভাবকদের যৌথ শিক্ষা পড পরিচালনার এডমিন প্যানেল। কো-অর্ডিনেটর পরিবারের ভর্তি নেওয়া, সিট বরাদ্দ এবং কারিকুলাম বিতরণ করেন।
+
+২. ব্যাকএন্ডের পূর্ববর্তী কাজের অবস্থা:
+- পূর্ববর্তী অবস্থা: ফ্রন্টএন্ডে কো-অপের সকল স্ক্রিনের ডিজাইন তৈরি আছে, কিন্তু ব্যাকএন্ডে কোনো ডেডিকেটেড কো-অপ এপিআই বা টেবিল পূর্বে তৈরি ছিল না।
+- যা যা তৈরি করতে হবে (To Be Built):
+  * নতুন কন্ট্রোলার: `CoOpApiController`।
+  * ৬টি নতুন টেবিল: `co_ops`, `co_op_members`, `co_op_children`, `co_op_program_bundles`, `co_op_announcements`, `co_op_messages` (যা ইতিমধ্যে `Myinstruction/database.sql`-এ সম্পূর্ণ ডিজাইন করে দেওয়া হয়েছে)।
+  * প্রয়োজনীয় এপিআই রুট: পড অনবোর্ডিং, ড্যাশবোর্ড মেট্রিক্স, ফ্যামিলি ও চাইল্ড এপ্রুভাল, বাল্ক লাইসেন্স চেকআউট, ৫-ট্যাব বিশিষ্ট প্রোগ্রাম কনসোল, চ্যাট মেসেজ এবং নোটিশ এপিআই।

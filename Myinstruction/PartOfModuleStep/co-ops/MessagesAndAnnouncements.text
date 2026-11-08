@@ -1,0 +1,43 @@
+# CO-OPS MODULE: MESSAGES, ANNOUNCEMENTS & SETTINGS
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /co-op/dashboard/messages (Message Hub)
+  - /co-op/dashboard/announcements (Announcements Board)
+  - /co-op/dashboard/settings (Settings & Branding)
+Visual Reference: E:\kaleknealeImages\Co-op Dashboard\
+  * Message.jpg
+  * Announcements.jpg
+  * Co-op Settings.jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. MESSAGES HUB (/co-op/dashboard/messages):
+- Left Sidebar: Channels list (`#general`, `#facilitators`, `#parent-notices`) and direct 1-on-1 chats with member parents.
+- Main Chat Window: Real-time message dialogue, file attachments, and image preview.
+
+2. ANNOUNCEMENTS BOARD (/co-op/dashboard/announcements):
+- List of broadcast notices with author, timestamp, and target group tag.
+- Action: Button `Create Announcement` (opens rich-text editor modal with push/email dispatch toggle).
+
+3. CO-OP SETTINGS (/co-op/dashboard/settings):
+- Profile & Venue: Co-op Name, Primary Meeting Address, Meeting Days/Hours.
+- Branding Assets: Logo and Banner image upload.
+- Subscription & Seat Quota: Current plan tier, active vs. available seat count, upgrade button.
+- Permissions: Assign Assistant Coordinators with sub-admin rights.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. মেসেজিং হাব (/co-op/dashboard/messages):
+- বিভিন্ন চ্যাট চ্যানেল (সকল সদস্য, শিক্ষক গ্রুপ, প্যারেন্টস গ্রুপ) এবং অভিভাবকদের সাথে সরাসরি ওয়ান-অন-ওয়ান চ্যাট।
+
+২. নোটিশ ও অ্যানাউন্সমেন্ট বোর্ড (/co-op/dashboard/announcements):
+- পুরো কো-অপের জন্য মিটিং রুটিন, আবহাওয়াজনিত ছুটি বা ইভেন্টের নোটিশ প্রচার করা।
+
+৩. কো-অপ সেটিংস (/co-op/dashboard/settings):
+- কো-অপের নাম, বসার স্থান ও লোগো আপডেট করা।
+- সাবস্ক্রিপশন প্ল্যান দেখা এবং কোটার সিট বাড়ানোর সুবিধা।
+- সহকারি কো-অর্ডিনেটর নিয়োগের পারমিশন।
+

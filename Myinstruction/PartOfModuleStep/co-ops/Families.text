@@ -1,0 +1,45 @@
+# CO-OPS MODULE: FAMILIES MANAGEMENT (Families.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /co-op/dashboard/families (Directory)
+  - /co-op/dashboard/families/:id (Family Details View)
+  - /co-op/dashboard/families/pending-requests (Pending Join Applications)
+Visual Reference: E:\kaleknealeImages\Co-op Dashboard\
+  * Families.jpg
+  * Parents View Details page.jpg
+  * Pending Family Requests.jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. FAMILIES DIRECTORY (/co-op/dashboard/families):
+- Search bar, status filter (Active, Inactive).
+- Table Columns: Family / Parent Name, Contact Info (Email & Phone), Enrolled Children Count, Date Joined, Action Menu.
+- Action: Button `View Details` routes to `/co-op/dashboard/families/:id`.
+
+2. FAMILY DETAILS VIEW (/co-op/dashboard/families/:id):
+- Header: Parent name, avatar, membership status badge (`Active Member`).
+- Emergency Contacts Card: Emergency contact person, relationship, and verified phone.
+- Associated Children Roster: Grid displaying each child belonging to this family, their age, grade, and co-op classes.
+- Action: Button `Remove Family from Co-Op` (opens confirmation modal).
+
+3. PENDING FAMILY REQUESTS (/co-op/dashboard/families/pending-requests):
+- Displays applications submitted by families seeking to join the co-op.
+- Card Elements: Parent Name, Application Date, Number of Children, Personal Introduction Statement.
+- Actions: Button `Approve` (triggers welcoming notification and admits family) | Button `Decline` (with optional reason modal).
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. পরিবার তালিকা (/co-op/dashboard/families):
+- কো-অপে যুক্ত সকল পরিবারের নাম, অভিভাবকের ইমেইল, ফোন নম্বর এবং মোট কয়জন সন্তান কো-অপে পড়ছে তার তালিকা।
+- `View Details` বোতামে ক্লিক করলে ফ্যামিলি প্রোফাইলে নিয়ে যায়।
+
+২. ফ্যামিলি ডিটেইলস পেজ (/co-op/dashboard/families/:id):
+- অভিভাবকের বিস্তারিত তথ্য, জরুরি যোগাযোগের নম্বর এবং এই পরিবারের অন্তর্ভুক্ত শিশুদের তালিকা।
+
+৩. পেন্ডিং ফ্যামিলি রিকোয়েস্ট (/co-op/dashboard/families/pending-requests):
+- নতুন যেসকল অভিভাবক কো-অপে যুক্ত হওয়ার জন্য আবেদন করেছেন তাদের তালিকা।
+- কো-অর্ডিনেটরের অ্যাকশন: `Approve` (অনুমোদন দিয়ে কো-অপে যুক্ত করা) অথবা `Decline` (আবেদন বাতিল করা)।
+

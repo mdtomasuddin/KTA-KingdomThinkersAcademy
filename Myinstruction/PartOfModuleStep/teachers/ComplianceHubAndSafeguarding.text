@@ -1,0 +1,62 @@
+# TEACHERS MODULE: COMPLIANCE HUB & SAFEGUARDING (PAGE SPECIFICATION)
+================================================================================
+Route: /teacher/dashboard/compliance
+Component: TeacherCompliancePage.jsx
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Compliance Hub.png | Identity Verification (AU).png
+  * Program-Specific Training & Induction.png | Policies & Guidelines.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. SCREEN PURPOSE & CHILD PROTECTION PROTOCOL:
+   KTA+ enforces a zero-compromise child safeguarding standard across both Australia and the United States. This page serves as the educator's compliance control panel where all credentials, legal disclosures, and ESA government voucher alignments are audited.
+
+2. COMPONENT DECONSTRUCTION (TOP TO BOTTOM):
+   A. Identity Verification (`TeacherComplianceIdentityVerification.jsx`):
+      - Displays uploaded government photo ID (Passport, Driver's License, National ID).
+      - Card fields: Full Legal Name, ID Number, Issuing Country/State, Expiry Date.
+      - Status Badge: `VERIFIED` (Green), `PENDING_REVIEW` (Amber), `REJECTED` (Red).
+   B. Child Safety & Background Check (`TeacherComplianceChildSafetyVerification.jsx`):
+      - Regional Switcher (AU vs US):
+        * Australia: Working With Children Check (WWCC) number, State of issuance (NSW, VIC, QLD, WA, SA, TAS, ACT, NT), Expiry Date.
+        * United States: State Background Check clearance number, FBI identity history summary check ID, Expiry Date.
+      - Proactive Expiry Alert: Banner appears 30 days prior to expiration prompting the educator to re-verify.
+   C. Child Safety Training Certification (`TeacherComplianceChildSafetyTraining.jsx`):
+      - Certificate of completion for mandatory child protection, mandatory reporting protocols, and online classroom boundary training.
+   D. Legal & Code of Conduct Agreements (`TeacherComplianceLegalAgreement.jsx`):
+      - Digital signature audit trail showing signed timestamp for:
+        1. KTA+ Educator Code of Conduct.
+        2. Child Safe Environment Policy.
+        3. Independent Educator Service Terms.
+   E. ESA Funds Eligibility Audit Table (`TeacherComplianceEsaEligibleTable.jsx`):
+      - Allows educators to track state educational voucher compliance (e.g. Arizona ESA, Florida Step Up, Utah Fits All):
+      - Table Columns:
+        1. Course SKU (e.g., `KTA-PY101`, `KTA-PY102`).
+        2. Course Title (e.g., "Advanced Mathematics").
+        3. ESA Status Badge: `Eligible` (Green), `Pending Review` (Yellow), `Not Eligible` (Red).
+        4. State Curriculum Alignment Notes (e.g., "Approved for all ESA Programs", "Awaiting state curriculum alignment verification").
+        5. Supporting Documentation Status (`Available`, `Required`, `N/A`).
+      - Action Buttons: "Upload Document" button and "Download Proof Certificate" button.
+
+3. HARD PLATFORM SECURITY GATE:
+   - Backend Middleware Rule: Any teacher whose `educator_compliances.status !== 'verified'` is strictly blocked from:
+     1. Setting course status to `published` in the marketplace.
+     2. Opening or receiving bookings for 1-on-1 tutoring.
+     3. Launching live video calls (Zoom/Meet rooms).
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. কমপ্লায়েন্স হাব ও শিশু সুরক্ষা ব্যবস্থা:
+   - KTA+ প্ল্যাটফর্মে শিক্ষার্থীদের সুরক্ষার স্বার্থে অত্যন্ত কঠোর আন্তর্জাতিক নিয়ম মেনে চলা হয়।
+   - শিক্ষকের পরিচয়পত্র ও চাইল্ড সেফটি ভেরিফিকেশন:
+     * অস্ট্রেলিয়ার জন্য: WWCC (Working With Children Check) নম্বর ও স্টেট নির্বাচন।
+     * আমেরিকার জন্য: স্টেট ব্যাকগ্রাউন্ড চেক ও এফবিআই ক্লিয়ারেন্স নম্বর।
+   - স্ট্যাটাস ব্যাজ: `VERIFIED` (সবুজ), `PENDING_REVIEW` (হলুদ), `REJECTED` (লাল)।
+   - ESA ভাউচার টেবিল: কোর্স অনুযায়ী সরকারি ফান্ডিংয়ের জন্য কোর্সটি অনুমোদিত কিনা (Eligible / Pending / Not Eligible) তা অডিট করা।
+
+২. প্ল্যাটফর্মের বাধ্যতামূলক সিকিউরিটি গেট:
+   - কোনো শিক্ষকের কমপ্লায়েন্স স্ট্যাটাস `VERIFIED` না হওয়া পর্যন্ত তিনি কোনো কোর্স মার্কেটপ্লেসে লাইভ করতে পারবেন না এবং কোনো লাইভ ভিডিও ক্লাস চালু করতে পারবেন না।
+

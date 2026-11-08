@@ -1,0 +1,40 @@
+# MICRO-SCHOOLS MODULE: DASHBOARD OVERVIEW (home.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Route: /micro-school/dashboard
+Screen Name: Micro-School Overview Page (MicroSchoolOverviewPage.jsx)
+Visual Reference: E:\kaleknealeImages\Micro-School Dashboard\
+  * Micro-School Dashboard.png
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. SCREEN OVERVIEW:
+The Micro-School Dashboard gives school administrators instantaneous control over active campus classrooms, employed faculty, enrolled student body, and subscription seat capacity.
+
+2. TOP STATS CARDS (MicroOverviewTopCards.jsx):
+- Card 1 (Enrolled Students): Total active students admitted across all school classrooms.
+- Card 2 (Registered Families): Number of parent households affiliated with the school.
+- Card 3 (Active Class Instances): Number of classes currently running.
+- Card 4 (Employed Teachers): Total teachers linked to active classroom schedules.
+- Card 5 (Seat Quota Progress): Real-time progress bar (e.g., 42 / 50 seats used) with capacity warnings.
+
+3. CORE WIDGETS & ACTIONS:
+- Today's Class Schedule Matrix: Displays today's active classes, room location or virtual meet link, lead teacher, and student headcount.
+- Recent Admissions Alerts: Pending applications from families and children awaiting admission review.
+- Quick Action: Button `Create Class Instance` (launches modal to schedule a new class).
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. ড্যাশবোর্ড ওভারভিউ:
+মাইক্রো-স্কুল এডমিনদের মূল নিয়ন্ত্রণ প্যানেল। এখানে আজকের ক্লাসের তালিকা, মোট ছাত্রছাত্রী, শিক্ষক এবং সাবস্ক্রিপশন সিট কোটার অবস্থা দেখা যায়।
+
+২. টপ মেট্রিক্স কার্ডস:
+- মোট শিক্ষার্থী সংখ্যা, নিবন্ধিত পরিবার, চলমান ক্লাসের সংখ্যা, নিয়োজিত শিক্ষক এবং ব্যবহৃত সিট কোটা (যেমন: ৪২/৫০ সিট)।
+
+৩. রুটিন ও অ্যাকশন বাটন:
+- আজকের ক্লাসের রুটিন ও রুম নম্বর/ভার্চুয়াল লিংক।
+- নতুন পরিবার ও শিক্ষার্থীর এডমিশন এলার্ট।
+- `Create Class Instance` বোতাম: এক ক্লিকে নতুন ক্লাস তৈরির মডাল ওপেন করা।
+

@@ -1,0 +1,43 @@
+# STUDENTS MODULE: DASHBOARD, SCHEDULE, THE HIVE & LMS PLAYER
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /student/enrolled (Weekly Dashboard)
+  - /student/schedule (Timetable)
+  - /student/hive (The Student Hive Peer Network)
+  - /student/profile (Student Portfolio & Badges Locker)
+  - /student/view-kta-lesson (4-Tier Lesson Player)
+  - /student/lesson-submit-blocks (Assignment Submission Panel)
+  - /student/notes (Session Notes & Reflective Journal)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Hive.png | Student Hive.png | View Student Lesson.png | Week Task Page.png
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. DASHBOARD & TIMETABLE:
+- Weekly Checklist (/student/enrolled): To-do items, upcoming deadlines, direct lesson launcher.
+- Visual Timetable (/student/schedule): Google Meet / Zoom join links (activates 10 mins prior to class).
+
+2. THE STUDENT HIVE & PORTFOLIO:
+- The Student Hive (/student/hive): Moderated peer activity stream to share project milestones with classmates.
+- Portfolio & Badges Locker (/student/profile): Displays earned digital badges (e.g. "Scripture Scholar", "STEM Innovator"), avatar, and finished iProjects.
+
+3. 4-TIER LMS PLAYER & SUBMISSIONS:
+- Lesson Player (/student/view-kta-lesson): Slide reader, chunked video playback, formatted scripture text, instant-scoring quiz blocks.
+- Assignment Submission (/student/lesson-submit-blocks): Text reflection input and photo/document file uploader.
+- Study Journal (/student/notes): Personal notes editor and read-only inspection of post-session tutor remarks.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. ড্যাশবোর্ড ও ক্লাসরুটিন:
+- সাপ্তাহিক চেকলিস্ট ও আসন্ন ক্লাসের গুগল মিট / জুম লিংক।
+
+২. স্টুডেন্ট হাইভ ও ব্যাজ লকার:
+- সহপাঠীদের সাথে প্রজেক্টের কাজ শেয়ার করা এবং অর্জিত ব্যাজের পোর্টফোলিও।
+
+৩. ৪-টায়ার লার্নিং প্লেয়ার ও অ্যাসাইনমেন্ট:
+- পড়ার স্লাইড, ভিডিও ক্লাস, কুইজ এবং লেখা ও ছবি আপলোড করে হোমওয়ার্ক জমা দেওয়ার প্যানেল।
+- শিক্ষকের মন্তব্য দেখা এবং ব্যক্তিগত স্টাডি জার্নাল রাখা।
+

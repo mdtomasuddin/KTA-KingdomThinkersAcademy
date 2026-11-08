@@ -1,0 +1,46 @@
+# MICRO-SCHOOLS MODULE: TEACHERS, ANNOUNCEMENTS & SETTINGS
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /micro-school/dashboard/teachers (Faculty Directory)
+  - /micro-school/dashboard/teacher-details (Faculty Schedule & Profile)
+  - /micro-school/dashboard/pending-teachers (Pending Educator Applications)
+  - /micro-school/dashboard/messages (Staff & Parent Chat)
+  - /micro-school/dashboard/announcements (School Bulletins)
+  - /micro-school/dashboard/settings (Campus Profile & Subdomain)
+Visual Reference: E:\kaleknealeImages\Micro-School Dashboard\
+  * Teachers.jpg | Teacher View Details page.jpg | Pending Teachers Requests.jpg
+  * Micro-Schools Settings.jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. TEACHERS MANAGEMENT:
+- Faculty Directory: Employed school educators, compliance verification status badge (`Verified`), active classroom count, weekly teaching hours.
+- Teacher Details: Assigned class instances, teaching timetable, performance reviews.
+- Pending Teachers: Review incoming teacher applications or send direct email invitations. Action: Button `Approve Educator`.
+
+2. MESSAGING & ANNOUNCEMENTS:
+- Channels: Staff room (`#teachers`), Parent notices (`#families`), direct messaging.
+- Bulletins: Publish school closures, event reminders, and term calendars.
+
+3. SETTINGS & CAMPUS BRANDING:
+- Campus Info: Legal school name, physical address, contact phone, operating format.
+- Subdomain: Custom school portal access URL: `[school].ktaplus.io`.
+- Branding: School logo and header banner upload.
+- Subscription: Current plan tier, active vs. available seat count, billing invoice history.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. শিক্ষক ব্যবস্থাপনা:
+- স্কুলের শিক্ষকদের তালিকা, কমপ্লায়েন্স ভেরিফিকেশন স্ট্যাটাস, নিয়োজিত ক্লাসের রুটিন এবং সাপ্তাহিক পাঠদানের ঘণ্টা।
+- নতুন শিক্ষক নিয়োগের আবেদন অনুমোদন দেওয়া।
+
+২. নোটিশ ও মেসেজিং:
+- শিক্ষকদের অভ্যন্তরীণ চ্যাট চ্যানেল, অভিভাবকদের নোটিশ বোর্ড এবং টার্ম পরীক্ষার নোটিশ প্রচার।
+
+৩. স্কুল সেটিংস ও ব্রান্ডিং:
+- স্কুলের ফিজিক্যাল ঠিকানা, লোগো এবং কাস্টম সাবডোমেন (`[school].ktaplus.io`) সেটআপ।
+- সাবস্ক্রিপশন সিট কোটা পর্যবেক্ষণ করা।
+

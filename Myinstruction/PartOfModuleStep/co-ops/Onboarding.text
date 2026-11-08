@@ -1,0 +1,52 @@
+# CO-OPS MODULE: ONBOARDING & REGISTRATION (Onboarding.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes: 
+  - /co-op/onboarding (Intro)
+  - /co-op/onboarding/plan (Subscription Plan Selection)
+  - /co-op/onboarding/form (5-Step Registration Form)
+  - /co-op/onboarding/under-review (Status Waiting Screen)
+Visual Reference: E:\kaleknealeImages\Co-op Dashboard\
+  * Basic Details (Step 1).png
+  * Visibility (Step 2).png
+  * Age Range (Step 3).png
+  * Agreements (Step 4).png
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. ONBOARDING SEQUENCE & WORKFLOW:
+The Co-Op onboarding wizard guides prospective pod leaders through organizational profile creation, tiered SaaS subscription selection, and compliance agreement before administrative review.
+
+2. DETAILED STEPS:
+- Intro Page (/co-op/onboarding): Explains pod benefits, group licensing economies, and platform features. Action: Button `Get Started`.
+- Plan Selection (/co-op/onboarding/plan):
+  * Tier 1: Seedling (Up to 15 students) — $39/month or $390/year.
+  * Tier 2: Community (Up to 40 students) — $89/month or $890/year.
+  * Tier 3: Network (Unlimited students / multi-pod) — $199/month.
+  * Action: Stripe payment checkout for organization subscription.
+- Form Step 1 — Basic Details (BasicDetailsStep.jsx):
+  * Fields: Co-op Name, City & Region, Physical Meeting Address, Pod Description, Country selection (AU or US).
+- Form Step 2 — Visibility (VisibilityStep.jsx):
+  * 3 Radio Options:
+    1. Public: Listed on KTA+ Co-op Directory for local discovery.
+    2. Unlisted: Accessible only via direct coordinator share link.
+    3. Invite-Only: Completely hidden; requires direct email invitation.
+- Form Step 3 — Age Range (AgeRangeStep.jsx):
+  * Checkboxes for target grade bands: Early Primary (Grades K-2), Primary (Grades 3-5), Middle School (Grades 6-8), High School (Grades 9-12).
+- Form Step 4 — Agreements (AgreementsStep.jsx):
+  * Checkboxes: Agree to Community Guidelines, Child Safeguarding Standards, and Platform Terms.
+- Form Step 5 — Review & Submit (ReviewStep.jsx):
+  * Summary cards displaying all entered details with `Edit` shortcuts. Button `Submit Application` ➔ directs to `/co-op/onboarding/under-review`.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. অনবোর্ডিং ধাপসমূহ:
+- ইন্ট্রো ও প্ল্যান নির্বাচন: ক্যাপাসিটি অনুযায়ী সাবস্ক্রিপশন প্ল্যান বাছাই করা (১৫ জন, ৪০ জন বা আনলিমিটেড সিট) এবং স্ট্রাইপ পেমেন্ট করা।
+- স্টেপ ১ (Basic Details): কো-অপের নাম, শহর, মিটিংয়ের ঠিকানা এবং সংক্ষিপ্ত বিবরণ।
+- স্টেপ ২ (Visibility): ৩টি অপশন — Public (ডিরেক্টরিতে দেখাবে), Unlisted (লিংক দিয়ে প্রবেশ), Invite-Only (লুকানো)।
+- স্টেপ ৩ (Age Range): কোন কোন বয়সের বা গ্রেডের বাচ্চাদের জন্য এই পড পরিচালিত হবে (K-2, 3-5, 6-8, 9-12)।
+- স্টেপ ৪ (Agreements): চাইল্ড সেফটি এবং একাডেমি নিয়মনীতিতে ডিজিটাল সম্মতি।
+- স্টেপ ৫ (Review & Submit): সম্পূর্ণ তথ্য রিভিউ করে সাবমিট করা ➔ একাউন্ট এডমিন ভেরিফিকেশন কিউতে চলে যায়।
+

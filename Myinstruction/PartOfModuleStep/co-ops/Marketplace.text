@@ -1,0 +1,38 @@
+# CO-OPS MODULE: GROUP MARKETPLACE & LICENSING (Marketplace.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /co-op/dashboard/marketplace (Catalog)
+  - /co-op/dashboard/marketplace-details (Group License Checkout)
+Visual Reference: E:\kaleknealeImages\Co-op Dashboard\
+  * Co-op Marketplace.jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. GROUP CURRICULUM CATALOG (/co-op/dashboard/marketplace):
+- Filter independent courses eligible for multi-family group pod delivery.
+- Category filters: STEM, Bible & Theology, Humanities, Arts & Crafts.
+- Course Cards: Title, creator educator bio, ratings, and group pricing preview.
+
+2. GROUP LICENSE PURCHASE & CHECKOUT (/co-op/dashboard/marketplace-details):
+- Detailed syllabus inspection, sample lesson preview.
+- Bulk Seat License Selector:
+  * 10-Student Pack (15% bulk discount)
+  * 25-Student Pack (25% bulk discount)
+  * Custom seat count input.
+- Instant checkout via Co-Op credit card / Stripe invoice.
+- Post-Purchase: Automatically provisions seats into `/co-op/dashboard/programs`.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. গ্রুপ কারিকুলাম মার্কেটপ্লেস:
+- স্বাধীন শিক্ষকদের তৈরি কোর্স যা কো-অপের গ্রুপ ক্লাসে পড়ানোর উপযোগী।
+- বিষয়ভিত্তিক ফিল্টার ও শিক্ষকের প্রোফাইল ভেরিফিকেশন ব্যাজ।
+
+২. বাল্ক লাইসেন্স ক্রয় ও চেকআউট:
+- সিলেবাসের প্রিভিউ দেখা।
+- বাল্ক সিট সিলেক্টর: ১০ জন ছাত্রের প্যাক (১৫% ছাড়), ২৫ জন ছাত্রের প্যাক (২৫% ছাড়)।
+- স্ট্রাইপের মাধ্যমে পেমেন্ট করলেই কোর্সটি স্বয়ংক্রিয়ভাবে কো-অপের প্রোগ্রাম লাইব্রেরিতে যুক্ত হয়ে যায়।
+

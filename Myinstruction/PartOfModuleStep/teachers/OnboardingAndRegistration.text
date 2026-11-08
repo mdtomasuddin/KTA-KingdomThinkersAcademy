@@ -1,0 +1,108 @@
+# TEACHERS MODULE: ONBOARDING & REGISTRATION (PAGE-BY-PAGE SPECIFICATION)
+================================================================================
+Module: Teacher Onboarding & Credentials Setup
+Routes:
+  - /teacher/join-now
+  - /teacher/create-account
+  - /teacher/onboard-details (Independent Teacher 8-Step Wizard)
+  - /teacher/onboard-success
+  - /contracted-teacher/contracted-teacher-onboard (Contracted Teacher 5-Step Wizard)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Join KTA+.png | Personal Details.png | Identity Verification (AU).png
+  * Policies & Guidelines.png | Educator Contract Agreement.png | Mock Session.png
+  * Application Is Under Review.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. INDEPENDENT TEACHER REGISTRATION FLOW:
+   A. /teacher/join-now:
+      - Introduction hero screen displaying benefits of becoming a KTA+ Educator (Global reach, 70% earnings, faith-aligned community).
+      - Action: "Apply as Independent Educator" button -> redirects to `/teacher/create-account`.
+   B. /teacher/create-account:
+      - Input fields: Full Name, Email Address, Password, Confirm Password, Country selection (Australia, United States, Other).
+      - Agreement checkbox: Terms of Service and Privacy Policy.
+      - Action: "Create Account" -> stores base user in `users` with role `teacher` and status `pending`. Passes `userId` to next step.
+   C. /teacher/onboard-details (8-Step Comprehensive Wizard):
+      - Top Progress Bar: Dynamic 1-to-8 step indicator with step titles and completion status.
+      - Step 1: Personal Details (`TeacherDetailsStep`):
+        * Fields: First Name, Last Name, Date of Birth (`dob`), Phone Number, Address Line 1, City, State/Province, Postal Code, Country.
+        * Biography (rich text), Profile Photo upload (2MB chunked upload).
+      - Step 2: Identity Verification (`IdentityStep`):
+        * Government Photo ID Type: Passport, Driver's License, National ID Card.
+        * ID Number, Expiry Date.
+        * Document File Upload (front and back) via 2MB chunked upload (`UploadApiController`).
+      - Step 3: Child Safety Verification (`ChildSafetyStep`):
+        * Australia: Working With Children Check (WWCC) Registration Number, State Jurisdiction (NSW, VIC, QLD, WA, SA, TAS, ACT, NT), Expiry Date.
+        * United States: State Background Check Confirmation Number / Social Security-linked clearance ID.
+        * File upload of official physical card or certificate.
+      - Step 4: Child Protection Training (`TrainingStep`):
+        * Upload of Child Safeguarding Certification or confirmation of completing the KTA+ Child Protection Induction.
+      - Step 5: Professional References (`ReferencesStep`):
+        * Two professional/character references: Full Name, Organization, Role/Title, Email Address, Phone Number, Relationship to Applicant.
+      - Step 6: Content Specialty & Teaching Sample (`ContentStep`):
+        * Primary Subjects (Mathematics, Science, History, Language Arts, Biblical Worldview, etc.).
+        * Target Student Age Range (e.g., 6-9, 10-14, 15-18).
+        * Sample Lesson Demonstration: Video file upload (chunked) or Vimeo/YouTube video link.
+      - Step 7: Legal Agreements (`LegalStep`):
+        * Mandatory Checkboxes:
+          [x] I have read and agree to the KTA+ Educator Code of Conduct.
+          [x] I affirm the Statement of Faith and Educational Philosophy.
+          [x] I consent to ongoing background check verification and safeguarding audits.
+        * Digital Signature: Full typed legal name and timestamp.
+      - Step 8: Final Review & Submission (`ReviewStep`):
+        * Full read-only summary of Steps 1 through 7 with quick "Edit" buttons for each section.
+        * Action: "Submit Application" -> calls `POST /api/teacher/onboarding/submit-marketplace`.
+   D. /teacher/onboard-success:
+      - Confirmation screen: "Your application has been submitted for review!"
+      - Explains the 24-48 hour compliance screening process.
+      - Link to preview Teacher Dashboard in restricted view.
+
+2. CONTRACTED TEACHER REGISTRATION FLOW:
+   A. /contracted-teacher/contracted-teacher-onboard (5-Step Specialized Wizard):
+      - Step 1: Personal Details (`CT_PersonalDetailsStep`):
+        * Full Name, DOB, Address, Phone, Subject specialties, Resume/CV chunked upload (`resume_file`).
+      - Step 2: Identity Verification (`CT_IdentityVerificationStep`):
+        * Government Photo ID, ID Number, Expiry Date, WWCC verification details.
+      - Step 3: Training & Induction (`CT_TrainingStep`):
+        * Read KTA Program-Specific Induction modules; digital signature agreeing to curriculum fidelity.
+      - Step 4: Mock Teaching Session (`CT_MockSessionStep`):
+        * Session Type selection: Live interactive audition or recorded teaching video submission.
+        * If live: Pick date, slot, subject, year level, and attach lesson plan.
+        * If recorded: Upload lesson video file (`video_file`) via chunked uploader.
+      - Step 5: Contract & Terms (`CT_ContractStep`):
+        * Independent Contractor Agreement with TTN LLC / KTA Group.
+        * Hourly teaching rates, confidentiality, student non-solicitation, and digital signature.
+        * Action: "Submit Contracted Educator Application" -> calls `POST /api/teacher/onboarding/submit-contracted`.
+
+3. PREVIOUS BACKEND WORK VS PENDING IMPLEMENTATION:
+   - ALREADY DONE:
+     * `TeacherOnboardingApiController` endpoints (`/register`, `/submit-contracted`, `/submit-marketplace`).
+     * `UploadApiController` chunked upload handler (`/api/upload-chunk`).
+     * `users` and `educator_profiles` base database storage.
+   - PENDING TASKS:
+     * Connect frontend multi-step drafts to persistent database drafts (so partially filled forms survive browser reload).
+     * Email notifications to Super Admin upon new teacher submission.
+     * Automated status transition from `pending` to `verified` when Admin approves in admin panel.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. ইন্ডিপেন্ডেন্ট শিক্ষক অনবোর্ডিং ফ্লো (৮টি ধাপ):
+   - ধাপ ১: ব্যক্তিগত তথ্য (নাম, জন্মতারিখ, ঠিকানা, মোবাইল, বায়ো ও প্রোফাইল ছবি আপলোড)।
+   - ধাপ ২: সরকারি পরিচয়পত্র (পাসপোর্ট বা ড্রাইভিং লাইসেন্স আপলোড ও নম্বর যাচাই)।
+   - ধাপ ৩: চাইল্ড সেফটি ভেরিফিকেশন (অস্ট্রেলিয়ার WWCC নম্বর ও স্টেট নির্বাচন অথবা আমেরিকার ব্যাকগ্রাউন্ড চেক নম্বর)।
+   - ধাপ ৪: শিশু সুরক্ষা প্রশিক্ষণ সার্টিফিকেট আপলোড।
+   - ধাপ ৫: প্রফেশনাল রেফারেন্স (২ জন রেফারির নাম, প্রতিষ্ঠান, মোবাইল ও ইমেইল)।
+   - ধাপ ৬: পড়ানোর বিষয় ও স্যাম্পল ক্লাস ভিডিও আপলোড (২ মেগাবাইট চাংক আপলোড)।
+   - ধাপ ৭: লিগ্যাল এগ্রিমেন্ট (কোড অব কন্ডাক্ট, স্টেটমেন্ট অব ফেইথ ডিজিটাল স্বাক্ষর)।
+   - ধাপ ৮: রিভিউ ও ফাইনাল সাবমিশন (এডমিন পর্যালোচনার জন্য জমা দেওয়া)।
+
+২. কন্ট্রাক্টেড শিক্ষক অনবোর্ডিং ফ্লো (৫টি ধাপ):
+   - ধাপ ১: ব্যক্তিগত বিবরণ ও রেজুমে (CV) আপলোড।
+   - ধাপ ২: সরকারি আইডি ও WWCC ভেরিফিকেশন।
+   - ধাপ ৩: KTA কারিকুলাম ট্রেনিং এগ্রিমেন্টে স্বাক্ষর।
+   - ধাপ ৪: মক ক্লাস সেশন (লাইভ ক্লাস অডিশন স্লট বুকিং অথবা রেকর্ড করা ভিডিও আপলোড)।
+   - ধাপ ৫: অফিসিয়াল টিচিং কন্ট্রাক্ট ডিজিটাল সাইন ও জমা দেওয়া।
+

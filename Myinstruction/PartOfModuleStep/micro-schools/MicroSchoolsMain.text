@@ -1,0 +1,56 @@
+# MICRO-SCHOOLS MODULE: MASTER ARCHITECTURE & DEVELOPMENT LEDGER (MicroSchoolsMain)
+================================================================================
+Module: Micro-Schools Institutional B2B Portal
+Frontend Prefix: /micro-school/*
+Target Geography: United States (US Only)
+Source Authority: KTA+ Development Handover Rev 3.2 & Full SaaS Scope (AU & US)
+Language: English & Bengali (দ্বিভাষিক মাস্টার ডকুমেন্টেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. ROLE IDENTITY & STRICT INVARIANTS:
+- Micro-School Administrator operates an independent hybrid educational center (10-60 students).
+- Invariant 1: Centrally maintained curriculum is 100% READ-ONLY inside micro-schools. Local staff cannot alter lesson content or quiz criteria.
+- Invariant 2: B2B subscription automatically entitles the school to all master KTA+ programs.
+- Invariant 3: Student tuition and local teacher payroll sit strictly outside the KTA+ platform.
+
+2. PREVIOUS BACKEND DEVELOPMENT STATUS (WHAT IS BUILT VS WHAT IS PENDING):
+- PREVIOUS STATUS:
+  * Currently, the frontend Micro-School portal is ~85% UI built but operates on mock data.
+  * No dedicated `/api/micro-school/*` routes or tables existed in the legacy Laravel backend.
+- REQUIRED IMPLEMENTATION (NEW CONTROLLER & MIGRATIONS):
+  * Dedicated Controller: `App\Http\Controllers\API\MicroSchoolApiController`.
+  * Dedicated Migrations & Models:
+    - `micro_schools` (admin_user_id, name, subdomain, address, city, state, student_capacity, subscription_status).
+    - `micro_school_program_enablements` (micro_school_id, course_id, is_enabled, licensed_seats).
+    - `micro_school_teachers` (micro_school_id, teacher_user_id, status: pending/active).
+    - `micro_school_families` (micro_school_id, parent_user_id, status: pending/active).
+    - `micro_school_students` (micro_school_id, child_id, parent_id, status: pending/enrolled).
+    - `micro_school_class_instances` (micro_school_id, course_id, teacher_user_id, instance_name, location, schedule_days, start_time, end_time, status).
+    - `micro_school_class_students` (class_instance_id, child_id, status: enrolled/completed).
+    - `micro_school_announcements` (micro_school_id, author_id, title, content, target_audience, published_at).
+  * API Endpoints Needed:
+    - `POST /api/micro-school/register-school`: Institutional onboarding & subdomain reservation.
+    - `GET /api/micro-school/dashboard/overview`: Fetch real metrics cards, class instance matrix, and pending admissions.
+    - `GET /api/micro-school/programs`: Master curriculum feed; `POST /api/micro-school/programs/{id}/toggle-enable`: One-click Enable/Disable toggle.
+    - `POST /api/micro-school/class-instances/store`: Create class instance, assign read-only curriculum, teacher, schedule, and student roster.
+    - `GET /api/micro-school/class-instances/{id}/details`: 5-tab class workspace.
+    - `GET /api/micro-school/families` | `POST /api/micro-school/families/{id}/approve`.
+    - `GET /api/micro-school/students` | `POST /api/micro-school/students/{id}/approve`.
+    - `GET /api/micro-school/teachers` | `POST /api/micro-school/teachers/invite` | `approve`.
+    - `GET /api/micro-school/announcements` | `POST /api/micro-school/announcements/create`.
+    - `POST /api/micro-school/settings/update`: Campus info, logo branding, subdomain management.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. মাইক্রো-স্কুল পোর্টের ভূমিকা ও কঠোর নিয়ম:
+আমেরিকার স্বাধীন হাইব্রিড স্কুল পরিচালনার এডমিন প্যানেল। এখানে সেন্ট্রাল কারিকুলাম ১০০% রিড-অনলি (Read-Only) থাকে।
+
+২. ব্যাকএন্ডের পূর্ববর্তী কাজের অবস্থা:
+- পূর্ববর্তী অবস্থা: ফ্রন্টএন্ডে মাইক্রো-স্কুলের সকল ড্যাশবোর্ড স্ক্রিন রেডি আছে, কিন্তু ব্যাকএন্ডে পূর্বে কোনো মাইক্রো-স্কুল এপিআই বা টেবিল তৈরি ছিল না।
+- যা যা তৈরি করতে হবে (To Be Built):
+  * নতুন কন্ট্রোলার: `MicroSchoolApiController`।
+  * ৮টি নতুন টেবিল: `micro_schools`, `micro_school_program_enablements`, `micro_school_teachers`, `micro_school_families`, `micro_school_students`, `micro_school_class_instances`, `micro_school_class_students`, `micro_school_announcements` (যা ইতিমধ্যে `Myinstruction/database.sql`-এ সম্পূর্ণ ডিজাইন করে দেওয়া হয়েছে)।
+  * প্রয়োজনীয় এপিআই রুট: স্কুল রেজিস্ট্রেশন ও সাবডোমেন, ড্যাশবোর্ড মেট্রিক্স, কারিকুলাম Enable/Disable টগল, ক্লাস ইনস্ট্যান্স ক্রিয়েটর, ছাত্র-শিক্ষক রোস্টার ও নোটিশ এপিআই।

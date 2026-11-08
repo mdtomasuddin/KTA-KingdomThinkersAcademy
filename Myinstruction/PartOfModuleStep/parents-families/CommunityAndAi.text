@@ -1,0 +1,54 @@
+# PARENTS & FAMILIES MODULE: COMMUNITY, AI GENERATOR & SUPPORT
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /parent/community (Community Board)
+  - /parent/parent-profile (Public/Private Family Profile)
+  - /parent/others-profile (Other Parent Profile)
+  - /parent/parents-all-connections (Connections Roster)
+  - /parent/parent-all-connection-requests (Pending Connection Requests)
+  - /parent/ai-outcome-starts (AI Setup)
+  - /parent/ai-outcome-generator (Interactive Generator)
+  - /parent/ai-outcome-history (Historical Generations)
+  - /parent/ai-outcome-details (Detailed Goal Milestones & PDF Export)
+  - /parent/help-and-support (Support Center)
+  - /parent/support-message-details (Live Support Thread)
+  - /parent/policies (Academy Policies & Guidelines)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Al Outcome Generator.png | View Outcome Details Page.png
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. COMMUNITY & FAMILY NETWORKING:
+- Community Feed (/parent/community): Post announcements, curriculum discussions, homeschool advice. Like, comment, and filter by category.
+- Connections (/parent/parents-all-connections): Manage connected homeschool families, send friend requests, view pending requests (/parent/parent-all-connection-requests).
+- Profile Views: Personal profile (/parent/parent-profile) vs. other family's public portfolio (/parent/others-profile).
+
+2. AI OUTCOME GENERATOR PIPELINE:
+- Launcher (/parent/ai-outcome-starts): Select child learner, subject area (Science, Math, Bible, Robotics), and input unique child passion (e.g. "Marine Biology & Coral Reef Conservation").
+- Generator Console (/parent/ai-outcome-generator): Calls AI engine to produce inquiry questions, state curriculum milestones, and biblical integration points.
+- Outcome Details & Export (/parent/ai-outcome-details): View generated rubric. Action: Button `Download Portfolio PDF` (produces official evidence document for state homeschool reporting).
+
+3. HELP & SUPPORT SYSTEM:
+- Tickets (/parent/help-and-support): Create ticket (Billing, Curriculum, Technical, Safeguarding), select priority.
+- Support Message Details (/parent/support-message-details): Live 2-way messaging thread with KTA+ platform support staff.
+- Policies (/parent/policies): Searchable knowledge base of academy guidelines, COPPA disclosures, and terms.
+
+4. DATABASE TABLES INVOLVED:
+`community_posts`, `community_comments`, `parent_connections`, `ai_outcome_generations`, `support_tickets`, `support_messages`.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. কমিউনিটি ও ফ্যামিলি নেটওয়ার্কিং:
+- সোশ্যাল ডিসকাশন বোর্ড: হোমস্বর অভিজ্ঞতা শেয়ার, প্রশ্ন করা, লাইক ও কমেন্ট করা।
+- ফ্যামিলি কানেকশনস: আশেপাশের হোমস্বর পরিবারদের ফ্রেন্ড রিকোয়েস্ট পাঠানো ও ফ্রেন্ড লিস্ট দেখা।
+
+২. এআই আউটকাম জেনারেটর:
+- সন্তানের আগ্রহ ও বিষয়ের উপর ভিত্তি করে এআই-এর মাধ্যমে পাঠ্যক্রমের শিখনফল, সাপ্তাহিক মাইলস্টোন ও বিবলিক্যাল পয়েন্ট তৈরি করা।
+- `Download Portfolio PDF` বোতামে ক্লিক করে সরকারি হোমস্বর নিবন্ধনের প্রমাণ হিসেবে জমা দেওয়ার জন্য পিডিএফ ডাউনলোড করা।
+
+৩. হেল্প ও সাপোর্ট:
+- সাপোর্ট টিকিট ওপেন করা এবং সাপোর্ট এজেন্টের সাথে রিয়েল-টাইম চ্যাট করা।
+- একাডেমি নীতিমালা ও গাইডলাইন দেখা।

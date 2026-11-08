@@ -1,0 +1,50 @@
+# STUDENTS & LEARNERS MODULE: MASTER ARCHITECTURE & DEVELOPMENT LEDGER
+================================================================================
+Module: Student / Learner Portal
+Frontend Prefix: /student/*
+Source Authority: KTA+ Development Handover Rev 3.2 & Full SaaS Scope (AU & US)
+Language: English & Bengali (দ্বিভাষিক মাস্টার ডকুমেন্টেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. ROLE IDENTITY & ACCESS BOUNDARIES:
+- Students are child learners operating under parent-provisioned sub-accounts.
+- Zero Adult Financial Authority: Cannot purchase courses, manage billing, or execute legal consent.
+- Focus strictly on multimedia learning, assignment submissions, live classroom attendance, and peer collaboration (The Hive).
+
+2. PREVIOUS BACKEND DEVELOPMENT STATUS (WHAT IS BUILT VS WHAT IS PENDING):
+- ALREADY COMPLETED IN BACKEND (API & Migrations):
+  * Student Enrolled Courses Feed: `StudentDashboardApiController` (`GET /api/student/courses`, `GET /api/student/courses/{id}`).
+  * Student Lesson Hierarchy: `GET /api/student/courses/{course_id}/modules/{module_id}/lessons`.
+  * Course Announcements Feed: `GET /api/student/announcements`.
+  * Interactive To-Do List: `StudentDashboardApiController` (`GET /api/student/todos`, `POST /api/student/todos/add`, `POST /api/student/todos/{id}/toggle`, `POST /api/student/todos/{id}/delete`).
+  * Parent Setup of Child Login Credentials: `LearnerSettingApiController` (`/children/{id}/login-setup/set-password`).
+- PENDING / TO BE IMPLEMENTED FOR THIS MODULE:
+  * Assignment Block Submission API: `StudentSubmissionApiController` (`POST /api/student/lessons/{block_id}/submit` — supports student text reflection and file attachment uploads).
+  * Student Session Notes & Journal API: `StudentNotesApiController` (`GET /api/student/notes`, `POST /api/student/notes/save`).
+  * The Student Hive Social Feed API: `StudentHiveApiController` (`GET /api/student/hive/posts`, `POST /api/student/hive/share-milestone`).
+  * Peer Connections API: `StudentConnectionApiController` (`GET /api/student/connections`, `POST /api/student/connections/request`, `POST /api/student/connections/accept`).
+  * Digital Achievement Badges Locker: `StudentBadgeApiController` (`GET /api/student/badges`).
+  * Student AI Outcome Brainstormer API: `StudentAiApiController` (`POST /api/student/ai/brainstorm`).
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. স্টুডেন্ট পোর্টালের মূল ভূমিকা:
+শিক্ষার্থী হলো অভিভাবক দ্বারা পরিচালিত চাইল্ড একাউন্ট। এখানে কোনো আর্থিক লেনদেনের অধিকার থাকে না। এটি শুধুমাত্র পড়াশোনা, লাইভ ক্লাসে উপস্থিতি, হোমওয়ার্ক জমা দেওয়া এবং সহপাঠীদের সাথে প্রজেক্ট শেয়ারের জন্য তৈরি।
+
+২. ব্যাকএন্ডের পূর্ববর্তী কাজের অবস্থা (কি কি তৈরি আছে বনাম কি কি বাকি আছে):
+- যা যা অলরেডি তৈরি আছে (Already Done):
+  * স্টুডেন্ট ড্যাশবোর্ডে এনরোল্ড কোর্স দেখার এপিআই (`/api/student/courses`)।
+  * কোর্সের মডিউল ও লেসন দেখার এপিআই।
+  * ক্লাসের নোটিশ বা এনাউন্সমেন্ট দেখার এপিআই।
+  * স্টুডেন্ট উইকলি টু-ডু লিস্ট এপিআই (টাস্ক তৈরি, কমপ্লিট টগল ও ডিলিট)।
+  * অভিভাবক কর্তৃক সন্তানের লগইন পাসওয়ার্ড সেট করার এপিআই।
+- যা যা নতুনভাবে তৈরি করতে হবে (Pending Tasks):
+  * অ্যাসাইনমেন্ট সাবমিশন ব্লক এপিআই (উত্তর লেখা ও ছবি/ফাইল আপলোড করে শিক্ষকের কাছে খাতা জমা দেওয়া)।
+  * স্টুডেন্ট রিফ্লেক্টিভ স্টাডি জার্নাল ও সেশন নোটস এপিআই।
+  * দ্য স্টুডেন্ট হাইভ (The Hive) মডারেটেড পিয়ার সোশ্যাল নেটওয়ার্ক এপিআই।
+  * সহপাঠীদের সাথে ফ্রেন্ড রিকোয়েস্ট ও কানেকশন এপিআই।
+  * অর্জিত ডিজিটাল ব্যাজ পোর্টফোলিও দেখার এপিআই।
+  * স্টুডেন্ট এআই প্রজেক্ট আইডিয়া ব্রেনস্টর্মিং এপিআই।

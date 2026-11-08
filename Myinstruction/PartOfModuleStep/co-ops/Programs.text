@@ -1,0 +1,54 @@
+# CO-OPS MODULE: PROGRAMS, BUNDLES & DELIVERY CONSOLE (Programs.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /co-op/dashboard/programs (Programs & Bundles Overview)
+  - /co-op/dashboard/program-details (Detailed Program Delivery Console)
+Visual Reference: E:\kaleknealeImages\Co-op Dashboard\
+  * Programs & Bundles Default Program.jpg
+  * Programs & Bundles Purchased Programs.jpg
+  * Co-op Course Details Page.jpg
+  * Program Details Page (Weeks Module).jpg
+  * Program Details Page (Assigned Students).jpg
+  * Program Details Page (Attendance).jpg
+  * Program Details Page (Live Class & Recordings).jpg
+  * Program Details Page (Announcements).jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. PROGRAMS & BUNDLES HUB (/co-op/dashboard/programs):
+- Two Main Views:
+  * Default Programs Tab: Official KTA inquiry curriculum included with subscription.
+  * Purchased Programs Tab: Independent courses purchased from marketplace with group licenses.
+- Program Cards: Course title, cover thumbnail, assigned facilitator/teacher, licensed seat counter (e.g. 15 / 20 seats assigned), status badge.
+
+2. DETAILED PROGRAM DELIVERY CONSOLE (/co-op/dashboard/program-details):
+Features 5 core operational tabs:
+- Tab 1: Weeks Module
+  * Week-by-week curriculum outline (Weeks 1 to 12).
+  * Expandable lessons and learning blocks (Text instruction, video clips, downloadable worksheets).
+- Tab 2: Assigned Students
+  * Roster of co-op children enrolled in this specific program.
+  * Student name, avatar, completion percentage bar, and action to remove/reassign seat.
+- Tab 3: Attendance
+  * Date-wise classroom attendance sheet. Mark students as `Present`, `Absent`, or `Excused`.
+- Tab 4: Live Class & Recordings
+  * Schedule Google Meet / Zoom session links, set meeting time, and upload or stream past live class recordings.
+- Tab 5: Announcements
+  * Post course-specific updates, reading reminders, and supply lists for upcoming co-op class days.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. প্রোগ্রাম ও কারিকুলাম বান্ডেল হাব:
+- দুটি ট্যাব: Default Programs (সাবস্ক্রিপশনের অন্তর্ভুক্ত KTA কারিকুলাম) এবং Purchased Programs (মার্কেটপ্লেস থেকে কেনা অতিরিক্ত লাইসেন্সযুক্ত কোর্স)।
+- প্রতিটি কার্ডে কোর্সের নাম, নিয়োজিত শিক্ষক এবং কয়টি সিট ব্যবহার হচ্ছে তা দেখা যায়।
+
+২. প্রোগ্রাম ডেলিভারি কনসোলের ৫টি প্রধান ট্যাব (/co-op/dashboard/program-details):
+- ট্যাব ১ (Weeks Module): সপ্তাহের ভিত্তিতে লেসন মডিউল (সপ্তাহ ১ থেকে ১২), নির্দেশিকা এবং ওয়ার্কশিট।
+- ট্যাব ২ (Assigned Students): এই ক্লাসে কোন কোন শিক্ষার্থী ভর্তি আছে তাদের তালিকা ও প্রগ্রেস।
+- ট্যাব ৩ (Attendance): ক্লাসের দিন অনুযায়ী শিক্ষার্থীদের হাজিরা খাতা (উপস্থিত/অনুপস্থিত)।
+- ট্যাব ৪ (Live Class & Recordings): লাইভ গুগল মিট/জুম ক্লাসের লিংক তৈরি এবং পূর্ববর্তী ক্লাসের রেকর্ডিং গ্যালারি।
+- ট্যাব ৫ (Announcements): নির্দিষ্ট এই ক্লাসের জন্য নোটিশ এবং প্রয়োজনীয় শিক্ষা উপকরণের তালিকা পোস্ট করা।
+

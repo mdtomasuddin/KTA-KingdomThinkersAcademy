@@ -1,0 +1,52 @@
+# CO-OPS MODULE: COMMAND DASHBOARD & HOME (home.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Route: /co-op/dashboard
+Screen Name: Co-op Overview Page (CoOpOverviewPage.jsx)
+Visual Reference: E:\kaleknealeImages\Co-op Dashboard\
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. SCREEN OVERVIEW:
+The Co-Op Command Dashboard is the operational hub for pod leaders. It provides immediate visibility into member counts, student seat capacity utilization, active curriculum deliveries, and pending action items.
+
+2. TOP STATS CARDS (CoOpStatsCards.jsx):
+- Card 1 (Total Families): Displays active registered households count with growth badge.
+- Card 2 (Enrolled Children): Total active students admitted across all classes.
+- Card 3 (Active Programs): Number of curriculum courses currently running in the co-op.
+- Card 4 (Seat Capacity): Shows seat utilization (e.g., 28 / 40 seats filled) with capacity alert indicator.
+
+3. CORE DASHBOARD WIDGETS:
+- Active Programs Grid (CoOpActivePrograms.jsx): Displays ongoing courses with progress bars, assigned lead facilitators, and current week milestone.
+- Ongoing Tasks & Action Items (CoOpOngoingTasks.jsx): Real-time queue showing pending family applications, new child additions awaiting approval, and upcoming live session schedules.
+- Quick Actions Panel:
+  * Button `Invite Families`: Generates unique invite URL / QR code for prospective members.
+  * Button `Browse Group Marketplace`: Direct shortcut to buy curriculum bundles.
+  * Button `Post Announcement`: Opens modal to broadcast alerts to all pod families.
+
+4. UI STATES:
+- Default: Metrics, program cards, and task checklist loaded cleanly.
+- Loading: Skeleton pulsing cards matching the 4-metric grid.
+- Empty State: Displayed when newly approved co-op has 0 families; presents guided checklist to invite members.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. পেজের মূল ভূমিকা:
+কো-অপ হোম বা ওভারভিউ পেজ হলো পড লিডারের মূল নিয়ন্ত্রণ কেন্দ্র। এখানে কো-অপের মোট পরিবার, ছাত্রছাত্রী, সিট ক্যাপাসিটি এবং চলমান কারিকুলাম এক নজরে দেখা যায়।
+
+২. টপ স্ট্যাটাস কার্ডস:
+- কার্ড ১ (মোট পরিবার): নিবন্ধিত পরিবারের সংখ্যা।
+- কার্ড ২ (ভর্তিকৃত শিক্ষার্থী): কো-অপের সকল ক্লাসের মোট শিশুর সংখ্যা।
+- কার্ড ৩ (অ্যাক্টিভ প্রোগ্রাম): বর্তমানে চলমান শিক্ষাক্রম ও কোর্সের সংখ্যা।
+- কার্ড ৪ (সিট ক্যাপাসিটি): অনুমোদিত সিট কোটার ব্যবহার (যেমন: ২৮/৪০ সিট ব্যবহৃত)।
+
+৩. ড্যাশবোর্ডের মূল উইজেট ও অ্যাকশন বাটন:
+- অ্যাক্টিভ প্রোগ্রাম গ্রিড: চলমান কোর্সসমূহ, সাপ্তাহিক মাইলস্টোন এবং নিয়োজিত শিক্ষক।
+- অনগোয়িং টাস্ক ও পেন্ডিং কিউ: নতুন পরিবারের আবেদন, বাচ্চাদের সিট বরাদ্দ এবং ক্লাসের রুটিন।
+- কুইক অ্যাকশন বোতাম:
+  * `Invite Families`: নতুন পরিবারদের যুক্ত হওয়ার ইনভাইটেশন লিংক জেনারেট করা।
+  * `Browse Group Marketplace`: সরাসরি গ্রুপ কারিকুলাম মার্কেটপ্লেসে যাওয়া।
+  * `Post Announcement`: সকল পরিবারের কাছে জরুরি নোটিশ পাঠানোর মডাল।
+

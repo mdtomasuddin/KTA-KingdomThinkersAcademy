@@ -1,0 +1,54 @@
+# PARENTS & FAMILIES MODULE: MASTER ARCHITECTURE & DEVELOPMENT LEDGER
+================================================================================
+Module: Parents & Families Portal
+Frontend Prefix: /parent/*
+Target Geographies: Australia (AU) & United States (US) + Global
+Source Authority: KTA+ Development Handover Rev 3.2 & Full SaaS Scope (AU & US)
+Language: English & Bengali (দ্বিভাষিক মাস্টার ডকুমেন্টেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. ROLE IDENTITY & ACCESS BOUNDARIES:
+- The Parent/Guardian is the central legal and billing identity.
+- Full CRUD authority over child learner sub-accounts, personal profile, and safeguarding consent.
+- Exclusive financial authority: Stripe fiat subscriptions, token wallet purchases, ESA reimbursement claims.
+- Boundary: Zero access to other families' billing details or unapproved communications.
+
+2. PREVIOUS BACKEND DEVELOPMENT STATUS (WHAT IS BUILT VS WHAT IS PENDING):
+- ALREADY COMPLETED IN BACKEND (API & Migrations):
+  * Multi-step Onboarding API: `ParentOnboardingApiController` (`/api/parent/onboarding/draft`, `/send-email-otp`, `/verify-email-otp`, `/submit-onboarding`).
+  * Taxonomy APIs: `OnboardingDataApiController` (`/interests`, `/learning-styles`, `/faith-formation-goals`, `/project-interests`, `/pace-preferences`, `/avatars`, `/all-data`).
+  * Child Learner Account & Credentials Setup: `LearnerSettingApiController` (`/children/{id}/login-setup/send-otp`, `verify-otp`, `set-password`).
+  * Token Wallet & Transactions: `TokenApiController` (`/packages`, `/wallet`, `/purchase`).
+  * Marketplace Browsing & Enrolment: `MarketplaceApiController`, `EnrollmentApiController` (`/children`, `/enrollment/check-balance`, `/enrollment/token`).
+  * Premium Program Subscriptions: `SubscriptionApiController` (`/parent/subscriptions/checkout`, Stripe Webhook).
+  * iProject Requests: `ParentIprojectApiController` (`/iproject/mentors`, `/iproject/request`, `/iproject/requests`).
+- PENDING / TO BE IMPLEMENTED FOR THIS MODULE:
+  * US ESA Funds Enrollment API: `EsaFundsApiController` (`POST /api/parent/esa/submit`, `GET /api/parent/esa/invoices`) + automated 7-year retention PDF receipt generator.
+  * Dynamic Anti-Piracy Watermarking: `WatermarkService` (auto-stamping `"KTA+ • Licensed to [Parent Name] • Order #[ID]"` on downloaded worksheet PDFs).
+  * Community Social Feed & Connections: `ParentCommunityApiController` (`/community/posts`, `/parents-all-connections`, `/connection-requests`).
+  * AI Outcome Generator API: `AiOutcomeApiController` (`POST /api/ai/generate-outcome`, `GET /api/ai/outcomes-history`).
+  * Help & Support Tickets: `SupportApiController` (`POST /api/support/tickets`, `GET /api/support/tickets/{id}/messages`).
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. ফ্যামিলি পোর্টালের ভূমিকা ও পরিধি:
+অভিভাবক হলেন মূল আইনি ও আর্থিক দায়িত্বপ্রাপ্ত ব্যক্তি। শুধুমাত্র তিনিই সন্তানদের একাউন্ট তৈরি, স্ট্রাইপ সাবস্ক্রিপশন, টোকেন কেনা এবং আইনি সম্মতি প্রদান করতে পারেন।
+
+২. ব্যাকএন্ডের পূর্ববর্তী কাজের অবস্থা (কি কি তৈরি আছে বনাম কি কি বাকি আছে):
+- যা যা অলরেডি তৈরি আছে (Already Done):
+  * অনবোর্ডিং ড্রাফট সেভিং ও ওটিপি ভেরিফিকেশন (`ParentOnboardingApiController`)।
+  * ট্যাক্সোনমি এপিআই (ইন্টারেস্টস, লার্নিং স্টাইল, ফেইথ গোলস, অ্যাভাটারস)।
+  * অভিভাবক কর্তৃক সন্তানের লগইন পাসওয়ার্ড সেটআপ এপিআই (`LearnerSettingApiController`)।
+  * টোকেন ওয়ালেট, টোকেন প্যাকেজ ও ব্যালেন্স চেক (`TokenApiController`)।
+  * মার্কেটপ্লেস ব্রাউজিং ও টোকেন দিয়ে এনরোলমেন্ট (`MarketplaceApiController`, `EnrollmentApiController`)।
+  * প্রিমিয়াম সাবস্ক্রিপশন স্ট্রাইপ চেকআউট (`SubscriptionApiController`)।
+  * iProject মেন্টর তালিকা ও রিকোয়েস্ট সাবমিট (`ParentIprojectApiController`)।
+- যা যা নতুনভাবে তৈরি করতে হবে (Pending Tasks):
+  * US ESA সরকারি ফান্ডস ভাউচার এপিআই ও ৭ বছরের অডিট-উপযোগী অটোমেটিক পিডিএফ ইনভয়েস রিসিট জেনারেশন।
+  * ডাউনলোডের সময় অভিভাবকের নাম ও অর্ডার নম্বর যুক্ত করে ডায়নামিক অ্যান্টি-পাইরেসি ওয়াটারমার্কিং সার্ভিস।
+  * অভিভাবক সোশ্যাল কমিউনিটি ডিসকাশন বোর্ড ও কানেকশন রিকোয়েস্ট এপিআই।
+  * এআই আউটকাম জেনারেটর এপিআই (প্রম্পট প্রসেসিং ও পোর্টফোলিও পিডিএফ এক্সপোর্ট)।
+  * হেল্প অ্যান্ড সাপোর্ট টিকিট ও চ্যাট মেসেজ এপিআই।

@@ -1,0 +1,69 @@
+# TEACHERS MODULE: GRADING & SUBMISSIONS CONSOLE (PAGE SPECIFICATION)
+================================================================================
+Route: /teacher/dashboard/review-student-submission
+Component: CourseModuleReviewSubmission.jsx
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Review Submissions.png | Week Task Page.png | Lesson 5 _ Reflection.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিケーション)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. SCREEN PURPOSE & OPERATIONAL WORKFLOW:
+   This screen functions as the teacher's grading and assessment console. Educators review written reflections, project uploads, and homework submitted by students for specific lesson blocks, provide personalized written feedback, and approve completion.
+
+2. SPLIT-PANE UI ARCHITECTURE:
+   A. Top Banner (`ReviewSubmissionBanner.jsx`):
+      - Displays active Course Name, Module Number (e.g., "Module 1: Introduction & Biblical Foundation"), and Block Title (e.g., "Reflection 1.1: Light in Creation").
+      - Summary Counters: Total Enrolled Students, Submissions Received, and Pending Reviews remaining.
+
+   B. Left Student Queue Pane (`ReviewAllStudentsList.jsx` - 320px fixed width):
+      - Search bar to filter student roster by name.
+      - Student List Items:
+        * Student Avatar (thumbnail).
+        * Student Name (e.g., "Emma Johnson", "Liam Carter", "Sophia Lee", "Noah Smith").
+        * Submission Date & Timestamp (e.g., "Dec 5 at 8:14 PM").
+        * Status Pill: `Submitted` (green badge) or `Pending Submission` (gray badge).
+        * Type Indicator: "Text Reflection", "Project Milestone", or "File Upload".
+        * Active selection indicator highlighting the currently graded student.
+
+   C. Main Review & Grading Pane (`ReviewSubmissionDetailsContent.jsx`):
+      - Student Header Bar:
+        * Large student avatar, full name, submission type, and submission status.
+        * Sequential Navigation: "Previous" button and "Next" button with disabled states at roster boundaries (`isFirst`, `isLast`).
+      - Student Submission Viewer:
+        * If text submission: Styled container presenting student's written essay/reflection with proper typography.
+        * If file upload: File preview card showing filename, file size, download button, and visual preview if image/PDF.
+        * If pending: Empty state alert with dashed border indicating "No submission yet from this student".
+      - Teacher Feedback Console:
+        * Form textarea with placeholder "Write feedback for this student...".
+        * Allows constructive feedback, encouragement, and scripture references.
+        * Action Button 1: "Save Feedback" (Slate-800 primary button) — Saves the feedback text without finalizing the grade.
+        * Action Button 2: "Mark as Reviewed" (White border secondary button) — Marks the submission as approved, marks the student's lesson block as completed, and advances the student's progress bar.
+
+3. PREVIOUS BACKEND WORK VS PENDING IMPLEMENTATION:
+   - ALREADY DONE:
+     * Table `student_block_responses` exists in `database.sql` with columns `teacher_feedback`, `reviewed_at`, `reviewer_id`.
+   - PENDING IMPLEMENTATION:
+     * `TeacherGradingApiController` endpoints:
+       1. `GET /api/teacher/courses/{course_id}/blocks/{block_id}/submissions` — Returns student submissions array.
+       2. `POST /api/teacher/submissions/{submission_id}/feedback` — Updates feedback string.
+       3. `POST /api/teacher/submissions/{submission_id}/review` — Updates `status = 'approved'` and dispatches notification to student hive.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. খাতা ও সাবমিশন মূল্যায়ন কনসোল:
+   - এটি শিক্ষকের খাতা দেখার ও গ্রেডিং করার ডিজিটাল কনসোল। শিক্ষার্থীরা যেসব লেখা বা হোমওয়ার্ক জমা দিয়েছে তা শিক্ষক এখানে বসে মূল্যায়ন করেন।
+   - বাম পাশের তালিকা: সকল শিক্ষার্থীর নাম, ছবি, জমা দেওয়ার তারিখ ও স্ট্যাটাস (Submitted বা Pending Submission)।
+   - মূল স্ক্রিন:
+     * শিক্ষার্থীর জমা দেওয়া লেখা বা অ্যাসাইনমেন্ট ফাইল দেখা।
+     * Previous ও Next বাটন দিয়ে এক ক্লিকে এক ছাত্র থেকে অন্য ছাত্রের খাতায় যাওয়া।
+     * শিক্ষকের ফিডব্যাক বক্স: ছাত্রের উদ্দেশ্যে সংশোধনমূলক মন্তব্য বা প্রশংসা লেখা।
+     * "Save Feedback" বাটন: কমেন্ট সেভ করা।
+     * "Mark as Reviewed" বাটন: খাতা অ্যাপ্রুভ করা এবং শিক্ষার্থীর ড্যাশবোর্ডে কোর্স সমাপ্তির পয়েন্ট যোগ করা।
+
+২. ব্যাকএন্ডের পূর্ববর্তী কাজ ও করণীয়:
+   - পূর্ববর্তী কাজ: ডাটাবেসে `student_block_responses` টেবিল তৈরি আছে।
+   - নতুন করণীয়: শিক্ষকের মূল্যায়ন সেভ করা ও খাতা অ্যাপ্রুভ করার জন্য `TeacherGradingApiController` এপিআই তৈরি করা।
+

@@ -1,0 +1,48 @@
+# PARENTS & FAMILIES MODULE: ONBOARDING & DASHBOARD
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /parent/on-board (Multi-Step Onboarding Form)
+  - /parent/dashboard (Parent Command Dashboard)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Home.png | My Profile.png | Subscripiton Page.png
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. MULTI-STEP ONBOARDING (/parent/on-board):
+- Country Detection: Automatically senses user geography via IP (`AU` or `US`).
+- Step 1 (Create Account): Full Name, Email, Phone, Password, Country.
+- Step 2 (Verify): 6-digit email OTP verification.
+- Step 3 (Add Children): Multi-child builder:
+  * Full Name, Date of Birth, Grade Level, Illustrated Avatar selection.
+  * Hobbies & Interests: STEM, Coding, Fine Arts, Robotics, Music, Nature Study.
+  * Learning Style: Visual, Auditory, Kinesthetic, Reading/Writing.
+  * Faith Goals: Christian Discipleship, Biblical Worldview, Character Building, Scripture Memorization.
+  * Pace: Self-paced, Structured cohort, Flexible hybrid.
+  * Future Aspirations text.
+- Step 4 (Identity Check — US Only): COPPA parental identity verification.
+- Step 5 (Consent): Legal terms, data privacy, academy safety policies.
+- Step 6 (Safety): Digital signature confirmation.
+- Draft Saving: Synced to `POST /api/parent/onboarding/draft` at every step.
+
+2. PARENT COMMAND DASHBOARD (/parent/dashboard):
+- Child Switcher Dropdown: Located top-left. Instantly switches active child learner, updating all metrics and live schedules.
+- Metrics Cards: Active Courses Count, Weekly Lessons Completed, Upcoming Live Sessions, Token Balance.
+- Live Timetable: Chronological list of Google Meet/Zoom links with green `Join Class` button.
+- Weekly Inquiry Milestone: Progress bars for ongoing KTA inquiry cycles.
+- Quick Actions: Buttons to explore marketplace, view enrolled projects, open wallet.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. মাল্টি-স্টেপ প্যারেন্ট অনবোর্ডিং:
+- অস্ট্রেলিয়া (৫টি স্টেপ) এবং আমেরিকা (৬টি স্টেপ)।
+- সন্তানের নাম, বয়স, গ্রেড, অ্যাভাটার, লার্নিং স্টাইল, ফেইথ গোলস এবং ইন্টারেস্ট একবারে যুক্ত করা যায়।
+- ড্রাফট সেভিং সুবিধার কারণে অভিভাবক যেকোনো সময় ফিরে এসে কাজ শুরু করতে পারেন।
+
+২. প্যারেন্ট কমান্ড ড্যাশবোর্ড:
+- চাইল্ড সুইচার ড্রপডাউন: এক ক্লিকে সন্তান পরিবর্তন করলে সেই সন্তানের পুরো রুটিন ও প্রগ্রেস চলে আসে।
+- মেট্রিক্স ও টাইমটেবিল: চলমান লাইভ ক্লাসের লিংক ও "Join Class" বোতাম।
+- উইকলি মাইলস্টোন ট্র্যাকার ও মার্কেটপ্লেস শর্টকাট।
+

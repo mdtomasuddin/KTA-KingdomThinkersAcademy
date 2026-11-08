@@ -1,0 +1,1278 @@
+/* ==========================================================================
+   Dashboard Admin Panel — Global Backend Stylesheet
+   Theme Primary: #00A3FF (Electric Sky Blue) / Dark Mode Native
+   ========================================================================== */
+
+/* ==========================================
+   1. Page Header & Breadcrumbs
+   ========================================== */
+.page-header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+    .page-header {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.page-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: #9ca3af;
+}
+
+.dark .breadcrumb {
+    color: #6b7280;
+}
+
+.breadcrumb-link {
+    transition: color 0.15s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #00A3FF;
+}
+
+.breadcrumb-separator {
+    font-size: 10px;
+}
+
+.breadcrumb-active {
+    color: #4b5563;
+    font-weight: 500;
+}
+
+.dark .breadcrumb-active {
+    color: #d1d5db;
+}
+
+.page-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+    margin-bottom: 0.5rem;
+}
+
+.dark .page-description {
+    color: #9ca3af;
+}
+
+.page-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==========================================
+   2. Global Buttons
+   ========================================== */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #00A3FF;
+    color: #ffffff;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 10px 15px -3px rgba(0, 163, 255, 0.2), 0 4px 6px -4px rgba(0, 163, 255, 0.2);
+    transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0088DD;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #ffffff;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.15s ease;
+}
+
+.dark .btn-secondary {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #9ca3af;
+}
+
+.btn-secondary:hover {
+    background-color: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.dark .btn-secondary:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.btn-cancel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.625rem 1.25rem;
+    background-color: #f3f4f6;
+    color: #374151;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: background-color 0.15s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #e5e7eb;
+}
+
+.dark .btn-cancel {
+    background-color: #1f2937;
+    color: #d1d5db;
+}
+
+.dark .btn-cancel:hover {
+    background-color: #374151;
+    color: #ffffff;
+}
+
+.btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    background-color: #00A3FF;
+    color: #ffffff;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 6px -1px rgba(0, 163, 255, 0.15);
+    transition: background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-submit:hover {
+    background-color: #0088DD;
+}
+
+.btn-submit:focus {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(0, 163, 255, 0.25);
+}
+
+/* ==========================================
+   3. Content Cards
+   ========================================== */
+.card {
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border: 1px solid #f3f4f6;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.06);
+    padding: 1.5rem;
+}
+
+.dark .card {
+    background-color: #111827;
+    border-color: #1f2937;
+}
+
+/* ==========================================
+   4. Tables & DataTables (Modern SaaS UX)
+   ========================================== */
+.dataTables_wrapper,
+div.dt-container {
+    width: 100%;
+    overflow: visible;
+}
+
+.dataTables_wrapper .dt-scroll-body,
+.dataTables_wrapper .dataTables_scroll,
+.dt-table-container,
+.table-responsive {
+    width: 100%;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ── Base Table Styles ── */
+.table,
+table.dataTable {
+    width: 100% !important;
+    border-bottom-width: 0 !important;
+    border-collapse: collapse !important;
+    border-spacing: 0 !important;
+    margin: 0 !important;
+}
+
+/* ── Table Header Row & Background ── */
+.table thead,
+table.dataTable thead,
+.table thead tr,
+table.dataTable thead tr,
+table.dataTable>thead>tr {
+    background-color: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    text-align: left;
+}
+
+.dark .table thead,
+.dark table.dataTable thead,
+html.dark table.dataTable thead,
+.dark .table thead tr,
+.dark table.dataTable thead tr,
+html.dark table.dataTable thead tr,
+html.dark table.dataTable>thead>tr {
+    background-color: #1e293b !important;
+    border-bottom: 1px solid #334155 !important;
+    color: #ffffff !important;
+}
+
+/* ── Table Header Cells ── */
+.table thead th,
+.table thead td,
+table.dataTable thead th,
+table.dataTable thead td,
+table.dataTable>thead>tr>th,
+table.dataTable>thead>tr>td {
+    padding: 0.875rem 1rem !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #475569 !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    border-top: none !important;
+    border-left: none !important;
+    border-right: none !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    background-color: #f8fafc !important;
+    border-radius: 0 !important;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.table thead th:first-child,
+table.dataTable thead th:first-child,
+table.dataTable>thead>tr>th:first-child,
+.table thead th:last-child,
+table.dataTable thead th:last-child,
+table.dataTable>thead>tr>th:last-child {
+    border-radius: 0 !important;
+}
+
+.dark .table thead th,
+.dark .table thead td,
+.dark table.dataTable thead th,
+.dark table.dataTable thead td,
+html.dark table.dataTable thead th,
+html.dark table.dataTable thead td,
+html.dark table.dataTable>thead>tr>th,
+html.dark table.dataTable>thead>tr>td {
+    color: #ffffff !important;
+    border-bottom: 1px solid #334155 !important;
+    background-color: #1e293b !important;
+}
+
+/* ── Header Alignment & Flex Layout ── */
+table.dataTable thead th div.dt-column-header,
+table.dataTable thead td div.dt-column-header,
+table.dataTable thead>tr>th div.dt-column-header,
+table.dataTable thead>tr>td div.dt-column-header,
+table.dataTable th.dt-type-numeric div.dt-column-header,
+table.dataTable th.dt-type-date div.dt-column-header,
+table.dataTable td.dt-type-numeric div.dt-column-header,
+table.dataTable td.dt-type-date div.dt-column-header {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 0.375rem !important;
+    width: 100% !important;
+    padding: 0 !important;
+}
+
+table.dataTable thead th.dt-type-numeric,
+table.dataTable thead th.dt-type-date,
+table.dataTable tbody td.dt-type-numeric,
+table.dataTable tbody td.dt-type-date {
+    text-align: left !important;
+}
+
+table.dataTable thead>tr>th.dt-center div.dt-column-header,
+table.dataTable thead>tr>th.text-center div.dt-column-header,
+table.dataTable thead th.dt-center div.dt-column-header,
+table.dataTable thead th.text-center div.dt-column-header {
+    justify-content: center !important;
+}
+
+table.dataTable thead>tr>th.dt-right div.dt-column-header,
+table.dataTable thead>tr>th.text-right div.dt-column-header,
+table.dataTable thead th.dt-right div.dt-column-header,
+table.dataTable thead th.text-right div.dt-column-header {
+    justify-content: flex-end !important;
+}
+
+table.dataTable thead th div.dt-column-header span.dt-column-title {
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    color: #475569 !important;
+    white-space: nowrap !important;
+    flex-grow: 0 !important;
+    flex-shrink: 0 !important;
+}
+
+.dark table.dataTable thead th div.dt-column-header span.dt-column-title,
+html.dark table.dataTable thead th div.dt-column-header span.dt-column-title {
+    color: #ffffff !important;
+}
+
+/* ── Sort Arrows (Dual Triangular Indicators - Orderable Columns Only) ── */
+table.dataTable thead th:not(.dt-orderable-asc):not(.dt-orderable-desc) span.dt-column-order,
+table.dataTable thead td:not(.dt-orderable-asc):not(.dt-orderable-desc) span.dt-column-order,
+table.dataTable thead th.dt-orderable-none span.dt-column-order,
+table.dataTable thead td.dt-orderable-none span.dt-column-order {
+    display: none !important;
+}
+
+table.dataTable thead th.dt-orderable-asc span.dt-column-order,
+table.dataTable thead th.dt-orderable-desc span.dt-column-order,
+table.dataTable thead td.dt-orderable-asc span.dt-column-order,
+table.dataTable thead td.dt-orderable-desc span.dt-column-order {
+    position: relative !important;
+    display: inline-flex !important;
+    width: 12px !important;
+    height: 18px !important;
+    flex-shrink: 0 !important;
+    vertical-align: middle !important;
+    opacity: 1 !important;
+    margin-left: 0.25rem !important;
+}
+
+table.dataTable thead th.dt-orderable-asc span.dt-column-order:before,
+table.dataTable thead th.dt-orderable-desc span.dt-column-order:before,
+table.dataTable thead td.dt-orderable-asc span.dt-column-order:before,
+table.dataTable thead td.dt-orderable-desc span.dt-column-order:before {
+    position: absolute !important;
+    display: block !important;
+    bottom: 50% !important;
+    margin-bottom: 1px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    content: "▲" !important;
+    font-size: 7px !important;
+    line-height: 7px !important;
+    color: #94a3b8 !important;
+    opacity: 0.3 !important;
+    transition: opacity 0.15s ease, color 0.15s ease !important;
+}
+
+table.dataTable thead th.dt-orderable-asc span.dt-column-order:after,
+table.dataTable thead th.dt-orderable-desc span.dt-column-order:after,
+table.dataTable thead td.dt-orderable-asc span.dt-column-order:after,
+table.dataTable thead td.dt-orderable-desc span.dt-column-order:after {
+    position: absolute !important;
+    display: block !important;
+    top: 50% !important;
+    margin-top: 1px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    content: "▼" !important;
+    font-size: 7px !important;
+    line-height: 7px !important;
+    color: #94a3b8 !important;
+    opacity: 0.3 !important;
+    transition: opacity 0.15s ease, color 0.15s ease !important;
+}
+
+/* Sort States */
+table.dataTable thead th.dt-ordering-asc span.dt-column-order:before {
+    opacity: 1 !important;
+    color: #00A3FF !important;
+}
+
+table.dataTable thead th.dt-ordering-asc span.dt-column-order:after {
+    opacity: 0.15 !important;
+}
+
+table.dataTable thead th.dt-ordering-desc span.dt-column-order:after {
+    opacity: 1 !important;
+    color: #00A3FF !important;
+}
+
+table.dataTable thead th.dt-ordering-desc span.dt-column-order:before {
+    opacity: 0.15 !important;
+}
+
+/* Header Hover Feedback */
+table.dataTable thead>tr>th.dt-orderable-asc:hover,
+table.dataTable thead>tr>th.dt-orderable-desc:hover {
+    outline: none !important;
+    background-color: #f1f5f9 !important;
+    cursor: pointer !important;
+}
+
+table.dataTable thead>tr>th.dt-orderable-asc:hover span.dt-column-order:before,
+table.dataTable thead>tr>th.dt-orderable-desc:hover span.dt-column-order:after {
+    opacity: 0.75 !important;
+}
+
+.dark table.dataTable thead>tr>th.dt-orderable-asc:hover,
+.dark table.dataTable thead>tr>th.dt-orderable-desc:hover,
+html.dark table.dataTable thead>tr>th.dt-orderable-asc:hover,
+html.dark table.dataTable thead>tr>th.dt-orderable-desc:hover {
+    outline: none !important;
+    background-color: #334155 !important;
+    cursor: pointer !important;
+}
+
+/* ── Table Body Rows & Cells ── */
+.table tbody tr,
+table.dataTable tbody tr {
+    border-bottom: 1px solid #f3f4f6 !important;
+    background-color: transparent !important;
+    transition: background-color 0.15s ease;
+}
+
+.dark .table tbody tr,
+.dark table.dataTable tbody tr,
+html.dark table.dataTable tbody tr {
+    border-bottom-color: #1f2937 !important;
+    background-color: transparent !important;
+}
+
+.table tbody tr:last-child,
+table.dataTable tbody tr:last-child {
+    border-bottom: none !important;
+}
+
+.table tbody tr:hover,
+table.dataTable tbody tr:hover,
+table.dataTable.display>tbody>tr:hover,
+table.dataTable.hover>tbody>tr:hover {
+    background-color: #f8fafc !important;
+}
+
+.dark .table tbody tr:hover,
+.dark table.dataTable tbody tr:hover,
+html.dark table.dataTable tbody tr:hover,
+html.dark table.dataTable.display>tbody>tr:hover {
+    background-color: #1e293b !important;
+}
+
+.table tbody td,
+table.dataTable tbody td,
+table.dataTable>tbody>tr>td,
+table.dataTable>tbody>tr>th {
+    padding: 0.875rem 1rem !important;
+    font-size: 0.875rem !important;
+    color: #374151 !important;
+    vertical-align: middle !important;
+    white-space: nowrap !important;
+    border-top: none !important;
+    border-bottom: none !important;
+}
+
+.dark .table tbody td,
+.dark table.dataTable tbody td,
+html.dark table.dataTable tbody td,
+html.dark table.dataTable>tbody>tr>td,
+html.dark table.dataTable>tbody>tr>th {
+    color: #d1d5db !important;
+}
+
+/* ── Search & Length Controls ── */
+div.dt-container .dt-length select,
+.dt-length select {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.5rem !important;
+    padding: 0.375rem 1.75rem 0.375rem 0.625rem !important;
+    background-color: #ffffff !important;
+    color: #374151 !important;
+    font-size: 0.875rem !important;
+    outline: none !important;
+    transition: border-color 0.15s ease;
+}
+
+div.dt-container .dt-search input,
+.dt-search input {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.5rem !important;
+    padding: 0.375rem 0.75rem !important;
+    background-color: #ffffff !important;
+    color: #374151 !important;
+    font-size: 0.875rem !important;
+    outline: none !important;
+    min-width: 180px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+div.dt-container .dt-search input:focus,
+.dt-search input:focus {
+    border-color: #00A3FF !important;
+    box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.15) !important;
+}
+
+.dark div.dt-container .dt-length select,
+.dark .dt-length select {
+    border-color: #374151 !important;
+    background-color: #1f2937 !important;
+    color: #f3f4f6 !important;
+}
+
+.dark div.dt-container .dt-search input,
+.dark .dt-search input {
+    border-color: #374151 !important;
+    background-color: #1f2937 !important;
+    color: #f3f4f6 !important;
+}
+
+.dark div.dt-container .dt-search input:focus,
+.dark .dt-search input:focus {
+    border-color: #00A3FF !important;
+    box-shadow: 0 0 0 3px rgba(0, 163, 255, 0.25) !important;
+}
+
+/* ── Pagination & Info ── */
+div.dt-container .dt-info,
+.dt-info {
+    font-size: 0.875rem !important;
+    color: #6b7280 !important;
+}
+
+.dark div.dt-container .dt-info,
+.dark .dt-info {
+    color: #9ca3af !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button,
+.dt-paging .dt-paging-button {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-width: 2rem !important;
+    height: 2rem !important;
+    padding: 0.25rem 0.625rem !important;
+    margin: 0 0.125rem !important;
+    border-radius: 0.375rem !important;
+    border: 1px solid #e5e7eb !important;
+    background: #ffffff !important;
+    color: #4b5563 !important;
+    font-size: 0.8125rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04) !important;
+    transition: all 0.15s ease !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button:hover,
+.dt-paging .dt-paging-button:hover {
+    background: #f8fafc !important;
+    border-color: #cbd5e1 !important;
+    color: #111827 !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.current,
+div.dt-container .dt-paging .dt-paging-button.current:hover,
+.dt-paging .dt-paging-button.current,
+.dt-paging .dt-paging-button.current:hover {
+    background: #00A3FF !important;
+    border-color: #00A3FF !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 2px 4px 0 rgba(0, 163, 255, 0.25) !important;
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled,
+div.dt-container .dt-paging .dt-paging-button.disabled:hover,
+.dt-paging .dt-paging-button.disabled,
+.dt-paging .dt-paging-button.disabled:hover {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+    border-color: #f3f4f6 !important;
+    background: #ffffff !important;
+    color: #9ca3af !important;
+}
+
+.dark div.dt-container .dt-paging .dt-paging-button,
+.dark .dt-paging .dt-paging-button {
+    border-color: #374151 !important;
+    background: #1f2937 !important;
+    color: #d1d5db !important;
+}
+
+.dark div.dt-container .dt-paging .dt-paging-button:hover,
+.dark .dt-paging .dt-paging-button:hover {
+    background: #374151 !important;
+    border-color: #4b5563 !important;
+    color: #ffffff !important;
+}
+
+.dark div.dt-container .dt-paging .dt-paging-button.current,
+.dark div.dt-container .dt-paging .dt-paging-button.current:hover,
+.dark .dt-paging .dt-paging-button.current,
+.dark .dt-paging .dt-paging-button.current:hover {
+    background: #00A3FF !important;
+    border-color: #00A3FF !important;
+    color: #ffffff !important;
+}
+
+.dark div.dt-container .dt-paging .dt-paging-button.disabled,
+.dark div.dt-container .dt-paging .dt-paging-button.disabled:hover,
+.dark .dt-paging .dt-paging-button.disabled,
+.dark .dt-paging .dt-paging-button.disabled:hover {
+    border-color: #1f2937 !important;
+    background: #111827 !important;
+    color: #6b7280 !important;
+}
+
+/* ── Custom Scrollbar Track (under table) ── */
+.dt-scroll-inner,
+.table-responsive {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.dt-scroll-inner::-webkit-scrollbar,
+.table-responsive::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+.dt-scrollbar-track {
+    display: none;
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 9999px;
+    margin-top: -0.1rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.dark .dt-scrollbar-track {
+    background: #334155;
+}
+
+.dt-scrollbar-thumb {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: 12%;
+    background: linear-gradient(90deg, #00A3FF, #0088DD);
+    border-radius: 9999px;
+    cursor: grab;
+    transition: background 0.2s ease, transform 0.1s ease;
+    will-change: left, width;
+}
+
+.dt-scrollbar-thumb:hover {
+    background: linear-gradient(90deg, #0088DD, #006BB3);
+    transform: scaleY(1.3);
+}
+
+.dt-scrollbar-thumb.dragging,
+.dt-scrollbar-thumb:active {
+    cursor: grabbing;
+    background: linear-gradient(90deg, #006BB3, #004A7A);
+    transform: scaleY(1.5);
+}
+
+.dark .dt-scrollbar-thumb {
+    background: linear-gradient(90deg, #00A3FF, #0088DD);
+}
+
+/* ==========================================
+   5. Forms & Inputs
+   ========================================== */
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.dark .form-label {
+    color: #d1d5db;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.625rem 1rem;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    font-size: 0.875rem;
+    color: #1f2937;
+    transition: all 0.15s ease;
+}
+
+.dark .form-input {
+    background-color: #1f2937;
+    border-color: #374151;
+    color: #e5e7eb;
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+.form-input:focus {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-color: #00A3FF;
+    box-shadow: 0 0 0 4px rgba(0, 163, 255, 0.2);
+}
+
+.form-input.is-invalid {
+    border-color: #ef4444;
+}
+
+.form-input.is-invalid:focus {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+.input-error {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #ef4444;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #f3f4f6;
+    margin-top: 1.5rem;
+}
+
+.dark .form-actions {
+    border-top-color: #1f2937;
+}
+
+/* ==========================================
+   6. Summernote WYSIWYG Editor
+   ========================================== */
+.note-editor.note-frame,
+.note-editor.note-lite {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.75rem !important;
+    overflow: hidden;
+    background-color: #ffffff !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.note-editor.note-frame:focus-within,
+.note-editor.note-lite:focus-within {
+    border-color: #00A3FF !important;
+    box-shadow: 0 0 0 4px rgba(0, 163, 255, 0.15) !important;
+}
+
+.note-editor .note-toolbar {
+    background-color: #f8fafc !important;
+    border-bottom: 1px solid #e2e8f0 !important;
+    padding: 6px 8px !important;
+}
+
+.note-editor .note-toolbar .note-btn-group {
+    margin-right: 6px !important;
+    margin-bottom: 4px !important;
+}
+
+.note-editor .note-toolbar .note-btn-group>.note-btn {
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+    padding: 6px 10px;
+    font-size: 13px;
+    border-radius: 0.375rem;
+    box-shadow: none;
+    margin-right: 2px;
+    transition: all 0.15s ease;
+}
+
+.note-editor .note-toolbar .note-btn-group>.note-btn:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    border-color: #94a3b8;
+}
+
+.note-editor .note-toolbar .note-btn-group>.note-btn.active,
+.note-editor .note-toolbar .note-btn-group>.note-btn:active {
+    background-color: #cbd5e1;
+    color: #0f172a;
+    border-color: #64748b;
+}
+
+.note-editor .note-editable {
+    background-color: #ffffff;
+    color: #1f2937;
+    padding: 1.25rem !important;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+.note-editor .note-placeholder {
+    padding: 1rem !important;
+    color: #9ca3af !important;
+}
+
+.note-editor .note-statusbar {
+    background-color: #f8fafc !important;
+    border-top: 1px solid #e5e7eb !important;
+    border-bottom-left-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+}
+
+.note-editor .note-toolbar .note-btn-group.note-help,
+.note-editor .note-toolbar button[data-event="showHelpDialog"],
+.note-editor .note-toolbar button[data-name="help"],
+.note-editor .note-toolbar .note-btn:has(.note-icon-question) {
+    display: none !important;
+}
+
+.note-dropdown-menu,
+.note-editor .dropdown-menu {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1) !important;
+    padding: 6px !important;
+}
+
+.note-dropdown-menu a,
+.note-dropdown-menu .dropdown-item,
+.note-editor .dropdown-menu a,
+.note-editor .dropdown-menu .dropdown-item {
+    color: #374151 !important;
+    padding: 6px 12px !important;
+    border-radius: 0.375rem !important;
+    font-size: 13px !important;
+    transition: all 0.15s ease;
+}
+
+.note-dropdown-menu a:hover,
+.note-dropdown-menu .dropdown-item:hover,
+.note-editor .dropdown-menu a:hover,
+.note-editor .dropdown-menu .dropdown-item:hover {
+    background-color: #e0f2fe !important;
+    color: #0284c7 !important;
+}
+
+/* ── Summernote Color Palette Dropdown (Side-by-Side 2 Columns, Clean Default Style) ── */
+.note-editor .note-toolbar .note-color .note-dropdown-menu,
+.note-editor .note-toolbar .note-color-all .note-dropdown-menu,
+.note-color-all .note-dropdown-menu,
+.note-color .note-dropdown-menu {
+    background-color: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.08) !important;
+    padding: 10px 12px !important;
+    min-width: 360px !important;
+    width: 360px !important;
+    max-width: 360px !important;
+    box-sizing: border-box !important;
+    white-space: normal !important;
+    z-index: 1050 !important;
+}
+
+.note-btn-group.open > .note-color .note-dropdown-menu,
+.note-color.open > .note-dropdown-menu,
+.note-color-all.open > .note-dropdown-menu,
+.note-btn-group.open > .note-dropdown-menu:has(.note-palette) {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    gap: 14px !important;
+    align-items: flex-start !important;
+}
+
+.note-editor .note-toolbar .note-color .note-dropdown-menu .note-palette,
+.note-editor .note-toolbar .note-color-all .note-dropdown-menu .note-palette,
+.note-color .note-dropdown-menu .note-palette,
+.note-palette {
+    display: inline-block !important;
+    width: 160px !important;
+    min-width: 160px !important;
+    max-width: 160px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    vertical-align: top !important;
+    float: none !important;
+    box-sizing: border-box !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-palette-title,
+.note-editor .note-color-all .note-dropdown-menu .note-palette .note-palette-title,
+.note-palette-title {
+    color: #374151 !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    border-bottom: 1px solid #e5e7eb !important;
+    padding-bottom: 6px !important;
+    margin: 0 0 8px 0 !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-color-reset,
+.note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-reset,
+.note-color-reset {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 4px !important;
+    color: #374151 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    padding: 4px 6px !important;
+    width: 100% !important;
+    margin: 0 0 8px 0 !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    text-align: center !important;
+    transition: all 0.15s ease !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-color-reset:hover,
+.note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-reset:hover,
+.note-color-reset:hover {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-color-select,
+.note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-select,
+.note-color-select {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 4px !important;
+    color: #374151 !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    padding: 4px 6px !important;
+    width: 100% !important;
+    margin: 8px 0 0 0 !important;
+    cursor: pointer !important;
+    box-shadow: none !important;
+    line-height: 1.4 !important;
+    display: block !important;
+    text-align: center !important;
+    transition: all 0.15s ease !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-color-select:hover,
+.note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-select:hover,
+.note-color-select:hover {
+    background-color: #f1f5f9 !important;
+    color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-color-row,
+.note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-row,
+.note-color-row {
+    height: 20px !important;
+    display: flex !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.note-editor .note-toolbar .note-color-palette div .note-color-btn,
+.note-editor .note-color .note-dropdown-menu .note-palette .note-color-btn,
+.note-color-btn {
+    width: 20px !important;
+    height: 20px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    cursor: pointer !important;
+    box-sizing: border-box !important;
+}
+
+.note-editor .note-toolbar .note-color-palette div .note-color-btn:hover,
+.note-editor .note-color .note-dropdown-menu .note-palette .note-color-btn:hover,
+.note-color-btn:hover {
+    transform: scale(1.25) !important;
+    z-index: 10 !important;
+    position: relative !important;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-holder-custom {
+    margin-top: 6px !important;
+    min-height: 20px !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 2px !important;
+}
+
+.note-editor .note-color .note-dropdown-menu .note-palette .note-holder-custom .note-color-btn {
+    border: 1px solid #e5e7eb !important;
+    width: 18px !important;
+    height: 18px !important;
+}
+
+/* ── Summernote: Dark Mode Theme (Seamlessly Integrated with Admin Theme) ── */
+.dark .note-editor.note-frame,
+.dark .note-editor.note-lite {
+    border: 1px solid #334155 !important;
+    background-color: #0f172a !important;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .note-editor.note-frame:focus-within,
+.dark .note-editor.note-lite:focus-within {
+    border-color: #00A3FF !important;
+    box-shadow: 0 0 0 4px rgba(0, 163, 255, 0.2) !important;
+}
+
+.dark .note-editor .note-toolbar {
+    background-color: #1e293b !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+.dark .note-editor .note-toolbar .note-btn-group>.note-btn {
+    background-color: #0f172a !important;
+    border: 1px solid #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+.dark .note-editor .note-toolbar .note-btn-group>.note-btn:hover {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+    border-color: #475569 !important;
+}
+
+.dark .note-editor .note-toolbar .note-btn-group>.note-btn.active,
+.dark .note-editor .note-toolbar .note-btn-group>.note-btn:active {
+    background-color: #334155 !important;
+    color: #38bdf8 !important;
+    border-color: #0284c7 !important;
+}
+
+.dark .note-editor .note-btn i,
+.dark .note-editor .note-btn span,
+.dark .note-editor .note-toolbar i,
+.dark .note-editor .note-toolbar span {
+    color: inherit !important;
+}
+
+.dark .note-editor .note-editable {
+    background-color: #0f172a !important;
+    color: #f1f5f9 !important;
+}
+
+.dark .note-editor .note-editable a {
+    color: #38bdf8 !important;
+    text-decoration: underline;
+}
+
+.dark .note-editor .note-placeholder {
+    color: #64748b !important;
+}
+
+.dark .note-editor .note-codable {
+    background-color: #0b1120 !important;
+    color: #38bdf8 !important;
+    border-color: #334155 !important;
+}
+
+.dark .note-editor .note-statusbar {
+    background-color: #1e293b !important;
+    border-top: 1px solid #334155 !important;
+}
+
+/* Dark Mode Dropdowns */
+.dark .note-dropdown-menu,
+.dark .note-editor .dropdown-menu {
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark .note-dropdown-menu a,
+.dark .note-dropdown-menu .dropdown-item,
+.dark .note-editor .dropdown-menu a,
+.dark .note-editor .dropdown-menu .dropdown-item {
+    color: #e2e8f0 !important;
+}
+
+.dark .note-dropdown-menu a:hover,
+.dark .note-dropdown-menu .dropdown-item:hover,
+.dark .note-editor .dropdown-menu a:hover,
+.dark .note-editor .dropdown-menu .dropdown-item:hover {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+}
+
+/* Dark Mode Color Palette Dropdown (Maintains Side-by-Side 2 Columns) */
+.dark .note-editor .note-toolbar .note-color .note-dropdown-menu,
+.dark .note-editor .note-toolbar .note-color-all .note-dropdown-menu,
+.dark .note-color-all .note-dropdown-menu,
+.dark .note-color .note-dropdown-menu {
+    background-color: #1e293b !important;
+    border: 1px solid #334155 !important;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.6) !important;
+}
+
+.dark .note-editor .note-color .note-dropdown-menu .note-palette .note-palette-title,
+.dark .note-editor .note-color-all .note-dropdown-menu .note-palette .note-palette-title,
+.dark .note-palette-title {
+    color: #f1f5f9 !important;
+    border-bottom: 1px solid #334155 !important;
+}
+
+.dark .note-editor .note-color .note-dropdown-menu .note-palette .note-color-reset,
+.dark .note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-reset,
+.dark .note-color-reset {
+    background-color: #0f172a !important;
+    border: 1px solid #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+.dark .note-editor .note-color .note-dropdown-menu .note-palette .note-color-reset:hover,
+.dark .note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-reset:hover,
+.dark .note-color-reset:hover {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+    border-color: #475569 !important;
+}
+
+.dark .note-editor .note-color .note-dropdown-menu .note-palette .note-color-select,
+.dark .note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-select,
+.dark .note-color-select {
+    background-color: #0f172a !important;
+    border: 1px solid #334155 !important;
+    color: #cbd5e1 !important;
+}
+
+.dark .note-editor .note-color .note-dropdown-menu .note-palette .note-color-select:hover,
+.dark .note-editor .note-color-all .note-dropdown-menu .note-palette .note-color-select:hover,
+.dark .note-color-select:hover {
+    background-color: #334155 !important;
+    color: #ffffff !important;
+    border-color: #475569 !important;
+}
+
+.dark .note-editor .note-color .note-dropdown-menu .note-palette .note-holder-custom .note-color-btn {
+    border: 1px solid #334155 !important;
+}
+
+/* ==========================================
+   7. SweetAlert2 Professional Modal
+   ========================================== */
+.swal2-popup {
+    padding: 1.25rem !important;
+    border-radius: 0.75rem !important;
+    width: 24em !important;
+}
+
+.swal2-title {
+    font-size: 1.25rem !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+    color: #1f2937 !important;
+}
+
+.dark .swal2-title {
+    color: #f3f4f6 !important;
+}
+
+.swal2-html-container {
+    font-size: 0.95rem !important;
+    margin: 0 0 1.25rem 0 !important;
+    color: #4b5563 !important;
+}
+
+.dark .swal2-html-container {
+    color: #9ca3af !important;
+}
+
+.swal2-icon {
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+    margin: 1rem auto !important;
+}
+
+.swal2-icon .swal2-icon-content {
+    font-size: 2.5rem !important;
+}
+
+.swal2-actions {
+    margin-top: 1rem !important;
+    gap: 0.75rem !important;
+}
+
+.swal2-styled.swal2-confirm,
+.swal2-styled.swal2-cancel {
+    padding: 0.5rem 1.25rem !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    border-radius: 0.5rem !important;
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: #00A3FF !important;
+}
+
+.swal2-styled.swal2-confirm:hover {
+    background-color: #0088DD !important;
+}
+
+.swal2-styled.swal2-cancel {
+    background-color: #64748b !important;
+}
+
+.dark .swal2-popup {
+    background-color: #1f2937 !important;
+}

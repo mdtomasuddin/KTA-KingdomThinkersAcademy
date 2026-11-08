@@ -1,0 +1,2152 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "API Documentation",
+        "description": "Complete API documentation for Dashboard Backend Authentication, Categories, Notifications, and System Services.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "{custom_url}",
+            "description": "Custom Server URL",
+            "variables": {
+                "custom_url": {
+                    "default": "",
+                    "description": "Type any custom Base URL"
+                }
+            }
+        }
+    ],
+    "tags": [
+        {
+            "name": "Auth - Public",
+            "description": "Public guest authentication and account onboarding endpoints"
+        },
+        {
+            "name": "Auth - Password Recovery",
+            "description": "OTP verification and password recovery endpoints"
+        },
+        {
+            "name": "Auth - Protected",
+            "description": "Authenticated user endpoints (Requires JWT Bearer Token)"
+        },
+        {
+            "name": "Notifications",
+            "description": "User in-app notifications and alerts (Requires JWT Bearer Token)"
+        },
+        {
+            "name": "Settings & CMS",
+            "description": "System settings and legal policies"
+        },
+        {
+            "name": "FAQs",
+            "description": "Kingdom Thinkers Academy FAQ & knowledge base endpoints"
+        }
+    ],
+    "paths": {
+        "/api/v1/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth - Public"
+                ],
+                "summary": "Register a new user account",
+                "operationId": "authRegister",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "first_name",
+                                    "email",
+                                    "password",
+                                    "terms_and_conditions"
+                                ],
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "Dev"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "Cooper"
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "maxLength": 100,
+                                        "example": "Dev cooper"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "devcooper@gmail.com"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "enum": [
+                                            "parent",
+                                            "student",
+                                            "teacher",
+                                            "contracted_teacher",
+                                            "coop",
+                                            "micro_school",
+                                            "admin",
+                                            "super_admin"
+                                        ],
+                                        "default": "employee",
+                                        "description": "User role within academy (defaults to student)",
+                                        "example": "student"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "minLength": 6,
+                                        "example": "password123"
+                                    },
+                                    "terms_and_conditions": {
+                                        "type": "boolean",
+                                        "example": true
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User registered successfully. An OTP has been sent to your email.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/AuthTokenData"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth - Public"
+                ],
+                "summary": "User login with email and password",
+                "operationId": "authLogin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "12345678"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/AuthTokenData"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid credentials",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/socialite-login": {
+            "post": {
+                "tags": [
+                    "Auth - Public"
+                ],
+                "summary": "Login or Register using Social provider token",
+                "operationId": "authSocialiteLogin",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "token",
+                                    "provider"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "type": "string",
+                                        "maxLength": 2000,
+                                        "example": "eyJhbGciOiJSUzI1NiIs..."
+                                    },
+                                    "provider": {
+                                        "type": "string",
+                                        "enum": [
+                                            "google",
+                                            "apple"
+                                        ],
+                                        "example": "google"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "enum": [
+                                            "parent",
+                                            "student",
+                                            "teacher",
+                                            "contracted_teacher",
+                                            "coop",
+                                            "micro_school",
+                                            "admin",
+                                            "super_admin"
+                                        ],
+                                        "default": "employee",
+                                        "example": "student",
+                                        "description": "User role (defaults to student)"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Socialite login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/AuthTokenData"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/otp-send": {
+            "post": {
+                "tags": [
+                    "Auth - Public",
+                    "Auth - Password Recovery"
+                ],
+                "summary": "Send / Resend OTP verification code",
+                "description": "Send a 6-digit OTP code to user email. Used for resending registration email verification OTP or requesting a password reset code.",
+                "operationId": "authSendOtp",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "email"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@gmail.com"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "email",
+                                            "phone"
+                                        ],
+                                        "default": "email",
+                                        "example": "email"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP sent successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/SendOtpData"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/otp-match": {
+            "post": {
+                "tags": [
+                    "Auth - Public",
+                    "Auth - Password Recovery"
+                ],
+                "summary": "Verify submitted OTP code (Registration Verification & Password Recovery)",
+                "description": "Verify the 6-digit OTP code sent to user email. This endpoint is used both right after user registration to verify the account and during the forgot password recovery flow.",
+                "operationId": "authVerifyOtp",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "email",
+                                    "otp"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@gmail.com"
+                                    },
+                                    "otp": {
+                                        "type": "string",
+                                        "minLength": 6,
+                                        "maxLength": 6,
+                                        "example": "123456"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OTP verified successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/VerifyOtpData"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/reset-password": {
+            "post": {
+                "tags": [
+                    "Auth - Password Recovery"
+                ],
+                "summary": "Reset password using verified OTP",
+                "operationId": "authResetPassword",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "email",
+                                    "password",
+                                    "password_confirmation"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "user@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "minLength": 8,
+                                        "example": "12345678"
+                                    },
+                                    "password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "12345678"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password reset successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/logout": {
+            "post": {
+                "tags": [
+                    "Auth - Protected"
+                ],
+                "summary": "Logout authenticated user",
+                "operationId": "authLogout",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Logged out successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/refresh": {
+            "post": {
+                "tags": [
+                    "Auth - Protected"
+                ],
+                "summary": "Refresh JWT authentication token",
+                "operationId": "authRefreshToken",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Token refreshed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "access_token": {
+                                                            "type": "string",
+                                                            "example": "eyJhbGciOiJIUzI1Ni..."
+                                                        },
+                                                        "token_type": {
+                                                            "type": "string",
+                                                            "example": "bearer"
+                                                        },
+                                                        "expires_in": {
+                                                            "type": "integer",
+                                                            "example": 3600
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/change-password": {
+            "post": {
+                "tags": [
+                    "Auth - Protected"
+                ],
+                "summary": "Change account password",
+                "operationId": "authChangePassword",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "current_password",
+                                    "new_password",
+                                    "new_password_confirmation"
+                                ],
+                                "properties": {
+                                    "current_password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "oldpassword123"
+                                    },
+                                    "new_password": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "minLength": 8,
+                                        "example": "newpassword123"
+                                    },
+                                    "new_password_confirmation": {
+                                        "type": "string",
+                                        "format": "password",
+                                        "example": "newpassword123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Password changed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/delete-account": {
+            "delete": {
+                "tags": [
+                    "Auth - Protected"
+                ],
+                "summary": "Permanently delete/deactivate user account",
+                "operationId": "authDeleteAccount",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Account deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/profile": {
+            "get": {
+                "tags": [
+                    "Auth - Protected"
+                ],
+                "summary": "Get authenticated user profile, stats, streak days and recordings",
+                "operationId": "authGetProfile",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Profile details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Profile"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Auth - Protected"
+                ],
+                "summary": "Update user profile information (supports avatar and cover upload)",
+                "operationId": "authUpdateProfile",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": false,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "example": "Dev"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "example": "Cooper"
+                                    },
+                                    "username": {
+                                        "type": "string",
+                                        "example": "dev_cooper"
+                                    },
+                                    "phone": {
+                                        "type": "string",
+                                        "example": "+15550100042"
+                                    },
+                                    "emergency_contact": {
+                                        "type": "string",
+                                        "example": "Emma Cooper (+1 555 0192)"
+                                    },
+                                    "emergency_contact_relation": {
+                                        "type": "string",
+                                        "example": "Sister"
+                                    },
+                                    "designation": {
+                                        "type": "string",
+                                        "example": "Senior Therapist"
+                                    },
+                                    "gender": {
+                                        "type": "string",
+                                        "enum": [
+                                            "male",
+                                            "female"
+                                        ],
+                                        "example": "male"
+                                    },
+                                    "birthday": {
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "1994-10-14"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "742 Evergreen Terrace, Springfield, OR 97477"
+                                    },
+                                    "bio": {
+                                        "type": "string",
+                                        "example": "Senior Therapist at Acme Global Innovations"
+                                    },
+                                    "timezone": {
+                                        "type": "string",
+                                        "example": "America/New_York"
+                                    },
+                                    "avatar": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Profile avatar picture (image file)"
+                                    },
+                                    "cover": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Cover banner picture (image file)"
+                                    },
+                                    "signature_image": {
+                                        "type": "string",
+                                        "format": "binary",
+                                        "description": "Digital drawn signature (image file)"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Profile updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Profile"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/notifications": {
+            "get": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Get authenticated user notifications list with pagination and filtering",
+                "operationId": "notificationsIndex",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "default": 25
+                        },
+                        "description": "Number of items per page"
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "task",
+                                "meeting",
+                                "leave",
+                                "expense",
+                                "attendance",
+                                "chat",
+                                "general"
+                            ]
+                        },
+                        "description": "Filter by notification category"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "read",
+                                "unread"
+                            ]
+                        },
+                        "description": "Filter by read status"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notifications retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Notification"
+                                                    }
+                                                },
+                                                "pagination": {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    }
+                }
+            }
+        },
+        "/api/v1/notifications/read": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Mark a single notification as read",
+                "operationId": "notificationsMarkAsRead",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "notification_id"
+                                ],
+                                "properties": {
+                                    "notification_id": {
+                                        "type": "string",
+                                        "format": "uuid",
+                                        "example": "9f8e7d6c-5b4a-4321-8765-000000000001",
+                                        "description": "Notification UUID"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Notification marked as read successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/notifications/read-all": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Mark all notifications as read for the authenticated user",
+                "operationId": "notificationsMarkAllAsRead",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All notifications marked as read successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    }
+                }
+            }
+        },
+        "/api/v1/notifications/bulk-delete": {
+            "post": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Delete multiple selected notifications in bulk",
+                "operationId": "notificationsBulkDelete",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "ids"
+                                ],
+                                "properties": {
+                                    "ids": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string",
+                                            "format": "uuid"
+                                        },
+                                        "example": [
+                                            "9f8e7d6c-5b4a-4321-8765-000000000001",
+                                            "9f8e7d6c-5b4a-4321-8765-000000000002"
+                                        ],
+                                        "description": "Array of Notification UUIDs to delete"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Selected notifications deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "422": {
+                        "$ref": "#/components/responses/ValidationError"
+                    }
+                }
+            }
+        },
+        "/api/v1/notifications/delete-all": {
+            "delete": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Delete all notifications for the authenticated user",
+                "operationId": "notificationsDeleteAll",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "All notifications deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    }
+                }
+            }
+        },
+        "/api/v1/notifications/{id}": {
+            "delete": {
+                "tags": [
+                    "Notifications"
+                ],
+                "summary": "Delete a notification by UUID",
+                "operationId": "notificationsDelete",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uuid"
+                        },
+                        "description": "Notification UUID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Notification deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/UnauthorizedError"
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    }
+                }
+            }
+        },
+        "/api/v1/system-setting": {
+            "get": {
+                "tags": [
+                    "Settings & CMS"
+                ],
+                "summary": "Get system settings (App Title, Logos, Contact info, etc.)",
+                "operationId": "systemSettingsIndex",
+                "responses": {
+                    "200": {
+                        "description": "System settings retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/SystemSetting"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/contents": {
+            "get": {
+                "tags": [
+                    "Settings & CMS"
+                ],
+                "summary": "List CMS content pages (Terms & Conditions, Privacy Policy, EULA, etc.)",
+                "operationId": "contentsIndex",
+                "parameters": [
+                    {
+                        "name": "slug",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Filter by page slug (e.g., privacy-policy, terms-conditions, eula)"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contents retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/Content"
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/contents/{identifier}": {
+            "get": {
+                "tags": [
+                    "Settings & CMS"
+                ],
+                "summary": "Get specific CMS content by Slug or ID",
+                "operationId": "contentsShow",
+                "parameters": [
+                    {
+                        "name": "identifier",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Content slug (e.g. terms-conditions, privacy-policy) or numeric ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Content details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/Content"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    }
+                }
+            }
+        },
+        "/api/v1/faqs": {
+            "get": {
+                "tags": [
+                    "FAQs"
+                ],
+                "summary": "List Academy FAQs",
+                "description": "Retrieve active FAQs for Kingdom Thinkers Academy.",
+                "operationId": "faqsList",
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "description": "Page number for pagination"
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 25
+                        },
+                        "description": "Number of items per page"
+                    },
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "Search keyword in question or answer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "FAQs retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$ref": "#/components/schemas/FAQ"
+                                                    }
+                                                },
+                                                "pagination": {
+                                                    "$ref": "#/components/schemas/PaginationMeta"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "$ref": "#/components/responses/ServerError"
+                    }
+                }
+            }
+        },
+        "/api/v1/faqs/{id}": {
+            "get": {
+                "tags": [
+                    "FAQs"
+                ],
+                "summary": "Get FAQ details by ID",
+                "description": "Retrieve specific FAQ record. Enforces tenant data isolation.",
+                "operationId": "faqsShow",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "FAQ primary key ID"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "FAQ details retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        {
+                                            "$ref": "#/components/schemas/SuccessResponse"
+                                        },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "$ref": "#/components/schemas/FAQ"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/NotFoundError"
+                    }
+                }
+            }
+        },
+        "/api/v1/firebase-token/add": {
+            "post": {
+                "tags": [
+                    "Firebase & Push Notifications"
+                ],
+                "summary": "Register or update FCM device token",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "token",
+                                    "device_id"
+                                ],
+                                "properties": {
+                                    "token": {
+                                        "type": "string",
+                                        "example": "fcm_token_string_here"
+                                    },
+                                    "device_id": {
+                                        "type": "string",
+                                        "example": "device_uuid_123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Token saved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 201
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token saved successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/FirebaseToken"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "$ref": "#/components/responses/400"
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/401"
+                    }
+                }
+            }
+        },
+        "/api/v1/firebase-token/get": {
+            "post": {
+                "tags": [
+                    "Firebase & Push Notifications"
+                ],
+                "summary": "Get registered FCM token by device ID",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "device_id"
+                                ],
+                                "properties": {
+                                    "device_id": {
+                                        "type": "string",
+                                        "example": "device_uuid_123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token fetched successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token fetched successfully."
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/FirebaseToken"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        },
+        "/api/v1/firebase-token/delete": {
+            "post": {
+                "tags": [
+                    "Firebase & Push Notifications"
+                ],
+                "summary": "Delete FCM device token",
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": [
+                                    "device_id"
+                                ],
+                                "properties": {
+                                    "device_id": {
+                                        "type": "string",
+                                        "example": "device_uuid_123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Token deleted successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "code": {
+                                            "type": "integer",
+                                            "example": 200
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Token deleted successfully."
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "$ref": "#/components/responses/404"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "description": "Enter your JWT token obtained from login or registration"
+            }
+        },
+        "schemas": {
+            "SuccessResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": 200
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "Operation executed successfully."
+                    },
+                    "data": {
+                        "type": "object"
+                    }
+                }
+            },
+            "ErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "code": {
+                        "type": "integer",
+                        "example": 400
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "An error occurred."
+                    },
+                    "errors": {
+                        "type": "object"
+                    }
+                }
+            },
+            "PaginationMeta": {
+                "type": "object",
+                "properties": {
+                    "total": {
+                        "type": "integer",
+                        "example": 50
+                    },
+                    "count": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "per_page": {
+                        "type": "integer",
+                        "example": 20
+                    },
+                    "current_page": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "total_pages": {
+                        "type": "integer",
+                        "example": 3
+                    },
+                    "has_more": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "John"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Doe"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "johndoe"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "user@gmail.com"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "student",
+                        "enum": [
+                            "parent",
+                            "student",
+                            "teacher",
+                            "contracted_teacher",
+                            "coop",
+                            "micro_school",
+                            "admin",
+                            "super_admin"
+                        ]
+                    },
+                    "terms_and_conditions": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                }
+            },
+            "Profile": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 2
+                    },
+                    "employee_id": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "EMP-84920"
+                    },
+                    "first_name": {
+                        "type": "string",
+                        "example": "Dev"
+                    },
+                    "last_name": {
+                        "type": "string",
+                        "example": "Cooper"
+                    },
+                    "full_name": {
+                        "type": "string",
+                        "example": "Dev Cooper"
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "dev_cooper"
+                    },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "example": "user@gmail.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "+15550100042"
+                    },
+                    "designation": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "Senior Therapist"
+                    },
+                    "gender": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "Male"
+                    },
+                    "birthday": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true,
+                        "example": "1994-10-14"
+                    },
+                    "birthday_formatted": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "14 October, 1994"
+                    },
+                    "emergency_contact": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "Emma Cooper (+1 555 0192)"
+                    },
+                    "emergency_contact_relation": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "Sister"
+                    },
+                    "address": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "742 Evergreen Terrace, Springfield, OR 97477"
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "https://example.com/uploads/avatars/user1.jpg"
+                    },
+                    "cover": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "https://example.com/uploads/covers/cover1.jpg"
+                    },
+                    "signature_image": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "https://example.com/uploads/signatures/sig1.png"
+                    },
+                    "bio": {
+                        "type": "string",
+                        "nullable": true,
+                        "example": "Senior Therapist at Acme Global Innovations"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "student",
+                        "enum": [
+                            "parent",
+                            "student",
+                            "teacher",
+                            "contracted_teacher",
+                            "coop",
+                            "micro_school",
+                            "admin",
+                            "super_admin"
+                        ]
+                    },
+                    "timezone": {
+                        "type": "string",
+                        "example": "America/New_York"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "active"
+                    },
+                    "terms_and_conditions": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-10-09T10:00:00Z"
+                    }
+                }
+            },
+            "SendOtpData": {
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "example": "email"
+                    },
+                    "otp_expires_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "example": "2026-09-29T10:00:00.000000Z"
+                    }
+                }
+            },
+            "VerifyOtpData": {
+                "type": "object",
+                "properties": {
+                    "is_verified": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                }
+            },
+            "AuthTokenData": {
+                "type": "object",
+                "properties": {
+                    "token_type": {
+                        "type": "string",
+                        "example": "bearer"
+                    },
+                    "access_token": {
+                        "type": "string",
+                        "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                    },
+                    "expires_in": {
+                        "type": "integer",
+                        "example": 3600
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/User"
+                    }
+                }
+            },
+            "Category": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "example": "Dining Out"
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "dining-out"
+                    }
+                }
+            },
+            "SystemSetting": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "VOXELÉ"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "support@example.com"
+                    },
+                    "phone": {
+                        "type": "string",
+                        "example": "+1234567890"
+                    },
+                    "logo": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "favicon": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "description": {
+                        "type": "string",
+                        "nullable": true
+                    }
+                }
+            },
+            "Content": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "slug": {
+                        "type": "string",
+                        "example": "terms-conditions"
+                    },
+                    "url": {
+                        "type": "string",
+                        "example": "http://127.0.0.1:8000/terms-conditions"
+                    }
+                }
+            },
+            "FAQ": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "question": {
+                        "type": "string",
+                        "example": "How do I clock-in with live selfie and location?"
+                    },
+                    "answer": {
+                        "type": "string",
+                        "example": "Navigate to the Attendant tab, allow camera and GPS permissions, and take a selfie within office geofence."
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "active",
+                            "inactive"
+                        ],
+                        "example": "active"
+                    }
+                }
+            },
+            "Notification": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "9f8e7d6c-5b4a-4321-8765-000000000001"
+                    },
+                    "category": {
+                        "type": "string",
+                        "example": "task",
+                        "enum": [
+                            "task",
+                            "meeting",
+                            "leave",
+                            "expense",
+                            "attendance",
+                            "chat",
+                            "general"
+                        ]
+                    },
+                    "title": {
+                        "type": "string",
+                        "example": "New Task Assigned: Mobile App Architecture"
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "You have been assigned to task: \"Mobile App Architecture\". Priority: Urgent."
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "task_assigned"
+                    },
+                    "data": {
+                        "type": "object",
+                        "properties": {
+                            "task_id": {
+                                "type": "integer",
+                                "example": 15
+                            },
+                            "category": {
+                                "type": "string",
+                                "example": "task"
+                            },
+                            "type": {
+                                "type": "string",
+                                "example": "task_assigned"
+                            },
+                            "title": {
+                                "type": "string",
+                                "example": "New Task Assigned: Mobile App Architecture"
+                            },
+                            "message": {
+                                "type": "string",
+                                "example": "You have been assigned to task: \"Mobile App Architecture\"."
+                            }
+                        }
+                    },
+                    "read_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true,
+                        "example": null
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2026-09-29T08:00:00.000000Z"
+                    },
+                    "created_at_human": {
+                        "type": "string",
+                        "example": "30 minutes ago"
+                    }
+                }
+            },
+            "FirebaseToken": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "token": {
+                        "type": "string",
+                        "example": "fcm_device_token_xyz"
+                    },
+                    "device_id": {
+                        "type": "string",
+                        "example": "unique_device_identifier_123"
+                    }
+                }
+            }
+        },
+        "responses": {
+            "UnauthorizedError": {
+                "description": "Unauthorized / Invalid Token",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                        },
+                        "example": {
+                            "success": false,
+                            "code": 401,
+                            "message": "Unauthenticated. Token is missing or invalid.",
+                            "errors": []
+                        }
+                    }
+                }
+            },
+            "NotFoundError": {
+                "description": "Resource Not Found",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                        },
+                        "example": {
+                            "success": false,
+                            "code": 404,
+                            "message": "Resource not found.",
+                            "errors": []
+                        }
+                    }
+                }
+            },
+            "ValidationError": {
+                "description": "Validation failed",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                        },
+                        "example": {
+                            "success": false,
+                            "code": 422,
+                            "message": "Validation failed",
+                            "errors": {
+                                "field": [
+                                    "The field is required."
+                                ]
+                            }
+                        }
+                    }
+                }
+            },
+            "ServerError": {
+                "description": "Internal server error",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/ErrorResponse"
+                        },
+                        "example": {
+                            "success": false,
+                            "code": 500,
+                            "message": "Something went wrong on the server.",
+                            "errors": []
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

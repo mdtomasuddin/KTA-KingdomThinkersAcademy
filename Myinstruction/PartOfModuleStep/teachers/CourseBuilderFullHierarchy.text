@@ -1,0 +1,108 @@
+# TEACHERS MODULE: 4-TIER COURSE BUILDER & DELIVERY MODES (PAGE SPECIFICATION)
+================================================================================
+Route: /teacher/dashboard/course-builder
+Component: TeacherCourseBuilderPage.jsx
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Create Course.png | Group live class.png | Group Live Course Details.png
+  * Create a New Self-Paced Course.png | Select a Completed Course.png | Self-Paced Course Details.png
+  * Curriculum Setup.png | Set Lessons.png | Set Block Content.png
+  * Add Module.png | Add Lesson.png | Add Block.png | Video Block.png
+  * Review Your Course.png | Application Is Under Review.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. FIVE DELIVERY MODES (COURSE TYPOLOGY):
+   1. Group Live Class: Scheduled cohort with recurring live interactive meetings (Zoom/Meet), weekly homework submissions, and active teacher grading.
+   2. Self-Paced Course: Pre-recorded curriculum consumed asynchronously by individual students.
+   3. 1-on-1 Tutoring: Private individualized instruction billed per session or monthly block.
+   4. Co-Ops Bundle: Curriculum packaged for homeschool co-op coordinators with multi-seat licenses.
+   5. Micro-School Program: Comprehensive multi-week academic unit licensed to micro-school directors.
+
+2. DUAL-PATH SELF-PACED CREATION:
+   - Path A: Create Blank Course from scratch.
+   - Path B: Convert Completed Live Course (`SelectCompletedCourse.jsx`):
+     * Teacher selects an existing finished Group Live cohort from a dropdown.
+     * Backend executes `POST /api/teacher/courses/{course_id}/clone-self-paced`.
+     * Automatically clones all modules, lessons, video recordings, and learning blocks while stripping student-specific chat and calendar dates.
+
+3. 4-TIER ARCHITECTURAL HIERARCHY:
+   - Tier 1: Course Meta & Scheduling (`GroupLiveCourseDetails.jsx`):
+     * Title, Subtitle, Full Rich Text Description.
+     * Subject classification (Science, Math, History, Language Arts, Faith Formation, etc.).
+     * Student Target Age Range (Minimum Age, Maximum Age).
+     * Time Zone (e.g., "America/New_York", "Australia/Sydney").
+     * Recurring Weekly Schedule: Day checkboxes (Mon, Tue, Wed, Thu, Fri, Sat, Sun) and Time slots (e.g., Monday 14:00 - 15:30).
+     * Duration: 1 to 12 weeks.
+     * Pricing: Set Fiat Price ($ USD/AUD) and Token Price.
+     * Promotional Media: Course cover image upload and introductory video.
+   - Tier 2: Module/Week Level (`CurriculumSetup.jsx` / `AddModuleModal.jsx`):
+     * Module Number, Title, Subtitle, Description.
+     * Date Range (e.g., "1 Dec - 7 Dec") and Duration in days.
+   - Tier 3: Lesson Level (`SetLessons.jsx` / `AddLessonModal.jsx`):
+     * Lesson Title, Big Picture Statement, Estimated study duration.
+   - Tier 4: Atomic Learning Blocks (`SetBlockContent.jsx` & `UploadBlockComponents`):
+     The builder supports 9 distinct learning block types:
+     1. `AudioBlockUpload`: Upload MP3/WAV audio lecture or podcast with player.
+     2. `FamilyDiscussionBlockUpload`: Guided questions for parent-child faith and worldview discussion.
+     3. `ImageBlockUpload`: High-resolution diagram, map, or historical photograph with caption.
+     4. `LinkBlockUpload`: Curated external web research URL and preview card.
+     5. `PdfBlockUpload`: Downloadable PDF student worksheet, lab guide, or reading packet.
+     6. `QuizBlockUpload`: Interactive quiz schema with multiple-choice questions (A, B, C, D) and passing score threshold.
+     7. `ReflectionBlockUpload`: Written prompt requiring student essay response in their learner hive.
+     8. `UploadsBlockUpload`: General homework file submission request.
+     9. `VideoBlockUpload`: Video lesson uploaded via 2MB resumable chunked protocol (`POST /api/upload-chunk`).
+
+4. PRICING GUIDANCE MODAL (`PricingGuideModal.jsx`):
+   - Token Value Anchor: 1 Token ≈ $5 USD.
+   - Recommended Token Guidelines:
+     * Self-Paced Short (2-3 hrs): 1 Token ($5)
+     * Self-Paced Medium (4-6 hrs): 2 Tokens ($10)
+     * Self-Paced Multi-week: 3-4 Tokens ($15-$20)
+     * Group Live Session: 3 Tokens ($15)
+     * Group Live Series: 5-8 Tokens ($25-$40)
+     * 1-on-1 Tutoring Session (45-60 min): 4-5 Tokens ($20-$25)
+     * Co-op Course Session: 3-5 Tokens ($15-$25)
+     * Micro-School Unit: 4-8 Tokens ($20-$40) per unit
+   - Revenue Share: 70% net revenue to educator ($3.50 per token); 30% platform cut ($1.50 per token).
+
+5. REVIEW & ADMIN MODERATION SUBMISSION:
+   - Preview summary page showing the entire syllabus.
+   - Clicking "Submit Course" sets status to `pending_review` in the `courses` table.
+   - Courses remain hidden from public marketplace until approved by Super Admin.
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. ৫টি ডেলিভারি মোড:
+   ১. গ্রুপ লাইভ ক্লাস (সরাসরি জুম/মিট ক্লাস ও সাপ্তাহিক খাতা দেখা)।
+   ২. সেলফ-পেসড কোর্স (রেকর্ডেড ক্লাস যা ছাত্ররা যেকোনো সময় দেখতে পারে)।
+   ৩. ১-অন-১ টিউটরিং (ব্যক্তিগত টিচিং সেশন)।
+   ৪. কো-অপ্স বান্ডেল (হোমসchool কো-অপের জন্য গ্রুপ লাইসেন্স)।
+   ৫. মাইক্রো-স্কুল প্রোগ্রাম (মাইক্রো-স্কুলের জন্য পূর্ণাঙ্গ কারিকুলাম)।
+
+২. সেলফ-পেসড কোর্স তৈরির ২টি উপায়:
+   - নতুনভাবে সম্পূর্ণ শূন্য থেকে শুরু করা।
+   - পূর্বের সম্পন্ন হওয়া লাইভ কোর্সকে এক ক্লিকে ক্লোন করে সেলফ-পেসড বানানো (`SelectCompletedCourse.jsx`)।
+
+৩. ৪-টায়ার কোর্স স্ট্রাকচার ও ৯ ধরণের ব্লক:
+   - কোর্স লেভেল: নাম, বিবরণ, বয়সসীমা, ফিয়াট ও টোকেন মূল্য, সময়সূচি।
+   - মডিউল/সপ্তাহ লেভেল: সপ্তাহের নাম ও বিবরণ।
+   - লেসন লেভেল: লেসনের নাম ও বিগ পিকচার স্টেটমেন্ট।
+   - ৯ প্রকার লার্নিং ব্লকস:
+     ১. অডিও ব্লক (Audio Block)
+     ২. ফ্যামিলি ডিসকাশন ব্লক (Family Discussion Block)
+     ৩. ইমেজ ব্লক (Image Block)
+     ৪. লিংক ব্লক (Link Block)
+     ৫. পিডিএফ ব্লক (PDF Worksheet Download)
+     ৬. কুইজ ব্লক (Interactive Quiz)
+     ৭. রিফ্লেকশন ব্লক (Student Essay/Text Reflection)
+     ৮. ফাইল আপলোড ব্লক (File Upload Block)
+     ৯. চাংকড ভিডিও ব্লক (2MB Resumable Video Upload)
+
+৪. টোকেন মূল্য ও ৭০/৩০ আয়ের নিয়ম:
+   - ১ টোকেন = প্রায় $৫ ইউএস ডলার।
+   - প্রতি টোকেন থেকে শিক্ষক পাবেন ৭০% ($৩.৫০) এবং প্ল্যাটফর্ম কমিশন ৩০% ($১.৫০)।
+   - কোর্স সাবমিট করার পর এডমিন যাচাই করে অ্যাপ্রুভ করলে তবেই মার্কেটপ্লেসে লাইভ হবে।
+

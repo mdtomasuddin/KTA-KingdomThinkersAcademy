@@ -1,0 +1,86 @@
+# TEACHERS MODULE: CONTRACTED TEACHER PORTAL (PAGE SPECIFICATION)
+================================================================================
+Routes:
+  - /contracted-teacher/dashboard
+  - /contracted-teacher/my-courses
+  - /contracted-teacher/kta-details
+  - /contracted-teacher/kta-week-details
+  - /contracted-teacher/kta-block-submit
+  - /contracted-teacher/thinkers-details
+  - /contracted-teacher/thinkers-lesson-details
+  - /contracted-teacher/payouts
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Kingdom Thinkers Academy details.png | Thinkers Academy.png
+  * All Blocks.png | Week Task Page.png | Lesson 1 to Lesson 9.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. PERSONA DEFINITION & RESPONSIBILITIES:
+   Contracted Teachers (CTs) are salaried or hourly educators hired directly by TTN LLC / KTA Group. Unlike independent marketplace teachers who author their own courses, CTs facilitate pre-designed official KTA curricula (Explorer, Adventure, Journey), host assigned live inquiry sessions, mentor students in Thinkers Academy tutoring, and submit timesheets for contracted compensation.
+
+2. DASHBOARD OVERVIEW (/contracted-teacher/dashboard):
+   - Metrics Bar (`CtTeacherOverviewTopCards.jsx`): Assigned Master Cohorts, Active Students Enrolled, Completed Sessions, and Hours Taught This Month.
+   - Assigned Programs Hub (`CtTeacherAllPrograms.jsx`): Cards displaying assigned official KTA programs.
+   - Recent Notifications Feed (`CtTeacherRecentNotifications.jsx`).
+
+3. ASSIGNED COURSES ROSTER (/contracted-teacher/my-courses):
+   - Roster Table (`CtTeacherMyCoursesTable.jsx`):
+     * Columns: Program Name & Thumbnail, Status (`Active`, `Finished`), Age Range, Program Type, Enrollments count.
+     * Dynamic Routing Dispatch:
+       - If Program is "Kingdom Thinkers Academy" or "iProject International" -> routes to `/contracted-teacher/kta-details`.
+       - If Program is "Thinkers Academy" -> routes to `/contracted-teacher/thinkers-details`.
+
+4. OFFICIAL KTA COHORT HUB (/contracted-teacher/kta-details):
+   - Top Banner & Program Summary (`CtTeachetKTABanner.jsx`, `CtTeacherProgramSummery.jsx`).
+   - 5 Dedicated Management Tabs (`CtTeachersTabManage.jsx`):
+     1. Weeks Module Tab (`CtTeachersWeekModuleTab.jsx`): 10 to 12 weekly inquiry modules. Clicking a week navigates to `/contracted-teacher/kta-week-details`.
+     2. Student List Tab (`CtTeacherStudentListTab.jsx`): Roster of enrolled learners with progress.
+     3. Live Class & Recordings Tab (`CtTeachersLiveClassRecordingTab.jsx`): Class launcher & video vault.
+     4. Attendance Tab (`CtTeacherKTAAttendance.jsx`): Roll call register.
+     5. Announcements Tab (`CtTeacherAnnouncementTab.jsx`): Broadcast updates to cohort families.
+
+5. WEEKLY DETAILS & INQUIRY SUBMISSION REVIEW:
+   - Week Details (`CtTeacherWeekDetailsMudule.jsx`): Shows all daily lessons within the week.
+   - Block Review Console (`CtTeacherKtaBlockPage.jsx`):
+     * Reviews student project milestones and biblical inquiry reflections.
+     * CTs can supplement the curriculum with 16 custom block types via specialized modals:
+       - `CtTeacherAddAssessmentBlockModal` (Self-Assessment rubric)
+       - `CtTeacherAddAudioBlockModal` (Audio explanation)
+       - `CtTeacherAddBibleConnectionBlockModal` (Scripture connection)
+       - `CtTeacherAddChecklistBlockModal` (Weekly to-do checklist)
+       - `CtTeacherAddFamilyDiscussionBlockModal` (Dinner table discussion prompt)
+       - `CtTeacherAddFileBlockModal` (Handout download)
+       - `CtTeacherAddImageBlockModal` (Visual learning asset)
+       - `CtTeacherAddLinkBlockModal` (External research link)
+       - `CtTeacherAddOpenEndedBlockModal` (Critical inquiry question)
+       - `CtTeacherAddProjectMilestoneBlockModal` (Project checkpoint)
+       - `CtTeacherAddQuizBlockModal` (Formative quiz)
+       - `CtTeacherAddReflectionBlockModal` (Journal prompt)
+       - `CtTeacherAddTextBlockModal` (Rich text note)
+       - `CtTeacherAddUploadBlockModal` (Student artifact submission prompt)
+       - `CtTeacherAddVideoBlockModal` (Supplementary lecture clip)
+       - `CtTeacherAddVocabularyBlockModal` (Key terms and thinker vocabulary)
+
+6. THINKERS ACADEMY & TIMESHEET PAYOUTS:
+   - Tutoring Portal (`/contracted-teacher/thinkers-details`): Dedicated 1-on-1 and small group inquiry mentoring hub with availability time slot manager (`CtTeacherManageAvailableTimeSlotModal.jsx`).
+   - Timesheet Logger (`/contracted-teacher/payouts`):
+     * Form: Date, Assigned Cohort, Hours Taught (e.g., 1.5 hrs), Session Notes.
+     * Timesheet History: Status (`Submitted`, `Approved by Admin`, `Paid`).
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. কন্ট্রাক্টেড শিক্ষক (Contracted Teacher) পোর্টাল:
+   - এই শিক্ষকরা KTA প্ল্যাটফর্মের অফিসিয়াল ব্যাচগুলো পড়ানোর জন্য চুক্তিবদ্ধ থাকেন।
+   - মাই কোর্সেস পেজ: এখানে তাদের দায়িত্বপ্রাপ্ত KTA Explorer/Adventure ব্যাচ এবং Thinkers Academy টিউটরিং সেশনের তালিকা থাকে।
+   - KTA ব্যাচ ম্যানেজমেন্ট (৫টি ট্যাব):
+     ১. Weeks Module (সাপ্তাহিক কারিকুলাম ও লেসন)
+     ২. Student List (ছাত্রদের তালিকা)
+     ৩. Live Class & Recordings (লাইভ ক্লাস ও রেকর্ডিং)
+     ৪. Attendance (হাজিরা খাতা)
+     ৫. Announcements (নোটিশ বোর্ড)
+   - ১৬ ধরণের ব্লক মডাল: কন্ট্রাক্টেড শিক্ষকরা ক্লাসের প্রয়োজনে বাইবেল কানেকশন, চেকলিস্ট, ভোকাবুলারি, প্রজেক্ট মাইলস্টোন ও রিফ্লেকশন ব্লক যুক্ত করতে পারেন।
+   - সাপ্তাহিক টাইমশিট পে-আউট পেজ: শিক্ষক কত ঘণ্টা ক্লাস করিয়েছেন তার বিবরণ লিখে টাইমশিট জমা দেবেন এবং এডমিন অ্যাপ্রুভ করলে প্রতি ঘণ্টার নির্ধারিত বেতন পাবেন।
+

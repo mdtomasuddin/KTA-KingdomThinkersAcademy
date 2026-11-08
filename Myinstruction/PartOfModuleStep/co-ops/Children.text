@@ -1,0 +1,43 @@
+# CO-OPS MODULE: CHILDREN & STUDENT ROSTER (Children.text)
+================================================================================
+Language: English & Bengali (দ্বিভাষিক ডকুমেন্টেশন)
+Routes:
+  - /co-op/dashboard/children (Children Directory)
+  - /co-op/dashboard/children/:id (Child Details View)
+  - /co-op/dashboard/children/pending-requests (Pending Child Seat Approvals)
+Visual Reference: E:\kaleknealeImages\Co-op Dashboard\
+  * Children.jpg
+  * Children View Details page.jpg
+  * Pending Children Requests.jpg
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. CHILDREN DIRECTORY (/co-op/dashboard/children):
+- Filter by Grade Level, Assigned Class/Program, and Status.
+- Grid / Table Display: Student Avatar & Name, Age, Grade, Parent Name, Enrolled Program Bundles, Attendance Rate %.
+
+2. CHILD DETAILS VIEW (/co-op/dashboard/children/:id):
+- Header: Student illustrated avatar, full name, age, grade.
+- Guardian Link: Direct clickable shortcut to parent profile.
+- Academic Progress Roster: Active co-op programs, completed weekly blocks, attendance logs.
+- Special Needs / Medical Notes: Dietary alerts or learning accommodations logged by parent.
+
+3. PENDING CHILDREN REQUESTS (/co-op/dashboard/children/pending-requests):
+- Triggered when an existing member family registers an additional child to attend co-op classes.
+- Coordinator reviews available seat capacity against the co-op subscription quota.
+- Actions: Button `Approve Child` (allocates student seat) | Button `Reject`.
+
+--------------------------------------------------------------------------------
+[বাংলা সেকশন]
+--------------------------------------------------------------------------------
+১. শিশুদের তালিকা (/co-op/dashboard/children):
+- কো-অপে পড়ুয়া সকল ছাত্রছাত্রীর নাম, বয়স, গ্রেড, অভিভাবকের নাম, ক্লাসের উপস্থিতি এবং এনরোল করা কোর্সের তালিকা।
+
+২. চাইল্ড ডিটেইলস পেজ (/co-op/dashboard/children/:id):
+- শিশুর প্রোফাইল, লার্নিং প্রগ্রেস, ক্লাসের হাজিরা এবং বিশেষ কোনো স্বাস্থ্য বা লার্নিং নোট।
+
+৩. পেন্ডিং চাইল্ড রিকোয়েস্ট (/co-op/dashboard/children/pending-requests):
+- কোনো মেম্বার ফ্যামিলি নতুন কোনো সন্তানকে কো-অপের ক্লাসে ভর্তি করাতে চাইলে তা এখানে রিভিউ কিউতে আসে।
+- কো-অর্ডিনেটরের অ্যাকশন: সিট খালি থাকা সাপেক্ষে `Approve Child` দিয়ে সিট বরাদ্দ করা।
+

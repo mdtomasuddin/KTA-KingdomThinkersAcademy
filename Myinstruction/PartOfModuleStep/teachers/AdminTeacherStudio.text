@@ -1,0 +1,73 @@
+# TEACHERS MODULE: ADMIN TEACHER STUDIO & SUBSCRIPTION PLANS (PAGE SPECIFICATION)
+================================================================================
+Routes:
+  - /teacher/dashboard/premium-program (Master Curriculum Studio)
+  - /teacher/dashboard/edit-premium-program (Curriculum Editor)
+  - /teacher/dashboard/premium-program-summary (Program Overview)
+  - /teacher/dashboard/subscription-plans (Multi-Currency Subscription Manager)
+Visual Reference: E:\kaleknealeImages\kalekneale\
+  * Subscripiton Page.png | KTA+.jpg | Thinkers Academy Program details.jpg
+  * iProject International Program details.png
+Language: English & Bengali (দ্বিভাষিক পেজ স্পেসিফিকেশন)
+================================================================================
+
+[ENGLISH SECTION]
+-----------------
+1. PERSONA DEFINITION & AUTHORITY:
+   The Admin Teacher is a senior pedagogical lead appointed by Super Admin. This persona possesses elevated privileges to author master institutional programs (Kingdom Thinkers Academy, iProject International, and Thinkers Academy) and configure global recurring subscription plans.
+
+2. MASTER PREMIUM PROGRAM STUDIO (/teacher/dashboard/premium-program):
+   - Filter Tabs (`AdminPremiumProgramCards.jsx`):
+     1. "All Programs"
+     2. "iProject" (Global Collaborative Student Inquiry)
+     3. "KTA+" (Official Kingdom Thinkers Academy Master Curriculum)
+     4. "Thinkers Academy" (Specialized Mentorship & Subject Tutoring)
+   - Program Card Inspector:
+     * Cover Promotional Image & Academy Badge.
+     * Program Title, Target Age Range, Duration (e.g. 10 weeks).
+     * Enrolled Student Counter & Average Review Rating.
+     * Action 1: "Edit Program" -> Opens `/teacher/dashboard/edit-premium-program`.
+     * Action 2: "Manage Subscription Plans" -> Routes to `/teacher/dashboard/subscription-plans`.
+
+3. SUBSCRIPTION PLANS MANAGER (/teacher/dashboard/subscription-plans):
+   - Package Architecture: Manages tiered access bundles across Australia and the United States:
+     * Explorer Tier: Entry level inquiry sessions and student hive access.
+     * Adventure Tier: Full weekly live classes, curriculum modules, and project reviews.
+     * Journey Tier: Premium all-inclusive package with 1-on-1 Thinkers tutoring.
+   - Plan Management Operations:
+     * Button: "Create Subscription Plan" -> Opens `CreateSubscriptionPlanModal.jsx`.
+     * Modal Form Fields:
+       1. Plan Name: e.g. "Adventure Plan".
+       2. Billing Interval: Weekly, Monthly, Quarterly, or Annually.
+       3. Price in Australian Dollars (`price_aud`).
+       4. Price in US Dollars (`price_usd`).
+       5. Stripe Product ID (`stripe_product_id`).
+       6. Stripe Price ID (`stripe_price_id`).
+       7. "Most Popular" Highlight Badge (`is_popular` boolean).
+       8. Entitlements Feature List (Dynamic bullet points with add/remove chips).
+     * Edit Plan: Opens `UpdateSubscriptionPlanModal.jsx` to modify pricing and entitlements.
+     * Delete Plan: Opens `ConfirmDeleteModal.jsx` executing soft deactivation.
+
+4. PREVIOUS BACKEND WORK VS PENDING IMPLEMENTATION:
+   - ALREADY DONE:
+     * Tables `premium_programs` and `premium_program_subscription_plans` exist in `database.sql`.
+     * `AdminSubscriptionPlanApiController` implemented with CRUD endpoints.
+   - PENDING IMPLEMENTATION:
+     * Webhook synchronization between Stripe Billing plans and local database plans (`customer.subscription.created`, `invoice.payment_succeeded`).
+
+================================================================================
+[বাংলা সেকশন]
+================================================================================
+১. এডমিন শিক্ষক স্টুডিও ও সাবস্ক্রিপশন প্ল্যান পেজ:
+   - এডমিন শিক্ষক হলেন প্ল্যাটফর্মের হেড কারিকুলাম ডিজাইনার যিনি KTA-এর মূল মাস্টার প্রোগ্রামগুলো তৈরি ও নিয়ন্ত্রণ করেন।
+   - মাস্টার প্রোগ্রাম স্টুডিও:
+     * ৪টি ফিল্টার ট্যাব: All Programs, iProject, KTA+, Thinkers Academy।
+     * প্রতিটি প্রোগ্রামের কভার ছবি, বয়সসীমা, মোট ছাত্র ও রেটিং দেখা যায়।
+     * "Edit Program" ও "Manage Subscription Plans" বাটন।
+   - সাবস্ক্রিপশন প্ল্যান ম্যানেজার:
+     * KTA প্ল্যাটফর্মের ৩টি মূল সাবস্ক্রিপশন প্যাকেজ (Explorer, Adventure, Journey) তৈরি ও এডিট করার মডাল।
+     * প্রতিটি প্ল্যানে AUD এবং USD আলাদা মূল্য নির্ধারণ করা।
+     * বিলিং সাইকেল (সাপ্তাহিক, মাসিক, ত্রৈমাসিক, বাৎসরিক) সেট করা।
+     * স্ট্রাইপ প্রোডাক্ট আইডি ও প্রাইস আইডি লিংক করা।
+     * এই প্যাকেজের আওতায় শিক্ষার্থীরা কি কি সুবিধা পাবে তার বুলেট পয়েন্ট ফিচার লিস্ট যুক্ত করা।
+
