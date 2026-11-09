@@ -15,7 +15,3 @@ Route::post('user/status/{id}', [UserManagementController::class, 'status'])->na
 // ! Category Management module
 Route::resource('category', CategoriesController::class);
 Route::post('category/status/{id}', [CategoriesController::class, 'status'])->name('category.status');
-
-// ! Category Management
-Route::resource('category', CategoriesController::class);
-Route::post('category/status/{id}', [CategoriesController::class, 'status'])->name('category.status');
