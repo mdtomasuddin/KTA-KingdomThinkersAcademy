@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\Services\Web\V1\Category\CategoryService;
 use Exception;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Yajra\DataTables\Facades\DataTables;
@@ -21,7 +20,7 @@ class CategoriesController extends Controller
     ) {}
 
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource with modal-driven workflows.
      */
     public function index(Request $request): View | JsonResponse
     {
@@ -38,28 +37,39 @@ class CategoriesController extends Controller
                 })
                 ->addColumn('status', function (Category $category) {
                     $checked = $category->status === 'active' ? 'checked' : '';
+
                     return '<label class="relative inline-flex items-center cursor-pointer">
                         <input type="checkbox" onclick="changeStatus(event, ' . $category->id . ')"
                             class="sr-only peer" ' . $checked . '>
                         <div class="w-9 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary-300 dark:peer-focus:ring-primary-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[\'\'] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
                     </label>';
                 })
+                ->addColumn('created_at', function (Category $category) {
+                    return $category->created_at ? '<span class="text-xs text-gray-600 dark:text-gray-400 font-medium">' . $category->created_at->format('d M, Y') . '</span>' : 'N/A';
+                })
                 ->addColumn('action', function (Category $category) {
                     return '<div class="flex items-center justify-center gap-2">
-                        <a href="' . route('category.edit', $category->id) . '"
+                        <button type="button"
+                            onclick="viewCategoryDetails(' . $category->id . ')"
+                            class="w-8 h-8 flex items-center justify-center rounded-lg text-emerald-600 bg-emerald-100 hover:bg-emerald-600 hover:text-white dark:text-emerald-400 dark:bg-emerald-900/30 dark:hover:bg-emerald-600 dark:hover:text-white transition-all shadow-sm hover:shadow"
+                            title="View Details">
+                            <i class="fa-solid fa-eye text-sm"></i>
+                        </button>
+                        <button type="button"
+                            onclick="editCategory(' . $category->id . ')"
                             class="w-8 h-8 flex items-center justify-center rounded-lg text-blue-600 bg-blue-100 hover:bg-blue-600 hover:text-white dark:text-blue-400 dark:bg-blue-900/30 dark:hover:bg-blue-600 dark:hover:text-white transition-all shadow-sm hover:shadow"
                             title="Edit">
                             <i class="fa-solid fa-pen-to-square text-sm"></i>
-                        </a>
+                        </button>
                         <button type="button"
-                            class="w-8 h-8 flex items-center justify-center rounded-lg text-red-600 bg-red-100 hover:bg-red-600 hover:text-white dark:text-red-400 dark:bg-red-900/30 dark:hover:bg-red-600 dark:hover:text-white transition-all shadow-sm hover:shadow"
                             onclick="deleteRecord(event, ' . $category->id . ')"
+                            class="w-8 h-8 flex items-center justify-center rounded-lg text-red-600 bg-red-100 hover:bg-red-600 hover:text-white dark:text-red-400 dark:bg-red-900/30 dark:hover:bg-red-600 dark:hover:text-white transition-all shadow-sm hover:shadow"
                             title="Delete">
                             <i class="fa-solid fa-trash-can text-sm"></i>
                         </button>
                     </div>';
                 })
-                ->rawColumns(['slug', 'name', 'status', 'action', 'created_at'])
+                ->rawColumns(['name', 'slug', 'status', 'created_at', 'action'])
                 ->make(true);
         }
 
@@ -67,57 +77,89 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created category via Modal AJAX.
      */
-    public function create(): View
-    {
-        return view('backend.categories.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(CategoryCreateRequest $request): RedirectResponse
+    public function store(CategoryCreateRequest $request): JsonResponse
     {
         try {
-            $this->categoryService->create($request->validated());
+            $category = $this->categoryService->create($request->validated());
 
-            return redirect()->route('category.index')->with('t-success', 'Category created successfully.');
+            return response()->json([
+                'success' => true,
+                'message' => 'Category created successfully.',
+                'data'    => $category,
+            ], 201);
         } catch (Exception $e) {
-            return redirect()->back()->withInput()->with('t-error', 'Failed to create category: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to create category: ' . $e->getMessage(),
+            ], 500);
         }
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Display the specified category for the View/Show Modal.
      */
-    public function edit(int $id): View | RedirectResponse
+    public function show(int $id): JsonResponse
     {
         try {
             $category = Category::query()->findOrFail($id);
 
-            return view('backend.categories.edit', compact('category'));
+            return response()->json([
+                'success' => true,
+                'data'    => $category,
+            ]);
         } catch (Exception $e) {
-            return redirect()->route('category.index')->with('t-error', 'Category not found.');
+            return response()->json([
+                'success' => false,
+                'message' => 'Category not found.',
+            ], 404);
         }
     }
 
     /**
-     * Update the specified resource in storage.
+     * Fetch category details for the Edit Modal.
      */
-    public function update(CategoryUpdateRequest $request, int $id): RedirectResponse
+    public function edit(int $id): JsonResponse
     {
         try {
-            $this->categoryService->update($id, $request->validated());
+            $category = Category::query()->findOrFail($id);
 
-            return redirect()->route('category.index')->with('t-success', 'Category updated successfully.');
+            return response()->json([
+                'success' => true,
+                'data'    => $category,
+            ]);
         } catch (Exception $e) {
-            return redirect()->back()->withInput()->with('t-error', 'Failed to update category: ' . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => 'Category not found.',
+            ], 404);
         }
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Update the specified category via Modal AJAX.
+     */
+    public function update(CategoryUpdateRequest $request, int $id): JsonResponse
+    {
+        try {
+            $category = $this->categoryService->update($id, $request->validated());
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Category updated successfully.',
+                'data'    => $category,
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to update category: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * Remove the specified category from storage.
      */
     public function destroy(int $id): JsonResponse
     {
@@ -126,14 +168,13 @@ class CategoriesController extends Controller
             $category->delete();
 
             return response()->json([
-                't-success' => true,
-                'message'   => 'Category deleted successfully.',
+                'success' => true,
+                'message' => 'Category deleted successfully.',
             ]);
         } catch (Exception $e) {
             return response()->json([
-                't-error' => true,
-                'message' => 'Failed to delete category.',
-                'error'   => $e->getMessage(),
+                'success' => false,
+                'message' => 'Failed to delete category: ' . $e->getMessage(),
             ], 500);
         }
     }
@@ -149,14 +190,13 @@ class CategoriesController extends Controller
             $category->save();
 
             return response()->json([
-                't-success' => true,
-                'message'   => 'Status changed successfully.',
+                'success' => true,
+                'message' => 'Status changed successfully.',
             ]);
         } catch (Exception $e) {
             return response()->json([
-                't-error' => true,
-                'message' => 'Failed to update category status.',
-                'error'   => $e->getMessage(),
+                'success' => false,
+                'message' => 'Failed to update category status: ' . $e->getMessage(),
             ], 500);
         }
     }
