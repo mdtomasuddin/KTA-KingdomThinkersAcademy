@@ -26,6 +26,7 @@ class CategoryUpdateRequest extends FormRequest
         return [
             'name'   => ['required', 'string', 'max:100'],
             'slug'   => ['nullable', 'string', 'max:100', 'unique:categories,slug,' . $categoryId],
+            'status' => ['nullable', 'string', 'in:active,inactive'],
         ];
     }
 }
